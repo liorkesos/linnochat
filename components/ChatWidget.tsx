@@ -8,7 +8,7 @@ const ChatWidget: React.FC = () => {
     {
       id: '1',
       role: 'model',
-      text: "Hi! I'm your Virtual Interviewer. I'd love to learn how you currently collect customer feedback. Do you mostly use surveys?",
+      text: "Hi! I'm Linno. I help businesses automate Support, Client Intake, and Feedback. What process are you looking to streamline today?",
       timestamp: new Date()
     }
   ]);
@@ -69,14 +69,14 @@ const ChatWidget: React.FC = () => {
             <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white dark:border-dark-900 rounded-full"></div>
           </div>
           <div>
-            <h3 className="font-bold text-gray-900 dark:text-white text-sm">Virtual Interviewer</h3>
-            <p className="text-xs text-indigo-600 dark:text-indigo-300">Active Listening Mode</p>
+            <h3 className="font-bold text-gray-900 dark:text-white text-sm">Linno AI Assistant</h3>
+            <p className="text-xs text-indigo-600 dark:text-indigo-300">Support & Intake Mode</p>
           </div>
         </div>
         <button 
           onClick={() => setMessages([messages[0]])}
           className="text-gray-400 hover:text-gray-600 dark:hover:text-white transition-colors"
-          title="Reset Interview"
+          title="Reset Conversation"
         >
           <Icons.Zap className="w-4 h-4" />
         </button>
@@ -119,7 +119,7 @@ const ChatWidget: React.FC = () => {
             type="text"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
-            placeholder="Type your answer..."
+            placeholder="Ask anything..."
             className="w-full bg-gray-100 dark:bg-dark-800 text-gray-900 dark:text-white placeholder-gray-500 rounded-full py-3 pl-4 pr-12 focus:outline-none focus:ring-2 focus:ring-indigo-500 border border-transparent dark:border-white/10 transition-colors"
           />
           <button

@@ -5,59 +5,59 @@ import { Icons } from './components/Icons';
 
 const agents = [
   {
-    title: "1. AI Script Builder Agent",
-    subtitle: "(Build)",
-    description: "Create bespoke discussion guides in minutes. Simply input your business questions or choose from our Template Library.",
+    title: "1. Workflow Builder Agent",
+    subtitle: "(Design)",
+    description: "Import your SOPs or Support Documentation. The AI automatically generates conversation flows for Intake, Triage, or Feedback.",
     icon: <Icons.LayoutTemplate className="w-8 h-8 text-indigo-500" />
   },
   {
-    title: "2. Conversation AI Agent",
-    subtitle: "(Execute)",
-    description: "The Virtual Interviewer that never sleeps. Uses active listening, mirroring, and probing techniques to collect deep data.",
-    icon: <Icons.MessageSquare className="w-8 h-8 text-purple-500" />
+    title: "2. Execution Agent",
+    subtitle: "(Engage)",
+    description: "Your 24/7 frontline. Handles complex queries, collects required documents, and routes critical issues to humans with context.",
+    icon: <Icons.Bot className="w-8 h-8 text-purple-500" />
   },
   {
-    title: "3. Emotional AI Agent",
-    subtitle: "(Analyze)",
-    description: "Go beyond keywords. Processes 'soft measures'—emotional drivers and psychological motivations—to predict behavior.",
-    icon: <Icons.BrainCircuit className="w-8 h-8 text-pink-500" />
+    title: "3. Insight Engine",
+    subtitle: "(Structure)",
+    description: "Converts unstructured chat logs into JSON, CRM records, or summary tickets. Identifies trends and sentiment instantly.",
+    icon: <Icons.BarChart3 className="w-8 h-8 text-pink-500" />
   }
 ];
 
 const industries = [
   {
-    name: "Gaming",
-    useCase: "Player Motivation & LTV",
-    description: "Identified correlation between 'Sense of Progression' and high involvement in 682 gamers.",
-    icon: <Icons.Gamepad2 className="w-6 h-6 text-white" />,
+    name: "Customer Support",
+    useCase: "L1 Deflection & Triage",
+    description: "Resolve 40% of tickets automatically and route complex issues with full context summaries.",
+    icon: <Icons.MessageSquare className="w-6 h-6 text-white" />,
     color: "bg-purple-600"
   },
   {
-    name: "Hospitality",
-    useCase: "Unmet Guest Needs",
-    description: "Replace static feedback with dynamic chat to identify 'Silent Promoters' or 'Adversaries'.",
-    icon: <Icons.Plane className="w-6 h-6 text-white" />,
+    name: "Healthcare",
+    useCase: "Patient Intake",
+    description: "Automate pre-visit forms, symptom checking triage, and appointment scheduling via chat.",
+    icon: <Icons.Stethoscope className="w-6 h-6 text-white" />,
     color: "bg-blue-600"
   },
   {
-    name: "Healthcare",
-    useCase: "Patient Experience",
-    description: "Probe for details on patient care and facility conditions, turning unstructured complaints into data.",
-    icon: <Icons.Stethoscope className="w-6 h-6 text-white" />,
+    name: "FinTech",
+    useCase: "KYC & Onboarding",
+    description: "Collect documents and validate user information in a secure, conversational flow.",
+    icon: <Icons.Wallet className="w-6 h-6 text-white" />,
     color: "bg-green-600"
   },
   {
     name: "HR & Enterprise",
-    useCase: "Employee Wellness",
-    description: "Emotional AI detects burnout signals and deeper needs that standard checkboxes miss.",
+    useCase: "Internal Helpdesk",
+    description: "Instant answers for benefits, IT support, and employee onboarding processes.",
     icon: <Icons.Building2 className="w-6 h-6 text-white" />,
     color: "bg-orange-600"
   },
   {
-    name: "FinTech",
-    useCase: "Customer Relations",
-    description: "Achieved 81% completion in AML feedback, revealing gaps between scores and sentiment.",
-    icon: <Icons.Wallet className="w-6 h-6 text-white" />,
+    name: "User Research",
+    useCase: "Deep Feedback",
+    description: "Go beyond NPS scores with qualitative interviews that dig into the 'Why' behind the data.",
+    icon: <Icons.FileSearch className="w-6 h-6 text-white" />,
     color: "bg-teal-600"
   }
 ];
@@ -78,22 +78,22 @@ function App() {
         <div className="max-w-7xl mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-12 items-center">
           <div className="text-left animate-slide-up">
             <h1 className="text-5xl lg:text-7xl font-bold tracking-tight text-gray-900 dark:text-white mb-6 leading-tight">
-              Sense Your Customers with <br />
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-purple-500">Conversational AI</span>
+              Conversational AI Agents for <br />
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-purple-500">Data Collection and Analysis</span>
             </h1>
             <p className="text-xl font-semibold text-gray-700 dark:text-gray-200 mb-4">
-              Turn Passive Surveys into Active, Insightful Conversations.
+              Turn complex workflows into natural, actionable conversations.
             </p>
             <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-xl leading-relaxed">
-              LinnoChat is the no-code enterprise platform that uses GenAI to build "Virtual Interviewers." We automate the collection of deep qualitative data to uncover actionable business insights.
+              LinnoChat is the enterprise AI platform that deploys intelligent agents to handle customer support triage, complex client intake, and qualitative research—all without code.
             </p>
             <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4">
               <button className="w-full sm:w-auto px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg font-semibold transition-all shadow-lg shadow-indigo-900/20 dark:shadow-indigo-900/50 flex items-center justify-center space-x-2">
-                <span>Create Your Virtual Interviewer</span>
+                <span>Build Your Agent</span>
                 <Icons.ArrowRight className="w-4 h-4" />
               </button>
               <button className="w-full sm:w-auto px-8 py-4 bg-white hover:bg-gray-50 dark:bg-white/5 dark:hover:bg-white/10 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white rounded-lg font-semibold transition-all backdrop-blur-sm shadow-sm dark:shadow-none">
-                See the Data
+                View Integrations
               </button>
             </div>
           </div>
@@ -114,26 +114,26 @@ function App() {
                 <Icons.Activity className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
               </div>
               <div>
-                <h3 className="font-semibold text-gray-900 dark:text-white">3-Step Lifecycle</h3>
-                <p className="text-sm text-gray-500 dark:text-gray-400">Build, Execute, Analyze</p>
+                <h3 className="font-semibold text-gray-900 dark:text-white">Full Lifecycle</h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400">Design, Deploy, Analyze</p>
               </div>
             </div>
             <div className="flex items-start space-x-3">
               <div className="p-2 bg-purple-50 dark:bg-purple-500/10 rounded-lg">
-                <Icons.Mic className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+                <Icons.Zap className="w-5 h-5 text-purple-600 dark:text-purple-400" />
               </div>
               <div>
-                <h3 className="font-semibold text-gray-900 dark:text-white">Voice & Text</h3>
-                <p className="text-sm text-gray-500 dark:text-gray-400">Enable natural speech</p>
+                <h3 className="font-semibold text-gray-900 dark:text-white">Deployment</h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400">SaaS & On-prem</p>
               </div>
             </div>
             <div className="flex items-start space-x-3">
               <div className="p-2 bg-pink-50 dark:bg-pink-500/10 rounded-lg">
-                <Icons.BrainCircuit className="w-5 h-5 text-pink-600 dark:text-pink-400" />
+                <Icons.ShieldCheck className="w-5 h-5 text-pink-600 dark:text-pink-400" />
               </div>
               <div>
-                <h3 className="font-semibold text-gray-900 dark:text-white">Psychology-Based</h3>
-                <p className="text-sm text-gray-500 dark:text-gray-400">Detects emotion & behavior</p>
+                <h3 className="font-semibold text-gray-900 dark:text-white">Enterprise Grade</h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400">Security & Control</p>
               </div>
             </div>
             <div className="flex items-start space-x-3">
@@ -142,7 +142,7 @@ function App() {
               </div>
               <div>
                 <h3 className="font-semibold text-gray-900 dark:text-white">Omnichannel</h3>
-                <p className="text-sm text-gray-500 dark:text-gray-400">Web, WhatsApp, CRM</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">Web, Mobile, WhatsApp</p>
               </div>
             </div>
           </div>
@@ -150,12 +150,12 @@ function App() {
       </section>
 
       {/* How It Works: The 3-Agent Power */}
-      <section id="how-it-works" className="py-24 relative bg-gray-50 dark:bg-black/20">
+      <section id="how-it-works" className="py-24 relative bg-gray-50 dark:bg-black/20 scroll-mt-24">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">The Power of Three AI Agents</h2>
+            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">The Power of Intelligent Automation</h2>
             <p className="text-gray-600 dark:text-gray-400 text-lg">
-              LinnoChat leverages three distinct AI agents to handle the entire project lifecycle—from creation to analysis.
+              LinnoChat combines three distinct AI layers to handle the entire interaction lifecycle—from defining the workflow to extracting structured data.
             </p>
           </div>
 
@@ -175,16 +175,16 @@ function App() {
       </section>
 
       {/* Why LinnoChat? Comparison */}
-      <section id="why-linno" className="py-24 bg-white dark:bg-dark-900 relative overflow-hidden">
+      <section id="why-linno" className="py-24 bg-white dark:bg-dark-900 relative overflow-hidden scroll-mt-24">
         <div className="absolute top-0 right-0 w-1/3 h-full bg-indigo-50 dark:bg-white/5 skew-x-12 transform translate-x-20"></div>
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
-                Why Replace Surveys with LinnoChat?
+                Why Upgrade from Static Forms?
               </h2>
               <p className="text-xl text-indigo-600 dark:text-indigo-400 mb-6 font-medium">
-                Traditional surveys are boring. LinnoChat is engaging.
+                Forms are rigid. LinnoChat is dynamic, resolving issues as they happen.
               </p>
               <div className="space-y-6">
                 <div className="flex items-start">
@@ -192,8 +192,8 @@ function App() {
                     <Icons.CheckCircle2 className="w-5 h-5 text-green-600 dark:text-green-400" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-gray-900 dark:text-white">Unmatched Engagement</h4>
-                    <p className="text-gray-600 dark:text-gray-400">~87% completion rates with users chatting for over 19 minutes on average.</p>
+                    <h4 className="font-bold text-gray-900 dark:text-white">Dynamic Triage</h4>
+                    <p className="text-gray-600 dark:text-gray-400">The AI adapts questions based on user answers, skipping irrelevant steps and digging deeper when needed.</p>
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -201,8 +201,8 @@ function App() {
                     <Icons.CheckCircle2 className="w-5 h-5 text-green-600 dark:text-green-400" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-gray-900 dark:text-white">Rich Qualitative Data</h4>
-                    <p className="text-gray-600 dark:text-gray-400">Users share detailed stories—exceeding 100-200 words per answer—because the AI makes them feel heard.</p>
+                    <h4 className="font-bold text-gray-900 dark:text-white">Structured Data Extraction</h4>
+                    <p className="text-gray-600 dark:text-gray-400">Turn conversational chaos into clean JSON. We populate your CRM or ticketing system automatically.</p>
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -210,8 +210,8 @@ function App() {
                     <Icons.CheckCircle2 className="w-5 h-5 text-green-600 dark:text-green-400" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-gray-900 dark:text-white">Human-Like Interaction</h4>
-                    <p className="text-gray-600 dark:text-gray-400">Our bots use empathy ("So sorry to hear that") and validation to build trust.</p>
+                    <h4 className="font-bold text-gray-900 dark:text-white">24/7 Resolution</h4>
+                    <p className="text-gray-600 dark:text-gray-400">Don't just queue tickets—solve them. Our agents can handle FAQs, scheduling, and basic troubleshooting.</p>
                   </div>
                 </div>
               </div>
@@ -219,33 +219,33 @@ function App() {
             
             <div className="relative">
               <div className="bg-gray-900 dark:bg-black rounded-2xl p-8 shadow-2xl border border-gray-800 dark:border-white/10">
-                <h3 className="text-white font-bold mb-6 border-b border-gray-800 pb-4">Live Engagement Metrics</h3>
+                <h3 className="text-white font-bold mb-6 border-b border-gray-800 pb-4">Efficiency Metrics</h3>
                 <div className="space-y-6">
                   <div>
                     <div className="flex justify-between text-sm text-gray-400 mb-2">
-                      <span>Completion Rate</span>
-                      <span className="text-green-400">87%</span>
+                      <span>Automated Resolution Rate</span>
+                      <span className="text-green-400">65%</span>
                     </div>
                     <div className="h-2 bg-gray-800 rounded-full overflow-hidden">
-                      <div className="h-full w-[87%] bg-green-500 rounded-full"></div>
+                      <div className="h-full w-[65%] bg-green-500 rounded-full"></div>
                     </div>
                   </div>
                   <div>
                     <div className="flex justify-between text-sm text-gray-400 mb-2">
-                      <span>Avg. Time Spent</span>
-                      <span className="text-blue-400">19m 23s</span>
+                      <span>Intake Completion Time</span>
+                      <span className="text-blue-400">-40% faster</span>
                     </div>
                     <div className="h-2 bg-gray-800 rounded-full overflow-hidden">
-                      <div className="h-full w-[95%] bg-blue-500 rounded-full"></div>
+                      <div className="h-full w-[40%] bg-blue-500 rounded-full"></div>
                     </div>
                   </div>
                   <div>
                     <div className="flex justify-between text-sm text-gray-400 mb-2">
-                      <span>Word Count / Answer</span>
-                      <span className="text-purple-400">150+ words</span>
+                      <span>CSAT Score Increase</span>
+                      <span className="text-purple-400">+18 points</span>
                     </div>
                     <div className="h-2 bg-gray-800 rounded-full overflow-hidden">
-                      <div className="h-full w-[80%] bg-purple-500 rounded-full"></div>
+                      <div className="h-full w-[88%] bg-purple-500 rounded-full"></div>
                     </div>
                   </div>
                 </div>
@@ -256,10 +256,11 @@ function App() {
       </section>
 
       {/* Solutions by Industry */}
-      <section id="solutions" className="py-24 bg-gray-50 dark:bg-dark-800/30">
+      <section id="solutions" className="py-24 bg-gray-50 dark:bg-dark-800/30 scroll-mt-24">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">Tailored Solutions for Every Sector</h2>
+            <p className="text-gray-600 dark:text-gray-400">From patient intake to SaaS support, we have a pre-built agent for you.</p>
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -282,7 +283,7 @@ function App() {
       </section>
 
       {/* Platform & Technology */}
-      <section id="platform" className="py-24 bg-black text-white relative overflow-hidden">
+      <section id="platform" className="py-24 bg-black text-white relative overflow-hidden scroll-mt-24">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="max-w-3xl mb-12">
@@ -292,47 +293,26 @@ function App() {
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12">
-            <div className="space-y-8">
-              <div className="flex items-start">
-                <Icons.Cpu className="w-8 h-8 text-indigo-400 mr-4 mt-1" />
-                <div>
-                  <h3 className="text-xl font-bold mb-2">Bring Your Own Model</h3>
-                  <p className="text-gray-400">Connect with popular LLMs like OpenAI, Llama, or custom fine-tuned models.</p>
-                </div>
-              </div>
-              <div className="flex items-start">
-                <Icons.Terminal className="w-8 h-8 text-indigo-400 mr-4 mt-1" />
-                <div>
-                  <h3 className="text-xl font-bold mb-2">Open API</h3>
-                  <p className="text-gray-400">Trigger chats from your app, upload contacts securely, and pipe analyzed data directly back into your systems.</p>
-                </div>
-              </div>
-              <div className="flex items-start">
-                <Icons.Globe className="w-8 h-8 text-indigo-400 mr-4 mt-1" />
-                <div>
-                  <h3 className="text-xl font-bold mb-2">Omnichannel Deployment</h3>
-                  <p className="text-gray-400">Web App, Messaging apps (WhatsApp), and QR Codes for physical locations.</p>
-                </div>
+          <div className="grid md:grid-cols-3 gap-12">
+            <div className="flex items-start">
+              <Icons.Cpu className="w-8 h-8 text-indigo-400 mr-4 mt-1 flex-shrink-0" />
+              <div>
+                <h3 className="text-xl font-bold mb-2">Bring Your Own Model</h3>
+                <p className="text-gray-400">Connect with popular LLMs like OpenAI, Llama, Gemini, or custom fine-tuned models.</p>
               </div>
             </div>
-
-            <div className="bg-white/5 border border-white/10 rounded-xl p-6 font-mono text-sm">
-              <div className="flex space-x-2 mb-4">
-                <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                <div className="w-3 h-3 rounded-full bg-green-500"></div>
+            <div className="flex items-start">
+              <Icons.Terminal className="w-8 h-8 text-indigo-400 mr-4 mt-1 flex-shrink-0" />
+              <div>
+                <h3 className="text-xl font-bold mb-2">Workflow API</h3>
+                <p className="text-gray-400">Trigger chats from your app, upload contacts securely, and pipe structured data directly back into your systems.</p>
               </div>
-              <div className="text-gray-300 space-y-2">
-                <p><span className="text-purple-400">const</span> <span className="text-yellow-200">config</span> = {'{'}</p>
-                <p className="pl-4"><span className="text-blue-300">mode:</span> <span className="text-green-300">'enterprise_self_host'</span>,</p>
-                <p className="pl-4"><span className="text-blue-300">model:</span> <span className="text-green-300">'llama-3-70b'</span>,</p>
-                <p className="pl-4"><span className="text-blue-300">channels:</span> ['web', 'whatsapp', 'crm'],</p>
-                <p className="pl-4"><span className="text-blue-300">security:</span> {'{'}</p>
-                <p className="pl-8"><span className="text-blue-300">pii_redaction:</span> <span className="text-purple-400">true</span>,</p>
-                <p className="pl-8"><span className="text-blue-300">data_residency:</span> <span className="text-green-300">'on-prem'</span></p>
-                <p className="pl-4">{'}'}</p>
-                <p>{'};'}</p>
+            </div>
+            <div className="flex items-start">
+              <Icons.Globe className="w-8 h-8 text-indigo-400 mr-4 mt-1 flex-shrink-0" />
+              <div>
+                <h3 className="text-xl font-bold mb-2">Any Channel</h3>
+                <p className="text-gray-400">Deploy via Web SDK, WhatsApp Business API, Slack, or Email auto-responders.</p>
               </div>
             </div>
           </div>
@@ -340,12 +320,12 @@ function App() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-24 bg-white dark:bg-dark-900">
+      <section id="contact" className="py-24 bg-white dark:bg-dark-900 scroll-mt-24">
         <div className="max-w-4xl mx-auto px-6">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">Start Sensing Your Customers Today</h2>
-            <p className="text-xl text-indigo-600 dark:text-indigo-400 font-medium mb-4">Stop guessing. Start asking.</p>
-            <p className="text-gray-600 dark:text-gray-400">Deploy a Virtual Interviewer today and turn every interaction into a business advantage.</p>
+            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">Start Automating Today</h2>
+            <p className="text-xl text-indigo-600 dark:text-indigo-400 font-medium mb-4">Reduce costs. Improve satisfaction.</p>
+            <p className="text-gray-600 dark:text-gray-400">Deploy an intelligent agent for support or intake in minutes.</p>
           </div>
 
           <div className="bg-gray-50 dark:bg-white/5 rounded-2xl p-8 border border-gray-200 dark:border-white/10">
@@ -361,23 +341,23 @@ function App() {
                 </div>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Use Case</label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Workflow Type</label>
                 <select className="w-full px-4 py-3 rounded-lg bg-white dark:bg-dark-800 border border-gray-300 dark:border-white/10 focus:ring-2 focus:ring-indigo-500 outline-none transition-all dark:text-white">
-                  <option>Market Research</option>
-                  <option>Customer Experience (CX)</option>
-                  <option>HR & Employee Experience</option>
-                  <option>Lead Generation</option>
+                  <option>Customer Support (L1)</option>
+                  <option>Client Intake / Onboarding</option>
+                  <option>Qualitative Research</option>
+                  <option>Internal Helpdesk</option>
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Upload Your Script (Optional)</label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Upload SOP or Form (Optional)</label>
                 <div className="border-2 border-dashed border-gray-300 dark:border-white/20 rounded-lg p-8 text-center hover:border-indigo-500 transition-colors cursor-pointer">
                   <Icons.FileSearch className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                  <p className="text-sm text-gray-500">Let our AI build your bot instantly. Drag & drop or click to upload.</p>
+                  <p className="text-sm text-gray-500">Let our AI build your agent instantly from your existing documents.</p>
                 </div>
               </div>
               <button className="w-full py-4 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-lg shadow-lg shadow-indigo-500/30 transition-all">
-                Create My Virtual Interviewer
+                Generate My Agent
               </button>
             </form>
           </div>
@@ -394,21 +374,21 @@ function App() {
                 <span className="text-xl font-bold text-gray-900 dark:text-white">LinnoChat</span>
               </div>
               <p className="text-gray-600 dark:text-gray-500 text-sm max-w-xs mb-4">
-                The no-code enterprise platform that uses GenAI to build "Virtual Interviewers."
+                The enterprise platform for intelligent intake, support, and data collection.
               </p>
               <div className="text-sm text-gray-500">
                 <p>📍 Tel Aviv, Israel (Powered by Linnovate)</p>
-                <p>📧 info@linnochat.com</p>
+                <p>📧 sales@linnochat.com</p>
               </div>
             </div>
             
             <div>
               <h4 className="text-gray-900 dark:text-white font-semibold mb-4">Platform</h4>
               <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-500">
-                <li><a href="#" className="hover:text-indigo-500">How It Works</a></li>
-                <li><a href="#" className="hover:text-indigo-500">Emotional AI</a></li>
-                <li><a href="#" className="hover:text-indigo-500">Enterprise Security</a></li>
-                <li><a href="#" className="hover:text-indigo-500">Integrations</a></li>
+                <li><a href="#" className="hover:text-indigo-500">Support Automation</a></li>
+                <li><a href="#" className="hover:text-indigo-500">Intake Forms</a></li>
+                <li><a href="#" className="hover:text-indigo-500">Research & Insights</a></li>
+                <li><a href="#" className="hover:text-indigo-500">API Documentation</a></li>
               </ul>
             </div>
 

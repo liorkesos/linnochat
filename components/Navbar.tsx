@@ -57,9 +57,9 @@ const Navbar: React.FC = () => {
           </button>
           
           <a href="#contact" className="hidden md:block text-sm font-medium text-gray-700 hover:text-indigo-600 dark:text-white dark:hover:text-indigo-300 transition-colors">Contact Sales</a>
-          <button className="px-4 py-2 rounded-full bg-dark-900 dark:bg-white text-white dark:text-dark-900 text-sm font-bold hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors shadow-md">
-            Start Free
-          </button>
+          <a href="https://www.app.linno.chat" className="px-4 py-2 rounded-full bg-dark-900 dark:bg-white text-white dark:text-dark-900 text-sm font-bold hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors shadow-md">
+            Login
+          </a>
         </div>
       </div>
     </nav>
