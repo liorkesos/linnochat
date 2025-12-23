@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { 
   Cpu, 
@@ -23,7 +24,8 @@ import {
   Plane,
   FileSearch,
   LayoutTemplate,
-  Activity
+  Activity,
+  Cloud
 } from 'lucide-react';
 
 export const Icons = {
@@ -50,5 +52,6 @@ export const Icons = {
   Plane,
   FileSearch,
   LayoutTemplate,
-  Activity
+  Activity,
+  Cloud
 };

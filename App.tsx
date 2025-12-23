@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Navbar from './components/Navbar';
 import ChatWidget from './components/ChatWidget';
@@ -62,6 +63,15 @@ const industries = [
   }
 ];
 
+const integrations = [
+  { name: "Lite-LLM", icon: <Icons.Cpu className="w-5 h-5 text-indigo-500" /> },
+  { name: "Priority", icon: <Icons.Activity className="w-5 h-5 text-red-500" /> },
+  { name: "WhatsApp", icon: <Icons.MessageSquare className="w-5 h-5 text-green-500" /> },
+  { name: "Messenger", icon: <Icons.MessageSquare className="w-5 h-5 text-blue-600" /> },
+  { name: "Google Cloud", icon: <Icons.Cloud className="w-5 h-5 text-blue-400" /> },
+  { name: "Azure", icon: <Icons.ShieldCheck className="w-5 h-5 text-blue-700" /> },
+];
+
 function App() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-dark-900 text-gray-900 dark:text-slate-200 selection:bg-indigo-500/30 transition-colors duration-300">
@@ -87,14 +97,31 @@ function App() {
             <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-xl leading-relaxed">
               LinnoChat is the enterprise AI platform that deploys intelligent agents to handle customer support triage, complex client intake, and qualitative research—all without code.
             </p>
-            <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4">
-              <button className="w-full sm:w-auto px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg font-semibold transition-all shadow-lg shadow-indigo-900/20 dark:shadow-indigo-900/50 flex items-center justify-center space-x-2">
+            <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4 mb-12">
+              <a href="#contact" className="w-full sm:w-auto px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg font-semibold transition-all shadow-lg shadow-indigo-900/20 dark:shadow-indigo-900/50 flex items-center justify-center space-x-2">
                 <span>Build Your Agent</span>
                 <Icons.ArrowRight className="w-4 h-4" />
-              </button>
+              </a>
               <button className="w-full sm:w-auto px-8 py-4 bg-white hover:bg-gray-50 dark:bg-white/5 dark:hover:bg-white/10 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white rounded-lg font-semibold transition-all backdrop-blur-sm shadow-sm dark:shadow-none">
                 View Integrations
               </button>
+            </div>
+
+            {/* Integrations List with Icons */}
+            <div className="animate-fade-in delay-500">
+              <p className="text-sm font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-6">Native Integrations</p>
+              <div className="flex flex-wrap gap-x-8 gap-y-6 items-center">
+                {integrations.map((item) => (
+                  <div key={item.name} className="flex items-center space-x-2 group cursor-default">
+                    <div className="p-2 bg-white dark:bg-white/5 rounded-lg border border-gray-100 dark:border-white/10 group-hover:scale-110 transition-transform shadow-sm">
+                      {item.icon}
+                    </div>
+                    <span className="text-base font-bold text-gray-500 dark:text-gray-400 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                      {item.name}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
