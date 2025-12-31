@@ -41,8 +41,7 @@ const ChatWidget: React.FC = () => {
 
     try {
       //const responseText = await generateBotResponse(messages, userMsg.text);
-      const responseText = "Dummy test"
-      
+      const responseText = "Linnochat disabled response"
       const botMsg: ChatMessage = {
         id: (Date.now() + 1).toString(),
         role: 'model',
