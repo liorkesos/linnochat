@@ -3,42 +3,43 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>linno.chat | AI Support & Intake Platform</title>
-    <meta name="description" content="Automate intake, support, and discovery with intelligent AI agents." />
+    <title>linno.chat | Human-Centric AI Support & Intake</title>
+    <meta name="description" content="LinnoChat automates intake, support, and data collection using empathetic Generative AI. The enterprise platform for smarter conversations." />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script>
       tailwind.config = {
         darkMode: 'class',
         theme: {
           extend: {
             fontFamily: {
-              sans: ['Inter', 'sans-serif'],
+              sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
             },
             colors: {
               brand: {
-                50: '#f0fdfa',
-                100: '#ccfbf1',
-                200: '#99f6e4',
-                300: '#5eead4',
-                400: '#2dd4bf',
-                500: '#14b8a6',
-                600: '#0d9488',
-                700: '#0f766e',
-                800: '#115e59',
-                900: '#134e4a',
-                950: '#042f2e',
+                50: '#f7fee7',
+                100: '#ecfccb',
+                200: '#d9f99d',
+                300: '#bef264',
+                400: '#a3e635',
+                500: '#84cc16',
+                600: '#65a30d',
+                700: '#4d7c0f',
+                800: '#3f6212',
+                900: '#365314',
+                950: '#1a2e05',
               },
               dark: {
-                900: '#050505',
-                800: '#0a0a0a',
-                700: '#121212',
+                950: '#020617',
+                900: '#0f172a',
+                800: '#1e293b',
+                700: '#334155',
               }
             },
             animation: {
               'blob': 'blob 7s infinite',
-              'fade-in': 'fadeIn 0.5s ease-out forwards',
-              'slide-up': 'slideUp 0.5s ease-out forwards',
+              'fade-in': 'fadeIn 0.6s ease-out forwards',
+              'slide-up': 'slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
             },
             keyframes: {
               blob: {
@@ -52,7 +53,7 @@
                 '100%': { opacity: '1' },
               },
               slideUp: {
-                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '0%': { opacity: '0', transform: 'translateY(30px)' },
                 '100%': { opacity: '1', transform: 'translateY(0)' },
               }
             }
@@ -62,54 +63,75 @@
     </script>
     <style>
       .glass-card {
-        background: rgba(255, 255, 255, 0.03);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.05);
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
       }
       .light .glass-card {
-        background: rgba(255, 255, 255, 0.7);
+        background: rgba(255, 255, 255, 0.75);
         border: 1px solid rgba(0, 0, 0, 0.05);
       }
-      .gradient-text {
-        background: linear-gradient(to right, #2dd4bf, #3b82f6);
+      
+      /* Glass Heading Refinement to prevent clipping */
+      .glass-heading-main {
+        /* Direct black color for maximum clarity in light mode */
+        color: #000000;
+        /* Subtle specular highlight that doesn't wash out the black */
+        text-shadow: 0px 1px 0px rgba(255,255,255,0.2);
+      }
+      .dark .glass-heading-main {
+        background: linear-gradient(135deg, #ffffff 20%, #94a3b8 80%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+        text-shadow: 0px 0px 20px rgba(255,255,255,0.1);
       }
-      /* Custom Scrollbar */
+      
+      .glass-heading-accent {
+        background: linear-gradient(135deg, #84cc16 0%, #4d7c0f 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0px 2px 4px rgba(132, 204, 22, 0.2);
+      }
+      .dark .glass-heading-accent {
+        background: linear-gradient(135deg, #bef264 0%, #65a30d 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0px 0px 25px rgba(132, 204, 22, 0.2);
+      }
+
+      .hero-gradient {
+        background: radial-gradient(circle at top center, rgba(132, 204, 22, 0.08) 0%, transparent 70%);
+      }
       ::-webkit-scrollbar {
-        width: 8px;
+        width: 10px;
       }
       ::-webkit-scrollbar-track {
         background: transparent;
       }
       ::-webkit-scrollbar-thumb {
-        background: #cbd5e1;
-        border-radius: 4px;
-      }
-      .dark ::-webkit-scrollbar-track {
-        background: #0a0a0a;
+        background: #a3e635;
+        border-radius: 5px;
+        border: 2px solid transparent;
+        background-clip: content-box;
       }
       .dark ::-webkit-scrollbar-thumb {
-        background: #333;
-      }
-      .dark ::-webkit-scrollbar-thumb:hover {
-        background: #444;
+        background: #4d7c0f;
       }
     </style>
-  <script type="importmap">
-{
-  "imports": {
-    "react": "https://aistudiocdn.com/react@^19.2.1",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
-    "react/": "https://aistudiocdn.com/react@^19.2.1/",
-    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.31.0",
-    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0"
-  }
-}
-</script>
-</head>
-  <body class="bg-gray-50 text-gray-900 dark:bg-[#050505] dark:text-[#e2e8f0] overflow-x-hidden transition-colors duration-300">
+    <script type="importmap">
+    {
+      "imports": {
+        "react": "https://aistudiocdn.com/react@^19.2.1",
+        "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
+        "react/": "https://aistudiocdn.com/react@^19.2.1/",
+        "@google/genai": "https://aistudiocdn.com/@google/genai@^1.31.0",
+        "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0"
+      }
+    }
+    </script>
+  </head>
+  <body class="bg-[#f8fafc] text-slate-900 dark:bg-dark-950 dark:text-slate-200 overflow-x-hidden transition-colors duration-500 font-sans selection:bg-lime-500/30">
     <div id="root"></div>
-          <script type="module" src="/index.tsx"></script>
+    <script type="module" src="/index.tsx"></script>
   </body>
 </html>

@@ -58,19 +58,19 @@ const ChatWidget: React.FC = () => {
   };
 
   return (
-    <div className="w-full max-w-md mx-auto glass-card rounded-2xl overflow-hidden shadow-2xl border border-gray-200 dark:border-white/10 flex flex-col h-[500px] transition-colors duration-300">
+    <div className="w-full max-w-sm mx-auto glass-card rounded-2xl overflow-hidden shadow-2xl border border-gray-200 dark:border-white/10 flex flex-col h-[500px] transition-colors duration-300">
       {/* Header */}
       <div className="p-4 border-b border-gray-200 dark:border-white/5 bg-gray-50/80 dark:bg-white/5 flex items-center justify-between">
         <div className="flex items-center space-x-3">
           <div className="relative">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-full bg-gradient-to-r from-lime-500 to-lime-600 flex items-center justify-center">
               <Icons.Bot className="w-6 h-6 text-white" />
             </div>
             <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white dark:border-dark-900 rounded-full"></div>
           </div>
           <div>
             <h3 className="font-bold text-gray-900 dark:text-white text-sm">Linno AI Assistant</h3>
-            <p className="text-xs text-indigo-600 dark:text-indigo-300">Support & Intake Mode</p>
+            <p className="text-xs text-lime-600 dark:text-lime-400 font-semibold">Support & Intake Mode</p>
           </div>
         </div>
         <button 
@@ -92,7 +92,7 @@ const ChatWidget: React.FC = () => {
             <div
               className={`max-w-[85%] p-3 rounded-2xl text-sm leading-relaxed shadow-sm ${
                 msg.role === 'user'
-                  ? 'bg-indigo-600 text-white rounded-br-none'
+                  ? 'bg-lime-600 text-white rounded-br-none'
                   : 'bg-white dark:bg-dark-700 text-gray-700 dark:text-gray-200 border border-gray-100 dark:border-white/10 rounded-bl-none'
               }`}
             >
@@ -120,12 +120,12 @@ const ChatWidget: React.FC = () => {
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             placeholder="Ask anything..."
-            className="w-full bg-gray-100 dark:bg-dark-800 text-gray-900 dark:text-white placeholder-gray-500 rounded-full py-3 pl-4 pr-12 focus:outline-none focus:ring-2 focus:ring-indigo-500 border border-transparent dark:border-white/10 transition-colors"
+            className="w-full bg-gray-100 dark:bg-dark-800 text-gray-900 dark:text-white placeholder-gray-500 rounded-full py-3 pl-4 pr-12 focus:outline-none focus:ring-2 focus:ring-lime-500 border border-transparent dark:border-white/10 transition-colors"
           />
           <button
             type="submit"
             disabled={!inputValue.trim() || status === BotStatus.THINKING}
-            className="absolute right-2 p-1.5 bg-indigo-500 rounded-full text-white hover:bg-indigo-400 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-md"
+            className="absolute right-2 p-1.5 bg-lime-600 rounded-full text-white hover:bg-lime-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-md"
           >
             <Icons.ArrowRight className="w-4 h-4" />
           </button>

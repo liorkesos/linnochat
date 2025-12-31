@@ -1,56 +1,54 @@
+
 import { GoogleGenAI, GenerateContentResponse } from "@google/genai";
 import { ChatMessage } from '../types';
 
-// Initialize Gemini API Client
-const apiKey = process.env.API_KEY || '';
-const ai = new GoogleGenAI({ apiKey });
+// Use the API key directly from the environment variable process.env.API_KEY as per guidelines.
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 export const generateBotResponse = async (
   history: ChatMessage[],
   currentMessage: string
 ): Promise<string> => {
   try {
-    if (!apiKey) {
-      return "I am simulating the Linno AI Agent (Demo Mode). In the live version, I would be connected to your knowledge base to handle support, intake, or research tasks.";
-    }
+    // Using gemini-3-flash-preview for chat tasks as per task type guidelines.
+    const modelId = 'gemini-3-flash-preview';
 
-    const modelId = 'gemini-2.5-flash';
-
+    // Format conversation history for context within the prompt.
     const conversationHistory = history.map(msg => 
-      `${msg.role === 'user' ? 'User' : 'Agent'}: ${msg.text}`
+      `${msg.role === 'user' ? 'User' : 'LinnoAgent'}: ${msg.text}`
     ).join('\n');
 
-    const prompt = `
-      System Instruction: You are the "LinnoChat AI Assistant".
-      Your goal is to demonstrate the versatility of the platform. You can act as a Support Agent, an Intake Specialist, or a Researcher.
-      
-      Context: The user is visiting the LinnoChat website. You want to demonstrate how the platform can automate various conversations.
-      
-      Strategy:
-      1. Identification: Figure out if they have a need for Support (handling tickets), Intake (forms/applications), or Research (feedback).
-      2. Demonstration: Briefly roleplay that capability.
-      3. Features: Mention capabilities like "Structured Data Extraction" (turning chat into JSON) or "Sentiment Analysis".
+    // System instruction is now placed in the config object as recommended by the SDK guidelines.
+    const systemInstruction = `You are "Linno", the AI Agent for LinnoChat.
+LinnoChat is a premium enterprise platform that automates intake, support, and qualitative discovery.
 
-      Keep responses concise (under 40 words). Be professional, helpful, and intelligent.
+Your Goals:
+1. Demonstrate empathy and enterprise intelligence.
+2. Explain how LinnoChat replaces static, boring forms with dynamic, human-like conversations.
+3. Mention "Structured Data Extraction" (JSON) and "WhatsApp/Web Omnichannel" if relevant.
 
-      Conversation History:
-      ${conversationHistory}
-      
-      User: ${currentMessage}
-      Agent:
-    `;
+Tone: Professional, innovative, helpful, and very concise.
+Constraint: Keep responses under 40 words. Use bullet points only if absolutely necessary.`;
 
     const response: GenerateContentResponse = await ai.models.generateContent({
       model: modelId,
-      contents: prompt,
+      contents: `Context:
+${conversationHistory}
+
+User's latest message: ${currentMessage}
+LinnoAgent:`,
       config: {
-        thinkingConfig: { thinkingBudget: 0 }
+        systemInstruction,
+        temperature: 0.7,
+        topP: 0.8,
+        topK: 40,
       }
     });
 
-    return response.text || "I can help you automate that workflow. Could you tell me more about your requirements?";
-  } catch (error) {
-    console.error("Gemini API Error:", error);
-    return "I apologize, my connection to the neural engine was briefly interrupted. Could you repeat that?";
+    // Directly accessing the .text property of the response object.
+    return response.text || "I'm here to help you automate your business processes. What can I do for you?";
+  } catch (err) {
+    console.error("Gemini API Error:", err);
+    return "I'm experiencing a high volume of requests. LinnoChat agents are designed for reliability—please try again in a moment.";
   }
 };
