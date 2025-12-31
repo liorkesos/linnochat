@@ -40,7 +40,8 @@ const ChatWidget: React.FC = () => {
     setStatus(BotStatus.THINKING);
 
     try {
-      const responseText = await generateBotResponse(messages, userMsg.text);
+      //const responseText = await generateBotResponse(messages, userMsg.text);
+      const responseText = "Dummy test"
       
       const botMsg: ChatMessage = {
         id: (Date.now() + 1).toString(),
