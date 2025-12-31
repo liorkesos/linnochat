@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Icons } from './Icons';
 
@@ -51,8 +52,8 @@ const Navbar: React.FC<NavbarProps> = ({ onLogoClick }) => {
         </button>
 
         <div className="hidden md:flex items-center space-x-8">
-          <a href="#how-it-works" className="text-sm font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">How It Works</a>
           <a href="#why-linno" className="text-sm font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Why Linno</a>
+          <a href="#how-it-works" className="text-sm font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">How It Works</a>
           <a href="#platform" className="text-sm font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Platform</a>
           <a href="#solutions" className="text-sm font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Solutions</a>
         </div>
