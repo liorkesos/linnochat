@@ -514,7 +514,12 @@ function App() {
                 <a href="#" className="w-12 h-12 rounded-full bg-slate-50 dark:bg-white/5 border border-gray-100 dark:border-white/10 flex items-center justify-center text-slate-700 dark:text-white hover:bg-slate-100 dark:hover:bg-white/10 transition-all shadow-sm">
                   <Icons.Users className="w-5 h-5" />
                 </a>
-                <a href="#" className="w-12 h-12 rounded-full bg-slate-50 dark:bg-white/5 border border-gray-100 dark:border-white/10 flex items-center justify-center text-slate-700 dark:text-white hover:bg-slate-100 dark:hover:bg-white/10 transition-all shadow-sm">
+                <a 
+                  href="https://wa.me/972548032882" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 rounded-full bg-slate-50 dark:bg-white/5 border border-gray-100 dark:border-white/10 flex items-center justify-center text-slate-700 dark:text-white hover:bg-slate-100 dark:hover:bg-white/10 transition-all shadow-sm"
+                >
                   <Icons.MessageSquare className="w-5 h-5" />
                 </a>
               </div>
