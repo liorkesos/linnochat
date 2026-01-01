@@ -139,7 +139,7 @@ function App() {
                       href="https://wa.me/972548032882" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full sm:w-auto px-8 py-3 bg-brand-500 hover:bg-brand-600 text-black rounded-lg font-bold text-sm transition-all shadow-xl shadow-brand-500/10 flex items-center justify-center space-x-2"
+                      className="w-full sm:w-auto px-8 py-3 bg-brand-500 hover:bg-brand-600 text-black rounded-lg font-bold text-sm transition-all shadow-xl flex items-center justify-center space-x-2"
                     >
                       <Icons.WhatsApp className="w-4 h-4" />
                       <span>Contact Sales</span>
@@ -172,7 +172,6 @@ function App() {
                 ].map((item, idx) => (
                   <div key={idx} className="flex items-center space-x-2 md:space-x-3">
                     <div className="p-1.5 bg-lime-50 dark:bg-lime-500/10 rounded-lg shrink-0">
-                      {/* Fixed: Use React.ReactElement<any> to ensure cloneElement accepts the className prop correctly across all mapped icons */}
                       {React.cloneElement(item.icon as React.ReactElement<any>, { className: 'w-4 h-4 text-lime-600' })}
                     </div>
                     <div className="overflow-hidden">

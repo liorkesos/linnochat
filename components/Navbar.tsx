@@ -15,8 +15,10 @@ const Navbar: React.FC<NavbarProps> = ({ onLogoClick }) => {
       setIsScrolled(window.scrollY > 10);
     };
     window.addEventListener('scroll', handleScroll);
+
     const isDarkInitial = document.documentElement.classList.contains('dark');
     setIsDark(isDarkInitial);
+    
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -32,7 +34,7 @@ const Navbar: React.FC<NavbarProps> = ({ onLogoClick }) => {
     }
   };
 
-  const navLinks = [
+  const menuLinks = [
     { label: 'Why Linno', href: '#why-linno' },
     { label: 'How It Works', href: '#how-it-works' },
     { label: 'Platform', href: '#platform' },
@@ -40,12 +42,12 @@ const Navbar: React.FC<NavbarProps> = ({ onLogoClick }) => {
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       isScrolled || isMobileMenuOpen 
         ? 'bg-white/95 dark:bg-dark-950/95 backdrop-blur-md border-b border-gray-200 dark:border-white/5 h-16' 
         : 'bg-transparent h-20'
     }`}>
-      <div className="max-w-7xl mx-auto px-4 md:px-6 h-full flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 h-full flex items-center justify-between">
         <button 
           onClick={onLogoClick}
           className="flex items-center space-x-2 md:space-x-3 group outline-none shrink-0"
@@ -59,9 +61,9 @@ const Navbar: React.FC<NavbarProps> = ({ onLogoClick }) => {
           </span>
         </button>
 
-        {/* Desktop Nav */}
+        {/* Desktop Links */}
         <div className="hidden lg:flex items-center space-x-6">
-          {navLinks.map((link) => (
+          {menuLinks.map((link) => (
             <a 
               key={link.label}
               href={link.href} 
@@ -89,14 +91,14 @@ const Navbar: React.FC<NavbarProps> = ({ onLogoClick }) => {
               href="https://wa.me/972548032882" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="px-4 py-2 md:px-5 md:py-2 rounded-lg bg-brand-500 text-black text-[10px] md:text-xs font-bold hover:bg-brand-600 transition-all shadow-lg shadow-brand-500/10 flex items-center space-x-1.5"
+              className="px-4 py-2 rounded-lg bg-brand-500 text-black text-[10px] md:text-xs font-bold hover:bg-brand-600 transition-all shadow-lg flex items-center space-x-1.5"
             >
-              <Icons.WhatsApp className="w-3.5 h-3.5 md:w-4 md:h-4" />
+              <Icons.WhatsApp className="w-3.5 h-3.5" />
               <span>Contact Sales</span>
             </a>
           </div>
 
-          {/* Mobile Menu Toggle */}
+          {/* Mobile Menu Button */}
           <button 
             className="lg:hidden p-2 text-slate-600 dark:text-slate-300"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -106,29 +108,29 @@ const Navbar: React.FC<NavbarProps> = ({ onLogoClick }) => {
         </div>
       </div>
 
-      {/* Mobile Menu Content */}
+      {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden absolute top-16 left-0 right-0 bg-white dark:bg-dark-950 border-b border-gray-200 dark:border-white/5 py-6 px-6 animate-fade-in shadow-xl">
-          <div className="flex flex-col space-y-4">
-            {navLinks.map((link) => (
+        <div className="lg:hidden absolute top-16 left-0 right-0 bg-white dark:bg-dark-950 border-b border-gray-200 dark:border-white/5 py-8 px-6 shadow-xl animate-fade-in">
+          <div className="flex flex-col space-y-6">
+            {menuLinks.map((link) => (
               <a 
                 key={link.label}
-                href={link.href} 
+                href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="text-sm font-bold uppercase tracking-widest text-slate-600 dark:text-slate-300"
+                className="text-lg font-bold text-slate-900 dark:text-white border-b border-gray-100 dark:border-white/5 pb-2"
               >
                 {link.label}
               </a>
             ))}
-            <div className="pt-4 border-t border-gray-100 dark:border-white/5 flex flex-col space-y-4">
-              <a href="https://app.linno.chat" className="text-sm font-bold text-gray-600 dark:text-gray-400">Login</a>
+            <div className="flex flex-col space-y-4 pt-4">
+              <a href="https://app.linno.chat" className="text-lg font-bold text-gray-600 dark:text-gray-400">Login</a>
               <a 
                 href="https://wa.me/972548032882" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-full py-3 rounded-lg bg-brand-500 text-black text-center text-sm font-bold flex items-center justify-center space-x-2"
+                className="w-full py-4 rounded-xl bg-brand-500 text-black text-center font-bold flex items-center justify-center space-x-3"
               >
-                <Icons.WhatsApp className="w-4 h-4" />
+                <Icons.WhatsApp className="w-5 h-5" />
                 <span>Contact Sales</span>
               </a>
             </div>
