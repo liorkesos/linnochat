@@ -5,6 +5,7 @@ import ChatWidget from './components/ChatWidget';
 import PrivacyPolicyPage from './components/PrivacyPolicyPage';
 import TermsOfServicePage from './components/TermsOfServicePage';
 import ComingSoonPage from './components/ComingSoonPage';
+import MaintenancePage from './components/MaintenancePage';
 import { Icons } from './components/Icons';
 
 const agents = [
@@ -130,13 +131,13 @@ const integrationItems = [
 ];
 
 function App() {
-  const [currentView, setCurrentView] = useState<'home' | 'privacy' | 'terms' | 'coming-soon'>('home');
+  const [currentView, setCurrentView] = useState<'home' | 'privacy' | 'terms' | 'coming-soon' | 'maintenance'>('home');
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [currentView]);
 
-  const navigateTo = (view: 'home' | 'privacy' | 'terms' | 'coming-soon') => {
+  const navigateTo = (view: 'home' | 'privacy' | 'terms' | 'coming-soon' | 'maintenance') => {
     setCurrentView(view);
   };
 
@@ -161,6 +162,7 @@ function App() {
       {currentView === 'privacy' && <PrivacyPolicyPage onBack={() => navigateTo('home')} />}
       {currentView === 'terms' && <TermsOfServicePage onBack={() => navigateTo('home')} />}
       {currentView === 'coming-soon' && <ComingSoonPage onBack={() => navigateTo('home')} />}
+      {currentView === 'maintenance' && <MaintenancePage onBack={() => navigateTo('home')} />}
       
       {currentView === 'home' && (
         <>
@@ -466,15 +468,13 @@ function App() {
               </div>
 
               <div className="max-w-4xl mx-auto bg-white dark:bg-dark-900/50 rounded-3xl p-8 md:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.08)] border border-gray-100 dark:border-white/5 relative overflow-hidden">
-                  <a 
-                    href="https://calendar.app.google/lyron-linnovate-net"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <button 
+                    onClick={() => navigateTo('maintenance')}
                     className="w-full py-8 bg-brand-500 hover:bg-brand-600 text-black font-bold text-3xl rounded-2xl shadow-[0_10px_30px_rgba(132,204,22,0.2)] transition-all hover:-translate-y-1 active:scale-95 flex items-center justify-center space-x-4"
                   >
                     <span>Book My Demo</span>
                     <Icons.ArrowRight className="w-8 h-8" />
-                  </a>
+                  </button>
               </div>
             </div>
           </section>
