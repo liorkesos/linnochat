@@ -23,22 +23,14 @@ const ComingSoonPage: React.FC<ComingSoonPageProps> = ({ onBack }) => {
           COMING <span className="text-lime-600">SOON!</span>
         </h1>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <div className="flex justify-center">
           <button 
             onClick={onBack}
-            className="w-full sm:w-auto px-8 py-4 bg-slate-900 dark:bg-white dark:text-black text-white rounded-2xl font-bold text-lg hover:scale-105 transition-all shadow-xl flex items-center justify-center space-x-2"
+            className="px-10 py-4 bg-slate-900 dark:bg-white dark:text-black text-white rounded-2xl font-bold text-lg hover:scale-105 transition-all shadow-xl flex items-center justify-center space-x-2"
           >
             <Icons.ArrowRight className="w-5 h-5 rotate-180" />
             <span>Go Back Home</span>
           </button>
-          
-          <a 
-            href="mailto:contact@linnovate.net?subject=Beta Access Request - LinnoChat Agent Generator"
-            className="w-full sm:w-auto px-8 py-4 bg-lime-500 text-black rounded-2xl font-bold text-lg hover:bg-lime-600 transition-all shadow-xl shadow-lime-500/20 flex items-center justify-center space-x-2"
-          >
-            <span>Get Beta Access</span>
-            <Icons.CheckCircle2 className="w-5 h-5" />
-          </a>
         </div>
       </div>
     </div>
