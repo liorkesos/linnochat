@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Icons } from './Icons';
 import { ChatMessage, BotStatus } from '../types';
-import { generateBotResponse } from '../services/geminiService';
 
 const ChatWidget: React.FC = () => {
   const [messages, setMessages] = useState<ChatMessage[]>([
@@ -24,6 +23,13 @@ const ChatWidget: React.FC = () => {
     scrollToBottom();
   }, [messages]);
 
+  const handleOptionClick = (targetId: string) => {
+    const element = document.getElementById(targetId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!inputValue.trim() || status === BotStatus.THINKING) return;
@@ -39,22 +45,22 @@ const ChatWidget: React.FC = () => {
     setInputValue('');
     setStatus(BotStatus.THINKING);
 
-    try {
-      //const responseText = await generateBotResponse(messages, userMsg.text);
-      const responseText = "Linnochat disabled response"
+    // Simulate a brief delay for a more natural feel
+    setTimeout(() => {
       const botMsg: ChatMessage = {
         id: (Date.now() + 1).toString(),
         role: 'model',
-        text: responseText,
-        timestamp: new Date()
+        text: "Hello! Welcome to LinnoChat. Would you like to book a demo?...",
+        timestamp: new Date(),
+        options: [
+          { label: 'YES', targetId: 'try-now' },
+          { label: 'LEARN MORE', targetId: 'why-linno' }
+        ]
       };
       
       setMessages(prev => [...prev, botMsg]);
-    } catch (err) {
-      console.error(err);
-    } finally {
       setStatus(BotStatus.IDLE);
-    }
+    }, 800);
   };
 
   return (
@@ -87,7 +93,7 @@ const ChatWidget: React.FC = () => {
         {messages.map((msg) => (
           <div
             key={msg.id}
-            className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
+            className={`flex flex-col ${msg.role === 'user' ? 'items-end' : 'items-start'}`}
           >
             <div
               className={`max-w-[85%] p-3 rounded-2xl text-sm leading-relaxed shadow-sm ${
@@ -98,6 +104,24 @@ const ChatWidget: React.FC = () => {
             >
               {msg.text}
             </div>
+            
+            {msg.options && (
+              <div className="flex flex-wrap gap-2 mt-2">
+                {msg.options.map((option, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => handleOptionClick(option.targetId)}
+                    className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all shadow-sm ${
+                      option.label === 'YES' 
+                        ? 'bg-lime-600 text-white hover:bg-lime-500' 
+                        : 'bg-white dark:bg-dark-700 text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-white/10 hover:bg-gray-50'
+                    }`}
+                  >
+                    {option.label}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
         ))}
         {status === BotStatus.THINKING && (

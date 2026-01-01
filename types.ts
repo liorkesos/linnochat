@@ -5,6 +5,7 @@ export interface ChatMessage {
   role: 'user' | 'model';
   text: string;
   timestamp: Date;
+  options?: { label: string; targetId: string }[];
 }
 
 export enum BotStatus {
