@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import ChatWidget from './components/ChatWidget';
@@ -653,7 +654,7 @@ function App() {
 
           {/* Bottom Bar */}
           <div className="pt-10 border-t border-gray-100 dark:border-white/5 flex flex-col md:flex-row justify-between items-center text-sm font-medium text-slate-500 dark:text-gray-500">
-            <p>© 2026 LinnoChat. All rights reserved.</p>
+            <p>© 2026 Linnovate Technologies Ltd. All Rights Reserved.</p>
             <div className="flex space-x-10 mt-6 md:mt-0">
               <button 
                 onClick={() => navigateTo('privacy')}
