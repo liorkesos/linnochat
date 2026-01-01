@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import ChatWidget from './components/ChatWidget';
@@ -130,8 +129,6 @@ const integrationItems = [
 
 function App() {
   const [currentView, setCurrentView] = useState<'home' | 'privacy' | 'terms'>('home');
-  const [formData, setFormData] = useState({ name: '', company: '', email: '', phone: '' });
-  const [automateData, setAutomateData] = useState({ name: '', company: '', workEmail: '', phone: '', workflowType: 'Customer Support (L1)', script: '' });
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -431,97 +428,13 @@ function App() {
               </div>
 
               <div className="max-w-4xl mx-auto bg-white dark:bg-dark-900 rounded-3xl p-8 md:p-12 shadow-[0_20px_60px_rgba(0,0,0,0.05)] border border-gray-200 dark:border-white/5">
-                <form className="space-y-8">
-                  <div className="grid md:grid-cols-2 gap-8">
-                    <div className="space-y-2 text-left">
-                      <label className="text-xs font-bold text-slate-400 dark:text-gray-500 uppercase tracking-wider">Name</label>
-                      <input 
-                        type="text" 
-                        className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-dark-800 border border-slate-200 dark:border-white/10 focus:ring-2 focus:ring-brand-500 outline-none transition-all dark:text-white" 
-                        placeholder="Your name"
-                        value={automateData.name}
-                        onChange={(e) => setAutomateData({...automateData, name: e.target.value})}
-                      />
-                    </div>
-                    <div className="space-y-2 text-left">
-                      <label className="text-xs font-bold text-slate-400 dark:text-gray-500 uppercase tracking-wider">Company</label>
-                      <input 
-                        type="text" 
-                        className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-dark-800 border border-slate-200 dark:border-white/10 focus:ring-2 focus:ring-brand-500 outline-none transition-all dark:text-white" 
-                        placeholder="Company name"
-                        value={automateData.company}
-                        onChange={(e) => setAutomateData({...automateData, company: e.target.value})}
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid md:grid-cols-2 gap-8">
-                    <div className="space-y-2 text-left">
-                      <label className="text-xs font-bold text-slate-400 dark:text-gray-500 uppercase tracking-wider">Work Email</label>
-                      <input 
-                        type="email" 
-                        className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-dark-800 border border-slate-200 dark:border-white/10 focus:ring-2 focus:ring-brand-500 outline-none transition-all dark:text-white" 
-                        placeholder="email@company.com"
-                        value={automateData.workEmail}
-                        onChange={(e) => setAutomateData({...automateData, workEmail: e.target.value})}
-                      />
-                    </div>
-                    <div className="space-y-2 text-left">
-                      <label className="text-xs font-bold text-slate-400 dark:text-gray-500 uppercase tracking-wider">Phone Number</label>
-                      <input 
-                        type="tel" 
-                        className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-dark-800 border border-slate-200 dark:border-white/10 focus:ring-2 focus:ring-brand-500 outline-none transition-all dark:text-white" 
-                        placeholder="+1 (555) 000-0000"
-                        value={automateData.phone}
-                        onChange={(e) => setAutomateData({...automateData, phone: e.target.value})}
-                      />
-                    </div>
-                  </div>
-
-                  <div className="space-y-2 text-left">
-                    <label className="text-xs font-bold text-slate-400 dark:text-gray-500 uppercase tracking-wider">Workflow Type</label>
-                    <div className="relative group">
-                      <select 
-                        className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-dark-800 border-2 border-slate-200 dark:border-white/10 focus:border-brand-500 focus:ring-0 outline-none transition-all dark:text-white appearance-none cursor-pointer"
-                        value={automateData.workflowType}
-                        onChange={(e) => setAutomateData({...automateData, workflowType: e.target.value})}
-                      >
-                        <option>Customer Support (L1)</option>
-                        <option>Client Intake / Onboarding</option>
-                        <option>Qualitative Research (Upload Description or Script)</option>
-                        <option>Internal Helpdesk</option>
-                        <option>Other Use case</option>
-                      </select>
-                      <div className="absolute inset-y-0 right-4 flex items-center pointer-events-none">
-                         <Icons.ArrowRight className="w-4 h-4 text-slate-400 rotate-90" />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="space-y-2 text-left">
-                    <label className="text-xs font-bold text-slate-400 dark:text-gray-500 uppercase tracking-wider">Send us a script / Document</label>
-                    <div className="relative group">
-                      <textarea 
-                        className="w-full h-40 px-5 py-6 rounded-2xl bg-slate-50 dark:bg-dark-800 border-2 border-dashed border-slate-200 dark:border-white/10 focus:border-brand-500 focus:ring-0 outline-none transition-all dark:text-white resize-none"
-                        placeholder="Paste your script, SOP, or training data here. Our AI will design your agent instantly from your existing documents..."
-                        value={automateData.script}
-                        onChange={(e) => setAutomateData({...automateData, script: e.target.value})}
-                      ></textarea>
-                      <div className="absolute inset-0 pointer-events-none flex flex-col items-center justify-center opacity-0 group-hover:opacity-10 bg-black/5 dark:bg-white/5 rounded-2xl transition-opacity">
-                        <Icons.UploadCloud className="w-12 h-12 text-slate-400" />
-                        <p className="text-sm font-bold text-slate-500 mt-2">Drop files or paste here</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <button 
-                    type="button"
-                    className="w-full py-5 bg-brand-500 hover:bg-brand-600 text-black font-bold text-xl rounded-2xl shadow-xl transition-all hover:-translate-y-1 active:scale-[0.98] flex items-center justify-center space-x-3"
+                  <a 
+                    href="#demo"
+                    className="w-full py-6 bg-brand-500 hover:bg-brand-600 text-black font-bold text-2xl rounded-2xl shadow-xl transition-all hover:-translate-y-1 active:scale-[0.98] flex items-center justify-center space-x-3"
                   >
                     <span>Generate My Agent</span>
                     <Icons.Zap className="w-5 h-5 fill-black" />
-                  </button>
-                </form>
+                  </a>
               </div>
             </div>
           </section>
@@ -536,61 +449,13 @@ function App() {
               </div>
 
               <div className="max-w-4xl mx-auto bg-white dark:bg-dark-900/50 rounded-3xl p-8 md:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.08)] border border-gray-100 dark:border-white/5 relative overflow-hidden">
-                <form className="space-y-10 relative z-10">
-                  <div className="grid md:grid-cols-2 gap-10">
-                    <div className="space-y-3 text-left">
-                      <label className="text-[10px] font-black text-gray-400 dark:text-gray-500 uppercase tracking-[0.2em]">Name</label>
-                      <input 
-                        type="text" 
-                        className="w-full px-5 py-4 rounded-xl bg-[#f9fafb] dark:bg-dark-800 border border-gray-200 dark:border-white/10 focus:ring-2 focus:ring-brand-500 outline-none transition-all dark:text-white text-lg placeholder-gray-400" 
-                        placeholder="Your name"
-                        value={formData.name}
-                        onChange={(e) => setFormData({...formData, name: e.target.value})}
-                      />
-                    </div>
-                    <div className="space-y-3 text-left">
-                      <label className="text-[10px] font-black text-gray-400 dark:text-gray-500 uppercase tracking-[0.2em]">Company Name</label>
-                      <input 
-                        type="text" 
-                        className="w-full px-5 py-4 rounded-xl bg-[#f9fafb] dark:bg-dark-800 border border-gray-200 dark:border-white/10 focus:ring-2 focus:ring-brand-500 outline-none transition-all dark:text-white text-lg placeholder-gray-400" 
-                        placeholder="Company name"
-                        value={formData.company}
-                        onChange={(e) => setFormData({...formData, company: e.target.value})}
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid md:grid-cols-2 gap-10">
-                    <div className="space-y-3 text-left">
-                      <label className="text-[10px] font-black text-gray-400 dark:text-gray-500 uppercase tracking-[0.2em]">Work Email</label>
-                      <input 
-                        type="email" 
-                        className="w-full px-5 py-4 rounded-xl bg-[#f9fafb] dark:bg-dark-800 border border-gray-200 dark:border-white/10 focus:ring-2 focus:ring-brand-500 outline-none transition-all dark:text-white text-lg placeholder-gray-400" 
-                        placeholder="you@company.com"
-                        value={formData.email}
-                        onChange={(e) => setFormData({...formData, email: e.target.value})}
-                      />
-                    </div>
-                    <div className="space-y-3 text-left">
-                      <label className="text-[10px] font-black text-gray-400 dark:text-gray-500 uppercase tracking-[0.2em]">Phone Number</label>
-                      <input 
-                        type="tel" 
-                        className="w-full px-5 py-4 rounded-xl bg-[#f9fafb] dark:bg-dark-800 border border-gray-200 dark:border-white/10 focus:ring-2 focus:ring-brand-500 outline-none transition-all dark:text-white text-lg placeholder-gray-400" 
-                        placeholder="+1 (555) 000-0000"
-                        value={formData.phone}
-                        onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                      />
-                    </div>
-                  </div>
-
-                  <button 
-                    type="button"
-                    className="w-full py-6 bg-brand-500 hover:bg-brand-600 text-black font-bold text-2xl rounded-2xl shadow-[0_10px_30px_rgba(132,204,22,0.2)] transition-all hover:-translate-y-1 active:scale-95 flex items-center justify-center space-x-4"
+                  <a 
+                    href="mailto:contact@linnovate.net"
+                    className="w-full py-8 bg-brand-500 hover:bg-brand-600 text-black font-bold text-3xl rounded-2xl shadow-[0_10px_30px_rgba(132,204,22,0.2)] transition-all hover:-translate-y-1 active:scale-95 flex items-center justify-center space-x-4"
                   >
                     <span>Book My Demo</span>
                     <Icons.ArrowRight className="w-8 h-8" />
-                  </button>
-                </form>
+                  </a>
               </div>
             </div>
           </section>
