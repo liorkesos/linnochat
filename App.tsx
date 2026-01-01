@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import ChatWidget from './components/ChatWidget';
 import PrivacyPolicyPage from './components/PrivacyPolicyPage';
 import TermsOfServicePage from './components/TermsOfServicePage';
+import ComingSoonPage from './components/ComingSoonPage';
 import { Icons } from './components/Icons';
 
 const agents = [
@@ -128,13 +129,13 @@ const integrationItems = [
 ];
 
 function App() {
-  const [currentView, setCurrentView] = useState<'home' | 'privacy' | 'terms'>('home');
+  const [currentView, setCurrentView] = useState<'home' | 'privacy' | 'terms' | 'coming-soon'>('home');
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [currentView]);
 
-  const navigateTo = (view: 'home' | 'privacy' | 'terms') => {
+  const navigateTo = (view: 'home' | 'privacy' | 'terms' | 'coming-soon') => {
     setCurrentView(view);
   };
 
@@ -144,6 +145,7 @@ function App() {
 
       {currentView === 'privacy' && <PrivacyPolicyPage onBack={() => navigateTo('home')} />}
       {currentView === 'terms' && <TermsOfServicePage onBack={() => navigateTo('home')} />}
+      {currentView === 'coming-soon' && <ComingSoonPage onBack={() => navigateTo('home')} />}
       
       {currentView === 'home' && (
         <>
@@ -428,13 +430,13 @@ function App() {
               </div>
 
               <div className="max-w-4xl mx-auto bg-white dark:bg-dark-900 rounded-3xl p-8 md:p-12 shadow-[0_20px_60px_rgba(0,0,0,0.05)] border border-gray-200 dark:border-white/5">
-                  <a 
-                    href="#demo"
+                  <button 
+                    onClick={() => navigateTo('coming-soon')}
                     className="w-full py-6 bg-brand-500 hover:bg-brand-600 text-black font-bold text-2xl rounded-2xl shadow-xl transition-all hover:-translate-y-1 active:scale-[0.98] flex items-center justify-center space-x-3"
                   >
                     <span>Generate My Agent</span>
                     <Icons.Zap className="w-5 h-5 fill-black" />
-                  </a>
+                  </button>
               </div>
             </div>
           </section>
