@@ -19,14 +19,9 @@ const ComingSoonPage: React.FC<ComingSoonPageProps> = ({ onBack }) => {
           </div>
         </div>
 
-        <h1 className="text-5xl md:text-7xl font-black text-slate-900 dark:text-white mb-6 tracking-tighter">
+        <h1 className="text-5xl md:text-7xl font-black text-slate-900 dark:text-white mb-12 tracking-tighter">
           COMING <span className="text-lime-600">SOON!</span>
         </h1>
-        
-        <p className="text-xl text-slate-600 dark:text-gray-400 mb-12 font-medium leading-relaxed">
-          We're putting the final touches on our autonomous agent generator. 
-          Soon, you'll be able to build enterprise-grade AI agents in seconds just by describing your workflow.
-        </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <button 
@@ -44,12 +39,6 @@ const ComingSoonPage: React.FC<ComingSoonPageProps> = ({ onBack }) => {
             <span>Get Beta Access</span>
             <Icons.CheckCircle2 className="w-5 h-5" />
           </a>
-        </div>
-
-        <div className="mt-16 pt-8 border-t border-slate-100 dark:border-white/5">
-          <p className="text-sm text-slate-400 dark:text-gray-500 font-bold uppercase tracking-widest">
-            Powered by Linnovate Intelligence
-          </p>
         </div>
       </div>
     </div>

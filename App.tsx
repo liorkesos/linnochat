@@ -452,7 +452,9 @@ function App() {
 
               <div className="max-w-4xl mx-auto bg-white dark:bg-dark-900/50 rounded-3xl p-8 md:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.08)] border border-gray-100 dark:border-white/5 relative overflow-hidden">
                   <a 
-                    href="mailto:contact@linnovate.net"
+                    href="https://calendar.app.google/lyron-linnovate-net"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="w-full py-8 bg-brand-500 hover:bg-brand-600 text-black font-bold text-3xl rounded-2xl shadow-[0_10px_30px_rgba(132,204,22,0.2)] transition-all hover:-translate-y-1 active:scale-95 flex items-center justify-center space-x-4"
                   >
                     <span>Book My Demo</span>
