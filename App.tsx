@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import ChatWidget from './components/ChatWidget';
@@ -108,7 +109,7 @@ const BrandLogos = {
   ),
   GoogleCloud: () => (
     <svg viewBox="0 0 24 24" className="w-6 h-6 fill-lime-500">
-      <path d="M17.75 19H8.25C5.9 19 4 17.1 4 14.75C4 12.56 5.67 10.74 7.82 10.53C8.42 7.39 11.16 5 14.5 5C17.39 5 19.82 6.8 20.69 9.38C22.6 9.8 24 11.49 24 13.5C24 15.71 22.21 17.5 20 17.5V17.5C19.34 17.5 18.72 17.34 18.17 17.06C18.41 17.53 18.5 18.04 18.5 18.5C18.5 18.67 18.49 18.84 18.47 19H17.75ZM8.25 17.5H17.25C17.39 17.5 17.53 17.52 17.66 17.56C17.16 16.32 15.93 15.5 14.5 15.5C13.62 15.5 12.82 15.82 12.21 16.35C11.36 15.22 10 14.5 8.5 14.5C7.26 14.5 6.16 15.01 5.42 15.83C5.15 15.49 5 15.06 5 14.6V14.6C5 12.89 6.39 11.5 8.1 11.5C8.42 11.5 8.73 11.55 9.01 11.64C9.53 9.27 11.65 7.5 14.17 7.5C16.36 7.5 18.23 8.79 19 10.65C19.31 10.55 19.65 10.5 20 10.5C21.38 10.5 22.5 11.62 22.5 13C22.5 14.38 21.38 15.5 20 15.5H19.75V15.5C19.06 15.5 18.44 15.22 17.98 14.77C18.3 15.35 18.5 16 18.5 16.7C18.5 17 18.42 17.28 18.28 17.54C18.11 17.51 17.93 17.5 17.75 17.5H8.25Z"/>
+      <path d="M17.75 19H8.25C5.9 19 4 17.1 4 14.75C4 12.56 5.67 10.74 7.82 10.53C8.42 7.39 11.16 5 14.5 5C17.39 5 19.82 6.8 20.69 9.38C22.6 9.8 24 11.49 24 13.5C24 15.71 22.21 17.5 20 17.5V17.5C19.34 17.5 18.72 17.34 18.17 17.06C18.41 17.53 18.5 18.04 18.5 18.5C18.5 18.67 18.49 18.84 18.47 19H17.75ZM8.25 17.5H17.25C17.39 17.5 17.53 17.52 17.66 17.56C17.16 16.32 15.93 15.5 14.5 15.5C13.62 15.5 12.82 15.82 12.21 16.35C11.36 15.22 10 14.5 8.5 14.5C7.26 14.5 6.16 15.01 5.42 15.83C5.15 15.49 5 15.06 5 14.6V14.6C5 12.89 6.39 11.5 8.1 11.5C8.42 11.5 8.73 11.55 9.01 11.64C9.53 9.27 11.65 7.5 14.17 7.5C16.36 7.5 18.23 8.79 19 10.65C19.31 10.55 19.65 10.5 20 10.5C21.38 10.5 22.5 11.62 22.5 13C22.5 14.38 21.38 15.5 20 15.5H19.75V15.5C19.06 15.5 18.44-15.22 17.98 14.77C18.3 15.35 18.5 16 18.5 16.7C18.5 17 18.42 17.28 18.28 17.54C18.11 17.51 17.93 17.5 17.75 17.5H8.25Z"/>
     </svg>
   ),
   Azure: () => (
@@ -142,6 +143,20 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-dark-900 text-gray-900 dark:text-slate-200 selection:bg-lime-500/30 transition-colors duration-300">
       <Navbar onLogoClick={() => navigateTo('home')} />
+
+      {/* WhatsApp Widget floating button */}
+      <a 
+        href="https://wa.me/972548032882" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        className="fixed bottom-8 right-8 z-[60] w-14 h-14 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-[0_10px_40px_rgba(37,211,102,0.4)] hover:scale-110 transition-transform duration-300 group"
+        aria-label="Contact Sales on WhatsApp"
+      >
+        <Icons.WhatsApp className="w-8 h-8" />
+        <span className="absolute right-full mr-4 px-4 py-2 bg-white dark:bg-dark-800 text-slate-900 dark:text-white text-sm font-bold rounded-xl shadow-xl opacity-0 group-hover:opacity-100 transition-all transform translate-x-2 group-hover:translate-x-0 whitespace-nowrap pointer-events-none border border-gray-100 dark:border-white/10">
+          Chat with Sales
+        </span>
+      </a>
 
       {currentView === 'privacy' && <PrivacyPolicyPage onBack={() => navigateTo('home')} />}
       {currentView === 'terms' && <TermsOfServicePage onBack={() => navigateTo('home')} />}
@@ -469,8 +484,8 @@ function App() {
       {/* Footer Section */}
       <footer className="bg-white dark:bg-dark-950 pt-20 pb-10 border-t border-gray-100 dark:border-white/5 text-gray-900 dark:text-slate-200">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-            {/* Column 1: Brand & Info */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+            {/* Column 1: Brand & Info (using 2 column spans conceptually in md-3 grid) */}
             <div className="md:col-span-2">
               <div 
                 className="flex items-center space-x-3 mb-6 cursor-pointer"
@@ -505,24 +520,6 @@ function App() {
               <ul className="space-y-4 text-slate-600 dark:text-gray-400">
                 <li><a href="https://webchat.linno.chat/swagger/index.html" target="_blank" rel="noopener noreferrer" className="hover:text-brand-600 transition-colors font-medium">API Documentation</a></li>
               </ul>
-            </div>
-
-            {/* Column 3: Connect / Social */}
-            <div>
-              <h4 className="text-slate-900 dark:text-white font-bold text-lg mb-8 tracking-tight">Connect</h4>
-              <div className="flex space-x-4">
-                <a href="#" className="w-12 h-12 rounded-full bg-slate-50 dark:bg-white/5 border border-gray-100 dark:border-white/10 flex items-center justify-center text-slate-700 dark:text-white hover:bg-slate-100 dark:hover:bg-white/10 transition-all shadow-sm">
-                  <Icons.Users className="w-5 h-5" />
-                </a>
-                <a 
-                  href="https://wa.me/972548032882" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="w-12 h-12 rounded-full bg-slate-50 dark:bg-white/5 border border-gray-100 dark:border-white/10 flex items-center justify-center text-slate-700 dark:text-white hover:bg-slate-100 dark:hover:bg-white/10 transition-all shadow-sm"
-                >
-                  <Icons.MessageSquare className="w-5 h-5" />
-                </a>
-              </div>
             </div>
           </div>
 
