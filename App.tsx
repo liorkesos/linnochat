@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import ChatWidget from './components/ChatWidget';
@@ -11,19 +12,19 @@ const agents = [
     title: "1. Workflow Builder Agent",
     subtitle: "(Design)",
     description: "Import your SOPs or Support Documentation. The AI automatically generates conversation flows for Intake, Triage, or Feedback.",
-    icon: <Icons.LayoutTemplate className="w-6 h-6 text-lime-500" />
+    icon: <Icons.LayoutTemplate className="w-8 h-8 text-lime-500" />
   },
   {
     title: "2. Execution Agent",
     subtitle: "(Engage)",
     description: "Your 24/7 frontline. Handles complex queries, collects required documents, and routes critical issues to humans with context.",
-    icon: <Icons.Bot className="w-6 h-6 text-lime-600" />
+    icon: <Icons.Bot className="w-8 h-8 text-lime-600" />
   },
   {
     title: "3. Insight Engine",
     subtitle: "(Structure)",
     description: "Converts unstructured chat logs into Data Structure, CRM records, or summary tickets. Identifies trends and sentiment instantly.",
-    icon: <Icons.BarChart3 className="w-6 h-6 text-lime-500" />
+    icon: <Icons.BarChart3 className="w-8 h-8 text-lime-500" />
   }
 ];
 
@@ -31,17 +32,17 @@ const platformFeatures = [
   {
     title: "Bring Your Own Model",
     description: "Connect with popular LLMs like OpenAI, Llama, Gemini, or custom fine-tuned models.",
-    icon: <Icons.Cpu className="w-6 h-6 text-black" />
+    icon: <Icons.Cpu className="w-8 h-8 text-black" />
   },
   {
     title: "Workflow API",
     description: "Trigger chats from your app, upload contacts securely, and pipe structured data directly back into your systems.",
-    icon: <Icons.Terminal className="w-6 h-6 text-black" />
+    icon: <Icons.Terminal className="w-8 h-8 text-black" />
   },
   {
     title: "Any Channel",
     description: "Deploy via Web SDK, WhatsApp Business API, Slack, or Email auto-responders.",
-    icon: <Icons.Globe className="w-6 h-6 text-black" />
+    icon: <Icons.Globe className="w-8 h-8 text-black" />
   }
 ];
 
@@ -50,46 +51,82 @@ const industries = [
     name: "Customer Support",
     useCase: "L1 Deflection & Triage",
     description: "Resolve up to 70% of tickets automatically and route complex issues with full context summaries.",
-    icon: <Icons.MessageSquare className="w-5 h-5 text-white" />,
+    icon: <Icons.MessageSquare className="w-6 h-6 text-white" />,
     color: "bg-lime-500"
   },
   {
     name: "Healthcare",
     useCase: "Patient Intake",
     description: "Automate pre-visit forms, symptom checking triage, and appointment scheduling via chat.",
-    icon: <Icons.Stethoscope className="w-5 h-5 text-white" />,
+    icon: <Icons.Stethoscope className="w-6 h-6 text-white" />,
     color: "bg-lime-500"
   },
   {
     name: "FinTech",
     useCase: "KYC & Onboarding",
     description: "Collect documents and validate user information in a secure, conversational flow.",
-    icon: <Icons.Wallet className="w-5 h-5 text-white" />,
+    icon: <Icons.Wallet className="w-6 h-6 text-white" />,
     color: "bg-lime-500"
   },
   {
     name: "HR & Enterprise",
     useCase: "Internal Helpdesk",
     description: "Instant answers for benefits, IT support, and employee onboarding processes.",
-    icon: <Icons.Building2 className="w-5 h-5 text-white" />,
+    icon: <Icons.Building2 className="w-6 h-6 text-white" />,
     color: "bg-lime-500"
   },
   {
     name: "Consumer Research",
     useCase: "Deep Feedback",
     description: "Go beyond NPS scores with qualitative interviews that dig into the 'Why' behind the data.",
-    icon: <Icons.FileSearch className="w-5 h-5 text-white" />,
+    icon: <Icons.FileSearch className="w-6 h-6 text-white" />,
     color: "bg-lime-500"
   }
 ];
 
+const BrandLogos = {
+  LiteLLM: () => (
+    <svg viewBox="0 0 24 24" className="w-6 h-6 text-lime-500" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="16 18 22 12 16 6"></polyline>
+      <polyline points="8 6 2 12 8 18"></polyline>
+      <line x1="10" y1="22" x2="14" y2="2"></line>
+    </svg>
+  ),
+  Priority: () => (
+    <svg viewBox="0 0 24 24" className="w-6 h-6 fill-lime-500">
+      <path d="M19.34 7.66C18.66 4.34 15.68 2 12 2C8.32 2 5.34 4.34 4.66 7.66C4.26 9.61 4.26 11.64 4.66 13.59C5.16 16.03 6.64 18.06 8.71 19.14L12 22L15.29 19.14C17.36 18.06 18.84 16.03 19.34 13.59C19.74 11.64 19.74 9.61 19.34 7.66ZM12 16C9.79 16 8 14.21 8 12C8 9.79 9.79 8 12 8C14.21 8 16 9.79 16 12C16 14.21 14.21 16 12 16Z"/>
+    </svg>
+  ),
+  WhatsApp: () => (
+    <svg viewBox="0 0 24 24" className="w-6 h-6 fill-lime-500">
+      <path d="M12.031 0c-6.627 0-12 5.373-12 12 0 2.159.57 4.186 1.565 5.941l-1.596 5.825 5.955-1.562c1.713.935 3.676 1.468 5.76 1.468 6.627 0 12-5.373 12-12s-5.373-12-12-12zm6.39 17.1c-.26.735-1.51 1.47-2.07 1.62-.505.135-1.165.24-4.395-.945-3.135-1.155-5.175-4.32-5.325-4.53-.15-.21-1.23-1.635-1.23-3.12 0-1.485.78-2.22 1.05-2.52.27-.3.585-.375.78-.375.195 0 .39 0 .555.015.18.015.42-.045.66.525.255.615.87 2.115.945 2.265.075.15.12.33.015.525-.105.195-.165.315-.33.51-.165.195-.345.435-.15.765.195.33.87 1.425 1.86 2.31 1.275 1.14 2.34 1.485 2.67 1.62.33.135.525.12.72-.105.195-.225.84-.975 1.065-1.305.225-.33.45-.27.765-.15.315.12 2.01 1.05 2.1 1.14.09.09.15.135.21.24.06.09-.045.825-.3 1.56z"/>
+    </svg>
+  ),
+  Messenger: () => (
+    <svg viewBox="0 0 24 24" className="w-6 h-6 fill-lime-500">
+      <path d="M12 0C5.373 0 0 4.974 0 11.111c0 3.498 1.744 6.614 4.469 8.654V24l4.088-2.242c1.092.304 2.251.464 3.443.464 6.627 0 12-4.974 12-11.111C24 4.974 18.627 0 12 0zm1.291 14.194l-3.075-3.282-6.001 3.282 6.601-7.017 3.15 3.282 5.925-3.282-6.6 7.017z"/>
+    </svg>
+  ),
+  GoogleCloud: () => (
+    <svg viewBox="0 0 24 24" className="w-6 h-6 fill-lime-500">
+      <path d="M17.75 19H8.25C5.9 19 4 17.1 4 14.75C4 12.56 5.67 10.74 7.82 10.53C8.42 7.39 11.16 5 14.5 5C17.39 5 19.82 6.8 20.69 9.38C22.6 9.8 24 11.49 24 13.5C24 15.71 22.21 17.5 20 17.5V17.5C19.34 17.5 18.72 17.34 18.17 17.06C18.41 17.53 18.5 18.04 18.5 18.5C18.5 18.67 18.49 18.84 18.47 19H17.75ZM8.25 17.5H17.25C17.39 17.5 17.53 17.52 17.66 17.56C17.16 16.32 15.93 15.5 14.5 15.5C13.62 15.5 12.82 15.82 12.21 16.35C11.36 15.22 10 14.5 8.5 14.5C7.26 14.5 6.16 15.01 5.42 15.83C5.15 15.49 5 15.06 5 14.6V14.6C5 12.89 6.39 11.5 8.1 11.5C8.42 11.5 8.73 11.55 9.01 11.64C9.53 9.27 11.65 7.5 14.17 7.5C16.36 7.5 18.23 8.79 19 10.65C19.31 10.55 19.65 10.5 20 10.5C21.38 10.5 22.5 11.62 22.5 13C22.5 14.38 21.38 15.5 20 15.5H19.75V15.5C19.06 15.5 18.44-15.22 17.98 14.77C18.3 15.35 18.5 16 18.5 16.7C18.5 17 18.42 17.28 18.28 17.54C18.11 17.51 17.93 17.5 17.75 17.5H8.25Z"/>
+    </svg>
+  ),
+  Azure: () => (
+    <svg viewBox="0 0 24 24" className="w-6 h-6 fill-lime-500">
+      <path d="M11.444 2.7H19.5L11.444 21.3H3.389L11.444 21.3H3.389Z" opacity="0.4"/>
+      <path d="M3.389 21.3L10.457 8.01L14.417 16.7L10.05 21.3H3.389Z"/>
+    </svg>
+  )
+};
+
 const integrationItems = [
-  { name: "Lite-LLM", icon: <Icons.Cpu className="w-5 h-5 text-lime-500" />, desc: "Connect any foundation model with standardized APIs." },
-  { name: "Priority", icon: <Icons.Building2 className="w-5 h-5 text-lime-500" />, desc: "Direct ERP integration for complex enterprise workflows." },
-  { name: "WhatsApp", icon: <Icons.WhatsApp className="w-5 h-5 text-lime-500" />, desc: "Automate conversations on the world's favorite chat app." },
-  { name: "Messenger", icon: <Icons.MessageSquare className="w-5 h-5 text-lime-500" />, desc: "Support customers directly via Meta's platform." },
-  { name: "Google Cloud", icon: <Icons.Cloud className="w-5 h-5 text-lime-500" />, desc: "Enterprise hosting and secure data residency." },
-  { name: "Azure", icon: <Icons.Terminal className="w-5 h-5 text-lime-500" />, desc: "Microsoft ecosystem integration for Fortune 500s." },
+  { name: "Lite-LLM", icon: <BrandLogos.LiteLLM />, desc: "Connect any foundation model with standardized APIs." },
+  { name: "Priority", icon: <BrandLogos.Priority />, desc: "Direct ERP integration for complex enterprise workflows." },
+  { name: "WhatsApp", icon: <BrandLogos.WhatsApp />, desc: "Automate conversations on the world's favorite chat app." },
+  { name: "Messenger", icon: <BrandLogos.Messenger />, desc: "Support customers directly via Meta's platform." },
+  { name: "Google Cloud", icon: <BrandLogos.GoogleCloud />, desc: "Enterprise hosting and secure data residency." },
+  { name: "Azure", icon: <BrandLogos.Azure />, desc: "Microsoft ecosystem integration for Fortune 500s." },
 ];
 
 function App() {
@@ -104,8 +141,22 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-dark-900 text-gray-900 dark:text-slate-200 selection:bg-lime-500/30 transition-colors duration-300 overflow-x-hidden">
+    <div className="min-h-screen bg-gray-50 dark:bg-dark-900 text-gray-900 dark:text-slate-200 selection:bg-lime-500/30 transition-colors duration-300">
       <Navbar onLogoClick={() => navigateTo('home')} />
+
+      {/* WhatsApp Widget floating button */}
+      <a 
+        href="https://wa.me/972548032882" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        className="fixed bottom-8 right-8 z-[60] w-14 h-14 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-[0_10px_40px_rgba(37,211,102,0.4)] hover:scale-110 transition-transform duration-300 group"
+        aria-label="Contact Sales on WhatsApp"
+      >
+        <Icons.WhatsApp className="w-8 h-8" />
+        <span className="absolute right-full mr-4 px-4 py-2 bg-white dark:bg-dark-800 text-slate-900 dark:text-white text-sm font-bold rounded-xl shadow-xl opacity-0 group-hover:opacity-100 transition-all transform translate-x-2 group-hover:translate-x-0 whitespace-nowrap pointer-events-none border border-gray-100 dark:border-white/10">
+          Chat with Sales
+        </span>
+      </a>
 
       {currentView === 'privacy' && <PrivacyPolicyPage onBack={() => navigateTo('home')} />}
       {currentView === 'terms' && <TermsOfServicePage onBack={() => navigateTo('home')} />}
@@ -114,93 +165,104 @@ function App() {
       {currentView === 'home' && (
         <>
           {/* Hero Section */}
-          <section className="relative pt-24 pb-12 lg:pt-36 lg:pb-24 overflow-hidden">
+          <section className="relative pt-32 pb-16 lg:pt-48 lg:pb-24 overflow-hidden">
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl pointer-events-none">
-              <div className="absolute top-0 left-1/4 w-64 h-64 md:w-80 md:h-80 bg-lime-300/10 dark:bg-lime-500/10 rounded-full blur-[100px] animate-blob"></div>
-              <div className="absolute top-20 right-1/4 w-64 h-64 md:w-80 md:h-80 bg-lime-400/10 dark:bg-lime-600/10 rounded-full blur-[100px] animate-blob animation-delay-2000"></div>
+              <div className="absolute top-0 left-1/4 w-96 h-96 bg-lime-300/30 dark:bg-lime-500/20 rounded-full blur-[100px] animate-blob"></div>
+              <div className="absolute top-20 right-1/4 w-96 h-96 bg-lime-400/30 dark:bg-lime-600/20 rounded-full blur-[100px] animate-blob animation-delay-2000"></div>
             </div>
 
-            <div className="max-w-7xl mx-auto px-6 relative z-10">
-              <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-                <div className="text-left animate-slide-up order-2 lg:order-1">
-                  <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight mb-6 leading-[1.1]">
-                    <span className="glass-heading-main inline-block py-1 text-black dark:text-white">Conversational AI <br className="hidden md:block" /> Agents for</span>
-                    <br />
-                    <span className="glass-heading-accent inline-block py-1">Data Collection <br className="hidden md:block" /> and Analysis</span>
-                  </h1>
-                  <p className="text-lg md:text-xl font-semibold text-gray-700 dark:text-gray-200 mb-4 max-w-md">
-                    Turn complex workflows into natural, actionable conversations.
-                  </p>
-                  <p className="text-sm md:text-base text-gray-600 dark:text-gray-400 mb-8 max-w-lg leading-relaxed">
-                    LinnoChat is the enterprise AI platform that deploys intelligent agents to handle customer support triage, complex data collection, and qualitative research—without writing a single line of code.
-                  </p>
-                  <div className="flex flex-col sm:flex-row items-center space-y-3 sm:space-y-0 sm:space-x-4">
-                    <a 
-                      href="https://wa.me/972548032882" 
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full sm:w-auto px-8 py-3 bg-brand-500 hover:bg-brand-600 text-black rounded-lg font-bold text-sm transition-all shadow-xl flex items-center justify-center space-x-2"
-                    >
-                      <Icons.WhatsApp className="w-4 h-4" />
-                      <span>Contact Sales</span>
-                    </a>
-                    <a href="#integrations-section" className="w-full sm:w-auto px-8 py-3 bg-white hover:bg-gray-50 dark:bg-white/5 dark:hover:bg-white/10 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white rounded-lg font-bold text-sm transition-all shadow-sm flex items-center justify-center">
-                      Explore Platform
-                    </a>
-                  </div>
+            <div className="max-w-7xl mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+              <div className="text-left animate-slide-up">
+                <h1 className="text-5xl lg:text-7xl font-extrabold tracking-tighter mb-8 leading-none">
+                  <span className="glass-heading-main inline-block py-2 px-1 text-black">Conversational AI <br /> Agents for</span>
+                  <br />
+                  <span className="glass-heading-accent inline-block py-2 px-1">Data Collection <br /> and Analysis</span>
+                </h1>
+                <p className="text-xl font-semibold text-gray-700 dark:text-gray-200 mb-4">
+                  Turn complex workflows into natural, actionable conversations.
+                </p>
+                <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-xl leading-relaxed">
+                  LinnoChat is the enterprise AI platform that deploys intelligent agents to handle customer support triage, Complex Data Collection, and qualitative research—all without code.
+                </p>
+                <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4">
+                  <a href="#automate" className="w-full sm:w-auto px-10 py-4 bg-brand-500 hover:bg-brand-600 text-black rounded-lg font-bold text-lg transition-all shadow-xl shadow-brand-500/20 flex items-center justify-center space-x-2">
+                    <span>Try Now</span>
+                    <Icons.Zap className="w-5 h-5 fill-black" />
+                  </a>
+                  <a href="#integrations-section" className="w-full sm:w-auto px-8 py-4 bg-white hover:bg-gray-50 dark:bg-white/5 dark:hover:bg-white/10 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white rounded-lg font-semibold transition-all backdrop-blur-sm shadow-sm dark:shadow-none flex items-center justify-center">
+                    View Integrations
+                  </a>
                 </div>
+              </div>
 
-                <div className="relative animate-fade-in delay-200 order-1 lg:order-2 flex justify-center lg:justify-end" id="demo">
-                  <div className="absolute inset-0 bg-gradient-to-r from-lime-500 to-lime-600 rounded-2xl blur-xl opacity-5 transform rotate-2"></div>
-                  <div className="w-full max-w-[340px] sm:max-w-sm">
-                    <ChatWidget />
-                  </div>
-                </div>
+              <div className="relative animate-fade-in delay-200" id="demo">
+                 <div className="absolute inset-0 bg-gradient-to-r from-lime-500 to-lime-600 rounded-2xl blur-xl opacity-20 transform rotate-2"></div>
+                <ChatWidget />
               </div>
             </div>
           </section>
 
-          {/* Value Prop Bar */}
-          <section className="bg-white dark:bg-white/5 border-y border-gray-200 dark:border-white/5 py-8">
+          {/* Value Proposition Bar */}
+          <section className="bg-white dark:bg-white/5 border-y border-gray-200 dark:border-white/5 py-10">
             <div className="max-w-7xl mx-auto px-6">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-                {[
-                  { icon: <Icons.Activity />, title: 'Full Lifecycle', desc: 'Design to Deploy' },
-                  { icon: <Icons.Zap />, title: 'Deployment', desc: 'SaaS & On-prem' },
-                  { icon: <Icons.ShieldCheck />, title: 'Enterprise', desc: 'Secure & Robust' },
-                  { icon: <Icons.Globe />, title: 'Channels', desc: 'WhatsApp & Web' },
-                ].map((item, idx) => (
-                  <div key={idx} className="flex items-center space-x-2 md:space-x-3">
-                    <div className="p-1.5 bg-lime-50 dark:bg-lime-500/10 rounded-lg shrink-0">
-                      {React.cloneElement(item.icon as React.ReactElement<any>, { className: 'w-4 h-4 text-lime-600' })}
-                    </div>
-                    <div className="overflow-hidden">
-                      <h3 className="font-bold text-gray-900 dark:text-white text-[11px] md:text-sm whitespace-nowrap">{item.title}</h3>
-                      <p className="text-[10px] text-gray-500 dark:text-gray-400">{item.desc}</p>
-                    </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div className="flex items-start space-x-3">
+                  <div className="p-2 bg-lime-50 dark:bg-lime-500/10 rounded-lg">
+                    <Icons.Activity className="w-5 h-5 text-lime-600 dark:text-lime-400" />
                   </div>
-                ))}
+                  <div>
+                    <h3 className="font-semibold text-gray-900 dark:text-white">Full Lifecycle</h3>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">Design, Deploy, Analyze</p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <div className="p-2 bg-lime-50 dark:bg-lime-500/10 rounded-lg">
+                    <Icons.Zap className="w-5 h-5 text-lime-600 dark:text-lime-400" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-900 dark:text-white">Deployment</h3>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">SaaS & On-prem</p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <div className="p-2 bg-lime-50 dark:bg-lime-500/10 rounded-lg">
+                    <Icons.ShieldCheck className="w-5 h-5 text-lime-600 dark:text-lime-400" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-900 dark:text-white">Enterprise Grade</h3>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">Security & Control</p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <div className="p-2 bg-lime-50 dark:bg-lime-500/10 rounded-lg">
+                    <Icons.Globe className="w-5 h-5 text-lime-600 dark:text-lime-400" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-900 dark:text-white">Omnichannel</h3>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">Web, Mobile, WhatsApp</p>
+                  </div>
+                </div>
               </div>
             </div>
           </section>
 
           {/* How It Works */}
-          <section id="how-it-works" className="py-16 md:py-24 relative bg-gray-50 dark:bg-black/10 scroll-mt-20">
+          <section id="how-it-works" className="py-24 relative bg-gray-50 dark:bg-black/20 scroll-mt-24">
             <div className="max-w-7xl mx-auto px-6">
-              <div className="text-center max-w-2xl mx-auto mb-12">
-                <h2 className="text-2xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">Intelligent Interaction Architecture</h2>
-                <p className="text-gray-600 dark:text-gray-400 text-sm md:text-base leading-relaxed">
-                  Our agents work across three specialized layers to handle everything from initial engagement to deep data structuring.
+              <div className="text-center max-w-3xl mx-auto mb-16">
+                <h2 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">The Power of Intelligent Automation</h2>
+                <p className="text-gray-600 dark:text-gray-400 text-lg">
+                  LinnoChat combines three distinct AI layers to handle the entire interaction lifecycle.
                 </p>
               </div>
 
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid md:grid-cols-3 gap-8">
                 {agents.map((agent, idx) => (
-                  <div key={idx} className="bg-white dark:bg-dark-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-white/5 hover:border-lime-500 transition-colors">
-                    <div className="mb-4">{agent.icon}</div>
-                    <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">{agent.title}</h3>
-                    <p className="text-[10px] font-bold text-lime-600 dark:text-lime-400 mb-3 uppercase tracking-widest">{agent.subtitle}</p>
-                    <p className="text-xs md:text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                  <div key={idx} className="bg-white dark:bg-dark-800 rounded-2xl p-8 shadow-sm border border-gray-100 dark:border-white/5 hover:border-lime-500 dark:hover:border-lime-500 transition-colors">
+                    <div className="mb-6">{agent.icon}</div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white">{agent.title}</h3>
+                    <p className="text-sm font-semibold text-lime-500 dark:text-lime-400 mb-4">{agent.subtitle}</p>
+                    <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
                       {agent.description}
                     </p>
                   </div>
@@ -209,55 +271,80 @@ function App() {
             </div>
           </section>
 
-          {/* Why Linno? */}
-          <section id="why-linno" className="py-16 md:py-24 bg-white dark:bg-dark-900 scroll-mt-20 relative overflow-hidden">
+          {/* Why Linno? Section */}
+          <section id="why-linno" className="py-24 bg-white dark:bg-dark-900 relative overflow-hidden scroll-mt-24">
+            <div className="absolute top-0 right-0 w-1/3 h-full bg-lime-50 dark:bg-white/5 skew-x-12 transform translate-x-20"></div>
             <div className="max-w-7xl mx-auto px-6 relative z-10">
-              <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+              <div className="grid lg:grid-cols-2 gap-16 items-center">
                 <div>
-                  <h2 className="text-2xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
-                    Beyond Static Forms
+                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
+                    Why Upgrade from Static Forms?
                   </h2>
-                  <p className="text-base text-lime-700 dark:text-lime-400 mb-8 font-medium">
-                    Automate discovery and support with dynamic logic that adapts in real-time.
+                  <p className="text-xl text-lime-600 dark:text-lime-400 mb-6 font-medium">
+                    Forms are rigid. LinnoChat is dynamic, resolving issues as they happen.
                   </p>
                   <div className="space-y-6">
-                    {[
-                      { title: 'Dynamic Triage', desc: 'Logic that skips irrelevant questions based on context.' },
-                      { title: 'Data Structuring', desc: 'Automated extraction of JSON data directly into your CRM.' },
-                      { title: 'Omnichannel Reach', desc: 'Deploy on Web, Mobile, and WhatsApp with one click.' },
-                    ].map((item, idx) => (
-                      <div key={idx} className="flex items-start group">
-                        <div className="mt-1 mr-4 p-1.5 bg-green-50 dark:bg-green-900/10 rounded-lg shrink-0 transition-transform group-hover:scale-110">
-                          <Icons.CheckCircle2 className="w-4 h-4 text-green-600" />
-                        </div>
-                        <div>
-                          <h4 className="font-bold text-gray-900 dark:text-white text-sm md:text-base mb-1">{item.title}</h4>
-                          <p className="text-xs md:text-sm text-gray-500 dark:text-gray-400 leading-relaxed">{item.desc}</p>
-                        </div>
+                    <div className="flex items-start">
+                      <div className="mt-1 mr-4 p-1 bg-green-100 dark:bg-green-900/30 rounded-full">
+                        <Icons.CheckCircle2 className="w-5 h-5 text-green-600 dark:text-green-400" />
                       </div>
-                    ))}
+                      <div>
+                        <h4 className="font-bold text-gray-900 dark:text-white">Dynamic Triage</h4>
+                        <p className="text-gray-600 dark:text-gray-400">The AI adapts questions based on user answers, skipping irrelevant steps and digging deeper when needed.</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start">
+                      <div className="mt-1 mr-4 p-1 bg-green-100 dark:bg-green-900/30 rounded-full">
+                        <Icons.CheckCircle2 className="w-5 h-5 text-green-600 dark:text-green-400" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-gray-900 dark:text-white">Structured Data Extraction</h4>
+                        <p className="text-gray-600 dark:text-gray-400">Turn conversational chaos into clean Data Structure. We populate your CRM or ticketing system automatically.</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start">
+                      <div className="mt-1 mr-4 p-1 bg-green-100 dark:bg-green-900/30 rounded-full">
+                        <Icons.CheckCircle2 className="w-5 h-5 text-green-600 dark:text-green-400" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-gray-900 dark:text-white">24/7 Resolution</h4>
+                        <p className="text-gray-600 dark:text-gray-400">Don't just queue tickets—solve them. Our agents can handle FAQs, scheduling, and basic troubleshooting.</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 
-                <div className="flex justify-center lg:justify-end">
-                  <div className="bg-slate-900 dark:bg-black rounded-2xl p-6 shadow-2xl border border-white/5 w-full max-w-sm">
-                    <h3 className="text-white font-bold mb-6 border-b border-white/5 pb-3 text-xs uppercase tracking-widest">Platform Benchmarks</h3>
+                <div className="relative flex justify-center lg:justify-end">
+                  <div className="bg-gray-900 dark:bg-black rounded-2xl p-6 shadow-2xl border border-gray-800 dark:border-white/10 w-full max-sm:max-w-sm">
+                    <h3 className="text-white font-bold mb-6 border-b border-gray-800 pb-4">Efficiency Metrics</h3>
                     <div className="space-y-6">
-                      {[
-                        { label: 'Resolution Rate', val: '65%', color: 'bg-lime-500' },
-                        { label: 'Intake Speed', val: '+40% faster', color: 'bg-indigo-500' },
-                        { label: 'CSAT Lift', val: '+18 pts', color: 'bg-purple-500' },
-                      ].map((bar, i) => (
-                        <div key={i}>
-                          <div className="flex justify-between text-[10px] text-slate-400 mb-2 font-bold uppercase tracking-wider">
-                            <span>{bar.label}</span>
-                            <span className="text-white">{bar.val}</span>
-                          </div>
-                          <div className="h-1 bg-slate-800 rounded-full overflow-hidden">
-                            <div className={`h-full ${bar.color} rounded-full`} style={{ width: bar.val.includes('+') ? '80%' : bar.val }}></div>
-                          </div>
+                      <div>
+                        <div className="flex justify-between text-xs text-gray-400 mb-2 font-medium tracking-wide uppercase">
+                          <span>Resolution Rate</span>
+                          <span className="text-amber-400 font-bold">65%</span>
                         </div>
-                      ))}
+                        <div className="h-1.5 bg-gray-800 rounded-full overflow-hidden">
+                          <div className="h-full w-[65%] bg-amber-500 rounded-full shadow-[0_0_10px_rgba(245,158,11,0.3)]"></div>
+                        </div>
+                      </div>
+                      <div>
+                        <div className="flex justify-between text-xs text-gray-400 mb-2 font-medium tracking-wide uppercase">
+                          <span>Intake Speed</span>
+                          <span className="text-indigo-400 font-bold">40% faster</span>
+                        </div>
+                        <div className="h-1.5 bg-gray-800 rounded-full overflow-hidden">
+                          <div className="h-full w-[40%] bg-indigo-500 rounded-full shadow-[0_0_10px_rgba(99,102,241,0.3)]"></div>
+                        </div>
+                      </div>
+                      <div>
+                        <div className="flex justify-between text-xs text-gray-400 mb-2 font-medium tracking-wide uppercase">
+                          <span>CSAT Increase</span>
+                          <span className="text-purple-400 font-bold">+18 pts</span>
+                        </div>
+                        <div className="h-1.5 bg-gray-800 rounded-full overflow-hidden">
+                          <div className="h-full w-[88%] bg-purple-500 rounded-full shadow-[0_0_10px_rgba(168,85,247,0.3)]"></div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -265,22 +352,26 @@ function App() {
             </div>
           </section>
 
-          {/* Platform Strip */}
-          <section id="platform" className="py-16 md:py-20 bg-lime-500 text-lime-950 scroll-mt-20">
-            <div className="max-w-7xl mx-auto px-6 text-center lg:text-left">
-              <h2 className="text-3xl md:text-5xl font-black mb-4 tracking-tight">Enterprise Infrastructure</h2>
-              <p className="text-lg md:text-xl text-lime-950/80 mb-12 font-medium max-w-2xl mx-auto lg:mx-0">
-                Self-hosted or managed cloud. Absolute data sovereignty. Secure, controlled, and open.
-              </p>
+          {/* Platform Section: Vibrant Green Strip */}
+          <section id="platform" className="py-24 bg-lime-500 text-lime-950 scroll-mt-24">
+            <div className="max-w-7xl mx-auto px-6">
+              <div className="max-w-full mb-16 overflow-hidden">
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 tracking-tight whitespace-nowrap">
+                  Enterprise-Grade Open Architecture
+                </h2>
+                <p className="text-xl md:text-2xl text-lime-950/90 leading-tight font-medium whitespace-nowrap overflow-hidden">
+                  Fully self-hosted deployment for absolute data sovereignty. Secure, controlled, and open.
+                </p>
+              </div>
 
-              <div className="grid md:grid-cols-3 gap-8">
+              <div className="grid md:grid-cols-3 gap-12">
                 {platformFeatures.map((feature, idx) => (
-                  <div key={idx} className="p-6 bg-white/20 rounded-2xl backdrop-blur-sm border border-white/30 hover:bg-white/30 transition-all">
-                    <div className="mb-4 p-2 bg-white w-fit rounded-lg shadow-sm">
+                  <div key={idx} className="group">
+                    <div className="mb-6 p-4 bg-white w-fit rounded-xl border border-lime-600/20 group-hover:border-lime-600/40 transition-all">
                       {feature.icon}
                     </div>
-                    <h3 className="text-lg font-bold mb-2">{feature.title}</h3>
-                    <p className="text-lime-950/90 text-xs md:text-sm font-medium leading-relaxed">
+                    <h3 className="text-xl font-bold mb-4">{feature.title}</h3>
+                    <p className="text-lime-900 leading-relaxed text-sm lg:text-base font-medium">
                       {feature.description}
                     </p>
                   </div>
@@ -289,26 +380,26 @@ function App() {
             </div>
           </section>
 
-          {/* Integrations */}
-          <section id="integrations-section" className="py-16 md:py-24 bg-black text-white scroll-mt-20">
+          {/* Integrations Section Strip */}
+          <section id="integrations-section" className="py-24 bg-black text-white scroll-mt-24 border-t border-white/5">
             <div className="max-w-7xl mx-auto px-6">
-              <div className="text-center mb-12">
-                <h2 className="text-2xl md:text-4xl font-bold mb-4">Ecosystem Integrations</h2>
-                <p className="text-slate-400 text-sm md:text-base max-w-xl mx-auto">
-                  Seamlessly connect LinnoChat with the tools your team already uses every day.
+              <div className="text-center mx-auto mb-16">
+                <h2 className="text-3xl md:text-5xl font-bold mb-6">Native Integrations</h2>
+                <p className="text-gray-400 text-lg md:whitespace-nowrap">
+                  LinnoChat fits perfectly into your existing tech stack. Connect your favorite tools and start automating in minutes.
                 </p>
               </div>
 
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 {integrationItems.map((item) => (
-                  <div key={item.name} className="p-6 rounded-2xl bg-white/5 border border-white/5 hover:border-lime-500/30 transition-all group">
-                    <div className="flex items-center space-x-3 mb-4">
-                      <div className="p-2.5 bg-white/5 rounded-xl group-hover:bg-lime-500/10 transition-colors">
+                  <div key={item.name} className="p-6 rounded-2xl bg-white border border-white/10 hover:border-lime-500/50 transition-all group shadow-sm">
+                    <div className="flex items-center space-x-4 mb-4">
+                      <div className="p-3 bg-slate-50 rounded-xl group-hover:scale-110 transition-transform flex items-center justify-center">
                         {item.icon}
                       </div>
-                      <h3 className="text-base font-bold text-white">{item.name}</h3>
+                      <h3 className="text-xl font-bold text-slate-900">{item.name}</h3>
                     </div>
-                    <p className="text-slate-500 text-xs leading-relaxed">
+                    <p className="text-slate-600 text-sm leading-relaxed">
                       {item.desc}
                     </p>
                   </div>
@@ -317,83 +408,137 @@ function App() {
             </div>
           </section>
 
-          {/* CTA Section */}
-          <section id="automate" className="py-20 md:py-32 bg-gray-50 dark:bg-dark-950 scroll-mt-20 border-t border-gray-100 dark:border-white/5 text-center px-6">
-            <div className="max-w-3xl mx-auto">
-              <h2 className="text-3xl md:text-6xl font-black text-slate-900 dark:text-white mb-6 tracking-tight">Ready to Automate?</h2>
-              <p className="text-lg md:text-2xl text-lime-600 font-bold mb-10">Reduce costs. Improve satisfaction. Scale effortlessly.</p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a 
-                  href="https://wa.me/972548032882" 
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full sm:w-auto px-10 py-4 bg-brand-500 hover:bg-brand-600 text-black font-bold text-lg rounded-xl shadow-xl transition-all hover:-translate-y-1 flex items-center justify-center space-x-3"
-                >
-                  <Icons.WhatsApp className="w-5 h-5" />
-                  <span>Chat with Sales</span>
-                </a>
-                <a 
-                  href="https://calendar.app.google/lyron-linnovate-net"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full sm:w-auto px-10 py-4 bg-slate-900 dark:bg-dark-800 text-white font-bold text-lg rounded-xl shadow-xl transition-all hover:-translate-y-1 flex items-center justify-center space-x-3"
-                >
-                  <Icons.ArrowRight className="w-5 h-5" />
-                  <span>Book a Demo</span>
-                </a>
+          {/* Solutions Section */}
+          <section id="solutions" className="py-24 bg-gray-50 dark:bg-dark-800/30 scroll-mt-24">
+            <div className="max-w-7xl mx-auto px-6">
+              <div className="text-center mb-16">
+                <h2 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">Procurement Process Automation</h2>
+                <p className="text-gray-600 dark:text-gray-400">Save time & money - Streamline procurement processes to improve experience and compliance</p>
+              </div>
+              
+              <div className="flex flex-wrap justify-center gap-6">
+                {industries.map((item, idx) => (
+                  <div key={idx} className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] bg-white dark:bg-dark-900 p-6 rounded-2xl border border-gray-200 dark:border-white/5 hover:shadow-lg transition-all group">
+                    <div className={`w-12 h-12 ${item.color} rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
+                      {item.icon}
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{item.name}</h3>
+                    <span className="inline-block px-2 py-1 bg-lime-50 dark:bg-lime-900/20 text-xs font-semibold text-lime-700 dark:text-lime-400 rounded mb-4 border border-lime-100 dark:border-lime-800">
+                      {item.useCase}
+                    </span>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm">
+                      {item.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* Start Automating Today Section */}
+          <section id="automate" className="py-24 bg-gray-50 dark:bg-dark-950 scroll-mt-24 border-t border-gray-200 dark:border-white/5">
+            <div className="max-w-7xl mx-auto px-6">
+              <div className="text-center max-w-3xl mx-auto mb-12">
+                <h2 className="text-4xl md:text-6xl font-extrabold text-slate-900 dark:text-white mb-6 tracking-tight">Start Automating Today</h2>
+                <p className="text-brand-600 dark:text-lime-500 text-2xl font-bold mb-4">Reduce costs. Improve satisfaction.</p>
+                <p className="text-slate-600 dark:text-gray-400 text-lg font-medium">Inject your scripts and our team can create a custom agent per your specifications</p>
+              </div>
+
+              <div className="max-w-4xl mx-auto bg-white dark:bg-dark-900 rounded-3xl p-8 md:p-12 shadow-[0_20px_60px_rgba(0,0,0,0.05)] border border-gray-200 dark:border-white/5">
+                  <button 
+                    onClick={() => navigateTo('coming-soon')}
+                    className="w-full py-6 bg-brand-500 hover:bg-brand-600 text-black font-bold text-2xl rounded-2xl shadow-xl transition-all hover:-translate-y-1 active:scale-[0.98] flex items-center justify-center space-x-3"
+                  >
+                    <span>Generate My Agent</span>
+                    <Icons.Zap className="w-5 h-5 fill-black" />
+                  </button>
+              </div>
+            </div>
+          </section>
+
+          {/* Book a Demo Section */}
+          <section id="try-now" className="py-24 bg-white dark:bg-dark-950 scroll-mt-24 border-t border-gray-100 dark:border-white/5">
+            <div className="max-w-7xl mx-auto px-6">
+              <div className="text-center max-w-3xl mx-auto mb-16">
+                <h2 className="text-4xl md:text-7xl font-extrabold text-[#111827] dark:text-white mb-6 tracking-tight">Book a Demo</h2>
+                <p className="text-brand-600 dark:text-lime-500 text-2xl font-bold mb-4">Reduce costs. Improve satisfaction.</p>
+                <p className="text-[#6b7280] dark:text-gray-400 text-xl">Speak to our team about deploying your first intelligent agent.</p>
+              </div>
+
+              <div className="max-w-4xl mx-auto bg-white dark:bg-dark-900/50 rounded-3xl p-8 md:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.08)] border border-gray-100 dark:border-white/5 relative overflow-hidden">
+                  <a 
+                    href="https://calendar.app.google/lyron-linnovate-net"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full py-8 bg-brand-500 hover:bg-brand-600 text-black font-bold text-3xl rounded-2xl shadow-[0_10px_30px_rgba(132,204,22,0.2)] transition-all hover:-translate-y-1 active:scale-95 flex items-center justify-center space-x-4"
+                  >
+                    <span>Book My Demo</span>
+                    <Icons.ArrowRight className="w-8 h-8" />
+                  </a>
               </div>
             </div>
           </section>
         </>
       )}
 
-      {/* Footer */}
-      <footer className="bg-white dark:bg-dark-950 pt-16 pb-8 border-t border-gray-100 dark:border-white/5 text-gray-900 dark:text-slate-200">
+      {/* Footer Section */}
+      <footer className="bg-white dark:bg-dark-950 pt-20 pb-10 border-t border-gray-100 dark:border-white/5 text-gray-900 dark:text-slate-200">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
-            <div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+            {/* Column 1: Brand & Info (using 2 column spans conceptually in md-3 grid) */}
+            <div className="md:col-span-2">
               <div 
-                className="flex items-center space-x-2 mb-6 cursor-pointer"
+                className="flex items-center space-x-3 mb-6 cursor-pointer"
                 onClick={() => navigateTo('home')}
               >
-                <Icons.SpeechBubbles className="w-8 h-8 text-brand-600" />
-                <span className="text-2xl font-black tracking-tighter">
+                <div className="w-12 h-10 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                  <Icons.SpeechBubbles className="w-10 h-10 text-brand-600" />
+                </div>
+                <span className="text-3xl font-extrabold tracking-tighter transition-colors">
                   <span className="text-black dark:text-white">Linno</span>
                   <span className="text-brand-600">chat</span>
                 </span>
               </div>
-              <p className="text-slate-500 dark:text-slate-400 text-sm max-w-xs mb-8 leading-relaxed">
-                The enterprise standard for high-performance AI agents and intelligent discovery workflows.
+              <p className="text-slate-600 dark:text-gray-400 text-base max-w-sm mb-8 leading-relaxed">
+                The enterprise platform for intelligent intake, support, and data collection.
               </p>
               <div className="space-y-4">
-                <div className="flex items-center space-x-3 text-slate-500 text-xs">
+                <div className="flex items-center space-x-3 text-slate-500 dark:text-gray-400">
                   <Icons.MapPin className="w-4 h-4 text-red-500" />
-                  <span>Bnei Brak, Israel (Powered by Linnovate)</span>
+                  <span className="text-sm font-medium">Bnei Brak, Israel (Powered by Linnovate)</span>
                 </div>
-                <div className="flex items-center space-x-3 text-slate-500 text-xs">
+                <div className="flex items-center space-x-3 text-slate-500 dark:text-gray-400">
                   <Icons.Mail className="w-4 h-4 text-brand-500" />
-                  <span className="underline decoration-brand-200 underline-offset-8">contact@linnovate.net</span>
+                  <span className="text-sm font-medium underline decoration-brand-200 underline-offset-4">contact@linnovate.net</span>
                 </div>
               </div>
             </div>
 
-            <div className="md:text-right">
-              <h4 className="text-slate-900 dark:text-white font-bold text-xs mb-6 uppercase tracking-widest">Connect</h4>
-              <ul className="space-y-4 text-slate-500 text-sm font-medium">
-                <li><a href="https://webchat.linno.chat/swagger/index.html" target="_blank" rel="noopener noreferrer" className="hover:text-brand-600 transition-colors">Developer Portal</a></li>
-                <li><a href="https://wa.me/972548032882" target="_blank" rel="noopener noreferrer" className="hover:text-brand-600 transition-colors inline-flex items-center space-x-2">
-                  <Icons.WhatsApp className="w-4 h-4" />
-                  <span>Sales Support</span>
-                </a></li>
+            {/* Column 2: Platform Links */}
+            <div>
+              <h4 className="text-slate-900 dark:text-white font-bold text-lg mb-8 tracking-tight">Platform</h4>
+              <ul className="space-y-4 text-slate-600 dark:text-gray-400">
+                <li><a href="https://webchat.linno.chat/swagger/index.html" target="_blank" rel="noopener noreferrer" className="hover:text-brand-600 transition-colors font-medium">API Documentation</a></li>
               </ul>
             </div>
           </div>
 
-          <div className="pt-8 border-t border-gray-100 dark:border-white/5 flex flex-col md:flex-row justify-between items-center text-[10px] font-bold text-slate-400 uppercase tracking-widest">
-            <p className="mb-4 md:mb-0">© 2026 Linnovate Technologies Ltd.</p>
-            <div className="flex space-x-8">
-              <button onClick={() => navigateTo('privacy')} className="hover:text-slate-900 dark:hover:text-white transition-colors">Privacy</button>
-              <button onClick={() => navigateTo('terms')} className="hover:text-slate-900 dark:hover:text-white transition-colors">Terms</button>
+          {/* Bottom Bar */}
+          <div className="pt-10 border-t border-gray-100 dark:border-white/5 flex flex-col md:flex-row justify-between items-center text-sm font-medium text-slate-500 dark:text-gray-500">
+            <p>© 2026 Linnovate Technologies Ltd. All Rights Reserved.</p>
+            <div className="flex space-x-10 mt-6 md:mt-0">
+              <button 
+                onClick={() => navigateTo('privacy')}
+                className="hover:text-slate-900 dark:hover:text-white transition-colors"
+              >
+                Privacy Policy
+              </button>
+              <button 
+                onClick={() => navigateTo('terms')}
+                className="hover:text-slate-900 dark:hover:text-white transition-colors"
+              >
+                Terms of Service (SaaS Agreement)
+              </button>
             </div>
           </div>
         </div>
