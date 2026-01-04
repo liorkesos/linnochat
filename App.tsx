@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import ChatWidget from './components/ChatWidget';
@@ -7,6 +6,8 @@ import TermsOfServicePage from './components/TermsOfServicePage';
 import ComingSoonPage from './components/ComingSoonPage';
 import MaintenancePage from './components/MaintenancePage';
 import { Icons } from './components/Icons';
+
+const DEMO_LINK = "https://calendly.com/lyron-linnovate/30min";
 
 const agents = [
   {
@@ -176,9 +177,7 @@ function App() {
             <div className="max-w-7xl mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-12 items-center">
               <div className="text-left animate-slide-up">
                 <h1 className="text-5xl lg:text-7xl font-extrabold tracking-tighter mb-8 leading-none">
-                  <span className="glass-heading-main inline-block py-2 px-1 text-black">Conversational AI <br /> Agents for</span>
-                  <br />
-                  <span className="glass-heading-accent inline-block py-2 px-1">Data Collection <br /> and Analysis</span>
+                  <span className="glass-heading-main inline-block py-2 px-1 text-black">Conversational <br /> AI Agents</span>
                 </h1>
                 <p className="text-xl font-semibold text-gray-700 dark:text-gray-200 mb-4">
                   Turn complex workflows into natural, actionable conversations.
@@ -447,13 +446,15 @@ function App() {
               </div>
 
               <div className="max-w-4xl mx-auto bg-white dark:bg-dark-900 rounded-3xl p-8 md:p-12 shadow-[0_20px_60px_rgba(0,0,0,0.05)] border border-gray-200 dark:border-white/5">
-                  <button 
-                    onClick={() => navigateTo('coming-soon')}
+                  <a 
+                    href={DEMO_LINK}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="w-full py-6 bg-brand-500 hover:bg-brand-600 text-black font-bold text-2xl rounded-2xl shadow-xl transition-all hover:-translate-y-1 active:scale-[0.98] flex items-center justify-center space-x-3"
                   >
                     <span>Generate My Agent</span>
                     <Icons.Zap className="w-5 h-5 fill-black" />
-                  </button>
+                  </a>
               </div>
             </div>
           </section>
@@ -467,9 +468,9 @@ function App() {
                 <p className="text-[#6b7280] dark:text-gray-400 text-xl">Speak to our team about deploying your first intelligent agent.</p>
               </div>
 
-              <div className="max-w-4xl mx-auto bg-white dark:bg-dark-900/50 rounded-3xl p-8 md:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.08)] border border-gray-100 dark:border-white/5 relative overflow-hidden">
+              <div className="max-w-4xl mx-auto bg-white dark:bg-dark-900/50 rounded-3xl p-8 md:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.08)] border border-gray-100 dark:border-white/5 relative overflow-hidden flex justify-center">
                   <a 
-                    href="https://calendly.com/lyronw/30minutes"
+                    href={DEMO_LINK}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full py-8 bg-brand-500 hover:bg-brand-600 text-black font-bold text-3xl rounded-2xl shadow-[0_10px_30px_rgba(132,204,22,0.2)] transition-all hover:-translate-y-1 active:scale-95 flex items-center justify-center space-x-4"
@@ -520,7 +521,7 @@ function App() {
             <div>
               <h4 className="text-slate-900 dark:text-white font-bold text-lg mb-8 tracking-tight">Platform</h4>
               <ul className="space-y-4 text-slate-600 dark:text-gray-400">
-                <li><a href="https://webchat.linno.chat/swagger/index.html" target="_blank" rel="noopener noreferrer" className="hover:text-brand-600 transition-colors font-medium">API Documentation</a></li>
+                <li><button onClick={() => navigateTo('coming-soon')} className="hover:text-brand-600 transition-colors font-medium text-left">API Documentation</button></li>
               </ul>
             </div>
           </div>
