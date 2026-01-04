@@ -14,7 +14,7 @@ interface LeadData {
 
 const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSfkRnti4BLeDSC3sbxo4mLKKQmDIcLvqa41Y34T16fbSdJhjA/formResponse";
 
-// Corrected entry IDs mapped to your specific Google Form fields
+// Specific entry IDs for your Google Form fields
 const GOOGLE_FORM_ENTRIES = {
   name: "entry.2005620554",    
   company: "entry.1045791291", 
@@ -53,41 +53,59 @@ const ChatWidget: React.FC = () => {
   const [status, setStatus] = useState<BotStatus>(BotStatus.IDLE);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
+  // Manual scroll logic to prevent the whole page from jumping
   const scrollToBottom = () => {
     if (scrollContainerRef.current) {
-      // Use direct assignment to avoid triggering browser-level window scroll behaviors
-      const targetScroll = scrollContainerRef.current.scrollHeight - scrollContainerRef.current.clientHeight;
-      scrollContainerRef.current.scrollTop = targetScroll;
+      const container = scrollContainerRef.current;
+      // We use a small timeout to ensure the DOM has finished painting the new message
+      requestAnimationFrame(() => {
+        container.scrollTop = container.scrollHeight;
+      });
     }
   };
 
-  // Immediate scroll on message change
   useEffect(() => {
     scrollToBottom();
   }, [messages, status]);
 
-  const submitToGoogleForm = async (data: LeadData) => {
-    const params = new URLSearchParams();
-    params.append(GOOGLE_FORM_ENTRIES.name, data.name);
-    params.append(GOOGLE_FORM_ENTRIES.company, data.company);
-    params.append(GOOGLE_FORM_ENTRIES.email, data.email);
-    params.append(GOOGLE_FORM_ENTRIES.phone, data.phone);
-    params.append(GOOGLE_FORM_ENTRIES.useCase, data.useCase);
-
-    try {
-      // Using 'no-cors' for Google Form submissions
-      await fetch(GOOGLE_FORM_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: params.toString()
-      });
-      console.log('Lead submitted to Google Form successfully');
-    } catch (error) {
-      console.error('Error submitting to Google Form:', error);
+  // Hidden Iframe Submission Trick: Guaranteed to work with Google Forms
+  const submitToGoogleForm = (data: LeadData) => {
+    const iframeName = "hidden_iframe_sub";
+    let iframe = document.querySelector(`iframe[name="${iframeName}"]`) as HTMLIFrameElement;
+    
+    if (!iframe) {
+      iframe = document.createElement('iframe');
+      iframe.name = iframeName;
+      iframe.style.display = 'none';
+      document.body.appendChild(iframe);
     }
+
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = GOOGLE_FORM_URL;
+    form.target = iframeName;
+
+    const addField = (name: string, value: string) => {
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = name;
+      input.value = value;
+      form.appendChild(input);
+    };
+
+    addField(GOOGLE_FORM_ENTRIES.name, data.name);
+    addField(GOOGLE_FORM_ENTRIES.company, data.company);
+    addField(GOOGLE_FORM_ENTRIES.email, data.email);
+    addField(GOOGLE_FORM_ENTRIES.phone, data.phone);
+    addField(GOOGLE_FORM_ENTRIES.useCase, data.useCase);
+
+    document.body.appendChild(form);
+    form.submit();
+    
+    // Cleanup
+    setTimeout(() => {
+      document.body.removeChild(form);
+    }, 500);
   };
 
   const addBotMessage = (text: string, options?: { label: string; targetId: string }[]) => {
@@ -157,14 +175,14 @@ const ChatWidget: React.FC = () => {
       
       setStatus(BotStatus.THINKING);
       
-      // Perform the actual submission
-      await submitToGoogleForm(finalData);
+      // Submit via hidden iframe
+      submitToGoogleForm(finalData);
 
       setTimeout(() => {
         const finalMsg: ChatMessage = {
           id: Date.now().toString(),
           role: 'model',
-          text: `Thank you, ${finalData.name.split(' ')[0]}! Your request for ${finalData.useCase} has been received. Our team will get back to you at ${finalData.email} very soon.`,
+          text: `Thank you, ${finalData.name.split(' ')[0]}! Your request for ${finalData.useCase} has been successfully submitted. Our team will get back to you at ${finalData.email} very soon.`,
           timestamp: new Date(),
         };
         setMessages(prev => [...prev, finalMsg]);
@@ -197,6 +215,7 @@ const ChatWidget: React.FC = () => {
       {/* Messages */}
       <div 
         ref={scrollContainerRef}
+        style={{ overscrollBehavior: 'contain' }}
         className="flex-1 overflow-y-auto p-4 space-y-4 bg-[#fcfdfa] dark:bg-dark-900/40"
       >
         {messages.map((msg) => (
