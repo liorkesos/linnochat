@@ -2,120 +2,185 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Icons } from './Icons';
 import { ChatMessage, BotStatus } from '../types';
 
+type FlowStep = 'GREETING' | 'ASK_NAME' | 'ASK_COMPANY' | 'ASK_EMAIL' | 'ASK_PHONE' | 'CONFIRMED';
+
+interface LeadData {
+  useCase: string;
+  name: string;
+  company: string;
+  email: string;
+  phone: string;
+}
+
 const ChatWidget: React.FC = () => {
+  const [step, setStep] = useState<FlowStep>('GREETING');
+  const [leadData, setLeadData] = useState<LeadData>({
+    useCase: '',
+    name: '',
+    company: '',
+    email: '',
+    phone: '',
+  });
+
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       id: '1',
       role: 'model',
-      text: "Hi! I'm Linno. I help businesses automate Support, Client Intake, and Feedback. What process are you looking to streamline today?",
-      timestamp: new Date()
+      text: "Hi! I'm Linno. I help businesses automate Support, Client Intake, and Feedback. Which process are you looking to streamline today?",
+      timestamp: new Date(),
+      options: [
+        { label: 'Customer Support', targetId: 'flow_cs' },
+        { label: 'Healthcare', targetId: 'flow_hc' },
+        { label: 'FinTech', targetId: 'flow_ft' },
+        { label: 'HR & Enterprise', targetId: 'flow_hr' },
+        { label: 'Consumer Research', targetId: 'flow_cr' },
+      ]
     }
   ]);
+
   const [inputValue, setInputValue] = useState('');
   const [status, setStatus] = useState<BotStatus>(BotStatus.IDLE);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (scrollContainerRef.current) {
+      const { scrollHeight, clientHeight } = scrollContainerRef.current;
+      scrollContainerRef.current.scrollTo({
+        top: scrollHeight - clientHeight,
+        behavior: 'smooth'
+      });
+    }
   };
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages]);
+  }, [messages, status]);
 
-  const handleOptionClick = (targetId: string) => {
-    const element = document.getElementById(targetId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+  const addBotMessage = (text: string, options?: { label: string; targetId: string }[]) => {
+    setStatus(BotStatus.THINKING);
+    setTimeout(() => {
+      const botMsg: ChatMessage = {
+        id: Date.now().toString(),
+        role: 'model',
+        text,
+        timestamp: new Date(),
+        options
+      };
+      setMessages(prev => [...prev, botMsg]);
+      setStatus(BotStatus.IDLE);
+    }, 600);
   };
 
-  const handleSendMessage = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!inputValue.trim() || status === BotStatus.THINKING) return;
+  const handleOptionClick = (label: string, targetId: string) => {
+    if (step !== 'GREETING') return;
 
     const userMsg: ChatMessage = {
       id: Date.now().toString(),
       role: 'user',
-      text: inputValue,
+      text: label,
+      timestamp: new Date()
+    };
+    setMessages(prev => [...prev, userMsg]);
+    setLeadData(prev => ({ ...prev, useCase: label }));
+    setStep('ASK_NAME');
+    addBotMessage("Great choice! To get started, what is your full name?");
+  };
+
+  const handleSendMessage = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!inputValue.trim() || status === BotStatus.THINKING || step === 'GREETING' || step === 'CONFIRMED') return;
+
+    const text = inputValue.trim();
+    const userMsg: ChatMessage = {
+      id: Date.now().toString(),
+      role: 'user',
+      text,
       timestamp: new Date()
     };
 
     setMessages(prev => [...prev, userMsg]);
     setInputValue('');
-    setStatus(BotStatus.THINKING);
 
-    // Simulate a brief delay for a more natural feel
-    setTimeout(() => {
-      const botMsg: ChatMessage = {
-        id: (Date.now() + 1).toString(),
-        role: 'model',
-        text: "Hello! Welcome to LinnoChat. Would you like to book a demo?...",
-        timestamp: new Date(),
-        options: [
-          { label: 'YES', targetId: 'try-now' },
-          { label: 'LEARN MORE', targetId: 'why-linno' }
-        ]
-      };
+    if (step === 'ASK_NAME') {
+      setLeadData(prev => ({ ...prev, name: text }));
+      setStep('ASK_COMPANY');
+      addBotMessage(`Nice to meet you, ${text.split(' ')[0]}! What is your company name?`);
+    } else if (step === 'ASK_COMPANY') {
+      setLeadData(prev => ({ ...prev, company: text }));
+      setStep('ASK_EMAIL');
+      addBotMessage("Got it. And what is your work email address?");
+    } else if (step === 'ASK_EMAIL') {
+      setLeadData(prev => ({ ...prev, email: text }));
+      setStep('ASK_PHONE');
+      addBotMessage("Almost done! Finally, what is your phone number?");
+    } else if (step === 'ASK_PHONE') {
+      setLeadData(prev => ({ ...prev, phone: text }));
+      setStep('CONFIRMED');
       
-      setMessages(prev => [...prev, botMsg]);
-      setStatus(BotStatus.IDLE);
-    }, 800);
+      setStatus(BotStatus.THINKING);
+      setTimeout(() => {
+        const finalMsg: ChatMessage = {
+          id: Date.now().toString(),
+          role: 'model',
+          text: "Thank you! Your details have been submitted. Our team will review your request and get back to you shortly to discuss how LinnoChat can help with " + (leadData.useCase || "your needs") + ".",
+          timestamp: new Date(),
+        };
+        setMessages(prev => [...prev, finalMsg]);
+        setStatus(BotStatus.IDLE);
+        console.log("Lead Collected:", { ...leadData, phone: text });
+      }, 1000);
+    }
   };
 
   return (
-    <div className="w-full max-w-sm mx-auto glass-card rounded-2xl overflow-hidden shadow-2xl border border-gray-200 dark:border-white/10 flex flex-col h-[500px] transition-colors duration-300">
+    <div className="w-full max-w-sm mx-auto glass-card rounded-2xl overflow-hidden shadow-2xl border border-gray-200 dark:border-white/10 flex flex-col h-[550px] transition-colors duration-300">
       {/* Header */}
-      <div className="p-4 border-b border-gray-200 dark:border-white/5 bg-gray-50/80 dark:bg-white/5 flex items-center justify-between">
+      <div className="p-4 border-b border-gray-200 dark:border-white/5 bg-gray-50/80 dark:bg-white/5 flex items-center justify-between shrink-0">
         <div className="flex items-center space-x-3">
           <div className="relative">
             <div className="w-10 h-10 rounded-full bg-gradient-to-r from-lime-500 to-lime-600 flex items-center justify-center">
               <Icons.Bot className="w-6 h-6 text-white" />
             </div>
-            <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white dark:border-dark-900 rounded-full"></div>
+            <div className="absolute bottom-0.5 right-0.5 w-3 h-3 bg-green-500 border-2 border-white dark:border-dark-900 rounded-full"></div>
           </div>
           <div>
             <h3 className="font-bold text-gray-900 dark:text-white text-sm">Linno AI Assistant</h3>
-            <p className="text-xs text-lime-600 dark:text-lime-400 font-semibold">Support & Intake Mode</p>
+            <p className="text-[10px] text-lime-600 dark:text-lime-400 font-bold uppercase tracking-wider">Support & Intake Mode</p>
           </div>
         </div>
-        <button 
-          onClick={() => setMessages([messages[0]])}
-          className="text-gray-400 hover:text-gray-600 dark:hover:text-white transition-colors"
-          title="Reset Conversation"
-        >
-          <Icons.Zap className="w-4 h-4" />
-        </button>
+        <div className="flex items-center space-x-2">
+           <Icons.Zap className="w-3.5 h-3.5 text-gray-300" />
+        </div>
       </div>
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-white/50 dark:bg-dark-800/50">
+      <div 
+        ref={scrollContainerRef}
+        className="flex-1 overflow-y-auto p-4 space-y-4 bg-[#fcfdfa] dark:bg-dark-900/40 scroll-smooth"
+      >
         {messages.map((msg) => (
           <div
             key={msg.id}
             className={`flex flex-col ${msg.role === 'user' ? 'items-end' : 'items-start'}`}
           >
             <div
-              className={`max-w-[85%] p-3 rounded-2xl text-sm leading-relaxed shadow-sm ${
+              className={`max-w-[85%] p-3.5 rounded-2xl text-sm leading-relaxed shadow-sm ${
                 msg.role === 'user'
-                  ? 'bg-lime-600 text-white rounded-br-none'
-                  : 'bg-white dark:bg-dark-700 text-gray-700 dark:text-gray-200 border border-gray-100 dark:border-white/10 rounded-bl-none'
+                  ? 'bg-brand-500 text-black font-medium rounded-br-none'
+                  : 'bg-white dark:bg-dark-800 text-gray-800 dark:text-gray-200 border border-gray-100 dark:border-white/5 rounded-bl-none'
               }`}
             >
               {msg.text}
             </div>
             
             {msg.options && (
-              <div className="flex flex-wrap gap-2 mt-2">
+              <div className="flex flex-col gap-2 mt-3 w-full max-w-[80%]">
                 {msg.options.map((option, idx) => (
                   <button
                     key={idx}
-                    onClick={() => handleOptionClick(option.targetId)}
-                    className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all shadow-sm ${
-                      option.label === 'YES' 
-                        ? 'bg-lime-600 text-white hover:bg-lime-500' 
-                        : 'bg-white dark:bg-dark-700 text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-white/10 hover:bg-gray-50'
-                    }`}
+                    type="button"
+                    onClick={() => handleOptionClick(option.label, option.targetId)}
+                    className="w-full text-left px-4 py-2.5 rounded-xl text-xs font-bold bg-white dark:bg-dark-700 text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-white/10 hover:border-brand-500 hover:text-brand-600 transition-all shadow-sm focus:outline-none focus:ring-2 focus:ring-brand-500/50"
                   >
                     {option.label}
                   </button>
@@ -126,30 +191,30 @@ const ChatWidget: React.FC = () => {
         ))}
         {status === BotStatus.THINKING && (
           <div className="flex justify-start">
-            <div className="bg-white dark:bg-dark-700 border border-gray-100 dark:border-white/10 p-3 rounded-2xl rounded-bl-none flex space-x-1 shadow-sm">
-              <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
-              <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce delay-75"></div>
-              <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce delay-150"></div>
+            <div className="bg-white dark:bg-dark-800 border border-gray-100 dark:border-white/5 p-3 rounded-2xl rounded-bl-none flex space-x-1 shadow-sm">
+              <div className="w-1.5 h-1.5 bg-brand-500 rounded-full animate-bounce"></div>
+              <div className="w-1.5 h-1.5 bg-brand-500 rounded-full animate-bounce delay-75"></div>
+              <div className="w-1.5 h-1.5 bg-brand-500 rounded-full animate-bounce delay-150"></div>
             </div>
           </div>
         )}
-        <div ref={messagesEndRef} />
       </div>
 
       {/* Input */}
-      <form onSubmit={handleSendMessage} className="p-4 bg-white dark:bg-dark-900 border-t border-gray-200 dark:border-white/5">
+      <form onSubmit={handleSendMessage} className="p-4 bg-white dark:bg-dark-900 border-t border-gray-100 dark:border-white/5 shrink-0">
         <div className="relative flex items-center">
           <input
             type="text"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
-            placeholder="Ask anything..."
-            className="w-full bg-gray-100 dark:bg-dark-800 text-gray-900 dark:text-white placeholder-gray-500 rounded-full py-3 pl-4 pr-12 focus:outline-none focus:ring-2 focus:ring-lime-500 border border-transparent dark:border-white/10 transition-colors"
+            placeholder={step === 'GREETING' ? "Select a use case above..." : "Type your answer..."}
+            disabled={step === 'GREETING' || step === 'CONFIRMED' || status === BotStatus.THINKING}
+            className="w-full bg-gray-50 dark:bg-dark-800/50 text-gray-900 dark:text-white placeholder-gray-400 rounded-full py-3.5 pl-5 pr-14 focus:outline-none focus:ring-2 focus:ring-brand-500 border border-gray-100 dark:border-white/5 transition-all text-sm"
           />
           <button
             type="submit"
-            disabled={!inputValue.trim() || status === BotStatus.THINKING}
-            className="absolute right-2 p-1.5 bg-lime-600 rounded-full text-white hover:bg-lime-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-md"
+            disabled={!inputValue.trim() || status === BotStatus.THINKING || step === 'GREETING' || step === 'CONFIRMED'}
+            className="absolute right-2 p-2 bg-brand-500 rounded-full text-black hover:bg-brand-600 disabled:opacity-30 disabled:grayscale transition-all shadow-lg shadow-brand-500/10 focus:outline-none focus:ring-2 focus:ring-brand-500"
           >
             <Icons.ArrowRight className="w-4 h-4" />
           </button>
