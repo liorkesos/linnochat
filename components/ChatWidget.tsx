@@ -14,13 +14,13 @@ interface LeadData {
 
 const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSfkRnti4BLeDSC3sbxo4mLKKQmDIcLvqa41Y34T16fbSdJhjA/formResponse";
 
-// IMPORTANT: Replace these entry IDs with the actual field IDs from your Google Form source code
+// Corrected entry IDs mapped to your specific Google Form fields
 const GOOGLE_FORM_ENTRIES = {
-  name: "entry.123456789",    // Placeholder: Name field
-  company: "entry.987654321", // Placeholder: Company field
-  email: "entry.456789123",   // Placeholder: Email field
-  phone: "entry.321654987",   // Placeholder: Phone field
-  useCase: "entry.789123456"  // Placeholder: Use Case field
+  name: "entry.2005620554",    
+  company: "entry.1045791291", 
+  email: "entry.1065046570",   
+  phone: "entry.1166974658",   
+  useCase: "entry.839337160"  
 };
 
 const ChatWidget: React.FC = () => {
@@ -53,36 +53,36 @@ const ChatWidget: React.FC = () => {
   const [status, setStatus] = useState<BotStatus>(BotStatus.IDLE);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
-  const scrollToBottom = (behavior: ScrollBehavior = 'smooth') => {
+  const scrollToBottom = () => {
     if (scrollContainerRef.current) {
-      const { scrollHeight, clientHeight } = scrollContainerRef.current;
-      scrollContainerRef.current.scrollTo({
-        top: scrollHeight - clientHeight,
-        behavior
-      });
+      // Use direct assignment to avoid triggering browser-level window scroll behaviors
+      const targetScroll = scrollContainerRef.current.scrollHeight - scrollContainerRef.current.clientHeight;
+      scrollContainerRef.current.scrollTop = targetScroll;
     }
   };
 
+  // Immediate scroll on message change
   useEffect(() => {
-    // Small timeout ensures the DOM has updated with the new message before scrolling
-    const timeoutId = setTimeout(() => scrollToBottom(), 50);
-    return () => clearTimeout(timeoutId);
+    scrollToBottom();
   }, [messages, status]);
 
   const submitToGoogleForm = async (data: LeadData) => {
-    const formData = new FormData();
-    formData.append(GOOGLE_FORM_ENTRIES.name, data.name);
-    formData.append(GOOGLE_FORM_ENTRIES.company, data.company);
-    formData.append(GOOGLE_FORM_ENTRIES.email, data.email);
-    formData.append(GOOGLE_FORM_ENTRIES.phone, data.phone);
-    formData.append(GOOGLE_FORM_ENTRIES.useCase, data.useCase);
+    const params = new URLSearchParams();
+    params.append(GOOGLE_FORM_ENTRIES.name, data.name);
+    params.append(GOOGLE_FORM_ENTRIES.company, data.company);
+    params.append(GOOGLE_FORM_ENTRIES.email, data.email);
+    params.append(GOOGLE_FORM_ENTRIES.phone, data.phone);
+    params.append(GOOGLE_FORM_ENTRIES.useCase, data.useCase);
 
     try {
-      // Use no-cors mode as Google Forms doesn't return CORS headers on formResponse
+      // Using 'no-cors' for Google Form submissions
       await fetch(GOOGLE_FORM_URL, {
         method: 'POST',
         mode: 'no-cors',
-        body: formData
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: params.toString()
       });
       console.log('Lead submitted to Google Form successfully');
     } catch (error) {
