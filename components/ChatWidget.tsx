@@ -12,6 +12,17 @@ interface LeadData {
   phone: string;
 }
 
+const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSfkRnti4BLeDSC3sbxo4mLKKQmDIcLvqa41Y34T16fbSdJhjA/formResponse";
+
+// IMPORTANT: Replace these entry IDs with the actual field IDs from your Google Form source code
+const GOOGLE_FORM_ENTRIES = {
+  name: "entry.123456789",    // Placeholder: Name field
+  company: "entry.987654321", // Placeholder: Company field
+  email: "entry.456789123",   // Placeholder: Email field
+  phone: "entry.321654987",   // Placeholder: Phone field
+  useCase: "entry.789123456"  // Placeholder: Use Case field
+};
+
 const ChatWidget: React.FC = () => {
   const [step, setStep] = useState<FlowStep>('GREETING');
   const [leadData, setLeadData] = useState<LeadData>({
@@ -42,19 +53,42 @@ const ChatWidget: React.FC = () => {
   const [status, setStatus] = useState<BotStatus>(BotStatus.IDLE);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
-  const scrollToBottom = () => {
+  const scrollToBottom = (behavior: ScrollBehavior = 'smooth') => {
     if (scrollContainerRef.current) {
       const { scrollHeight, clientHeight } = scrollContainerRef.current;
       scrollContainerRef.current.scrollTo({
         top: scrollHeight - clientHeight,
-        behavior: 'smooth'
+        behavior
       });
     }
   };
 
   useEffect(() => {
-    scrollToBottom();
+    // Small timeout ensures the DOM has updated with the new message before scrolling
+    const timeoutId = setTimeout(() => scrollToBottom(), 50);
+    return () => clearTimeout(timeoutId);
   }, [messages, status]);
+
+  const submitToGoogleForm = async (data: LeadData) => {
+    const formData = new FormData();
+    formData.append(GOOGLE_FORM_ENTRIES.name, data.name);
+    formData.append(GOOGLE_FORM_ENTRIES.company, data.company);
+    formData.append(GOOGLE_FORM_ENTRIES.email, data.email);
+    formData.append(GOOGLE_FORM_ENTRIES.phone, data.phone);
+    formData.append(GOOGLE_FORM_ENTRIES.useCase, data.useCase);
+
+    try {
+      // Use no-cors mode as Google Forms doesn't return CORS headers on formResponse
+      await fetch(GOOGLE_FORM_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        body: formData
+      });
+      console.log('Lead submitted to Google Form successfully');
+    } catch (error) {
+      console.error('Error submitting to Google Form:', error);
+    }
+  };
 
   const addBotMessage = (text: string, options?: { label: string; targetId: string }[]) => {
     setStatus(BotStatus.THINKING);
@@ -102,38 +136,45 @@ const ChatWidget: React.FC = () => {
     setInputValue('');
 
     if (step === 'ASK_NAME') {
-      setLeadData(prev => ({ ...prev, name: text }));
+      const updatedData = { ...leadData, name: text };
+      setLeadData(updatedData);
       setStep('ASK_COMPANY');
       addBotMessage(`Nice to meet you, ${text.split(' ')[0]}! What is your company name?`);
     } else if (step === 'ASK_COMPANY') {
-      setLeadData(prev => ({ ...prev, company: text }));
+      const updatedData = { ...leadData, company: text };
+      setLeadData(updatedData);
       setStep('ASK_EMAIL');
       addBotMessage("Got it. And what is your work email address?");
     } else if (step === 'ASK_EMAIL') {
-      setLeadData(prev => ({ ...prev, email: text }));
+      const updatedData = { ...leadData, email: text };
+      setLeadData(updatedData);
       setStep('ASK_PHONE');
       addBotMessage("Almost done! Finally, what is your phone number?");
     } else if (step === 'ASK_PHONE') {
-      setLeadData(prev => ({ ...prev, phone: text }));
+      const finalData = { ...leadData, phone: text };
+      setLeadData(finalData);
       setStep('CONFIRMED');
       
       setStatus(BotStatus.THINKING);
+      
+      // Perform the actual submission
+      await submitToGoogleForm(finalData);
+
       setTimeout(() => {
         const finalMsg: ChatMessage = {
           id: Date.now().toString(),
           role: 'model',
-          text: "Thank you! Your details have been submitted. Our team will review your request and get back to you shortly to discuss how LinnoChat can help with " + (leadData.useCase || "your needs") + ".",
+          text: `Thank you, ${finalData.name.split(' ')[0]}! Your request for ${finalData.useCase} has been received. Our team will get back to you at ${finalData.email} very soon.`,
           timestamp: new Date(),
         };
         setMessages(prev => [...prev, finalMsg]);
         setStatus(BotStatus.IDLE);
-        console.log("Lead Collected:", { ...leadData, phone: text });
-      }, 1000);
+      }, 800);
     }
   };
 
   return (
-    <div className="w-full max-w-sm mx-auto glass-card rounded-2xl overflow-hidden shadow-2xl border border-gray-200 dark:border-white/10 flex flex-col h-[550px] transition-colors duration-300">
+    <div className="w-full max-w-sm mx-auto glass-card rounded-2xl overflow-hidden shadow-2xl border border-gray-200 dark:border-white/10 flex flex-col h-[550px] transition-colors duration-300 relative">
       {/* Header */}
       <div className="p-4 border-b border-gray-200 dark:border-white/5 bg-gray-50/80 dark:bg-white/5 flex items-center justify-between shrink-0">
         <div className="flex items-center space-x-3">
@@ -156,7 +197,7 @@ const ChatWidget: React.FC = () => {
       {/* Messages */}
       <div 
         ref={scrollContainerRef}
-        className="flex-1 overflow-y-auto p-4 space-y-4 bg-[#fcfdfa] dark:bg-dark-900/40 scroll-smooth"
+        className="flex-1 overflow-y-auto p-4 space-y-4 bg-[#fcfdfa] dark:bg-dark-900/40"
       >
         {messages.map((msg) => (
           <div
