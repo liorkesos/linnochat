@@ -451,15 +451,13 @@ function App() {
               </div>
 
               <div className="max-w-4xl mx-auto bg-white dark:bg-dark-900 rounded-3xl p-8 md:p-12 shadow-[0_20px_60px_rgba(0,0,0,0.05)] border border-gray-200 dark:border-white/5">
-                  <a 
-                    href={DEMO_LINK}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <button 
+                    onClick={() => navigateTo('coming-soon')}
                     className="w-full py-6 bg-brand-500 hover:bg-brand-600 text-black font-bold text-2xl rounded-2xl shadow-xl transition-all hover:-translate-y-1 active:scale-[0.98] flex items-center justify-center space-x-3"
                   >
                     <span>Generate My Agent</span>
                     <Icons.Zap className="w-5 h-5 fill-black" />
-                  </a>
+                  </button>
               </div>
             </div>
           </section>
@@ -526,7 +524,7 @@ function App() {
             <div>
               <h4 className="text-slate-900 dark:text-white font-bold text-lg mb-8 tracking-tight">Platform</h4>
               <ul className="space-y-4 text-slate-600 dark:text-gray-400">
-                <li><button onClick={() => navigateTo('coming-soon')} className="hover:text-brand-600 transition-colors font-medium text-left">API Documentation</button></li>
+                <li><a href="https://webchat.linno.chat/swagger/index.html" target="_blank" rel="noopener noreferrer" className="hover:text-brand-600 transition-colors font-medium">API Documentation</a></li>
               </ul>
             </div>
           </div>
