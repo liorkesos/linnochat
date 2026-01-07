@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import ChatWidget from './components/ChatWidget';
@@ -10,6 +9,7 @@ import AccessibilityTools from './components/AccessibilityTools';
 import { Icons } from './components/Icons';
 
 const DEMO_LINK = "https://calendly.com/lyron-linnovate/30min";
+const API_DOCS_LINK = "https://webchat.linno.chat/swagger/index.html";
 
 const agents = [
   {
@@ -36,17 +36,17 @@ const platformFeatures = [
   {
     title: "Bring Your Own Model",
     description: "Connect with popular LLMs like OpenAI, Llama, Gemini, or custom fine-tuned models.",
-    icon: <Icons.Cpu className="w-8 h-8 text-black" />
+    icon: <Icons.Cpu className="w-8 h-8 text-brand-navy" />
   },
   {
     title: "Workflow API",
     description: "Trigger chats from your app, upload contacts securely, and pipe structured data directly back into your systems.",
-    icon: <Icons.Terminal className="w-8 h-8 text-black" />
+    icon: <Icons.Terminal className="w-8 h-8 text-brand-navy" />
   },
   {
     title: "Any Channel",
     description: "Deploy via Web SDK, WhatsApp Business API, Slack, or Email auto-responders.",
-    icon: <Icons.Globe className="w-8 h-8 text-black" />
+    icon: <Icons.Globe className="w-8 h-8 text-brand-navy" />
   }
 ];
 
@@ -145,7 +145,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-dark-900 text-gray-900 dark:text-slate-200 selection:bg-lime-500/30 transition-colors duration-300">
+    <div className="min-h-screen bg-gray-50 dark:bg-dark-900 text-brand-navy dark:text-slate-200 selection:bg-lime-500/30 transition-colors duration-300">
       <Navbar onLogoClick={() => navigateTo('home')} />
 
       {/* Accessibility Widget */}
@@ -160,7 +160,7 @@ function App() {
         aria-label="Contact Sales on WhatsApp"
       >
         <Icons.WhatsApp className="w-8 h-8" />
-        <span className="absolute right-full mr-4 px-4 py-2 bg-white dark:bg-dark-800 text-slate-900 dark:text-white text-sm font-bold rounded-xl shadow-xl opacity-0 group-hover:opacity-100 transition-all transform translate-x-2 group-hover:translate-x-0 whitespace-nowrap pointer-events-none border border-gray-100 dark:border-white/10">
+        <span className="absolute right-full mr-4 px-4 py-2 bg-white dark:bg-dark-800 text-brand-navy dark:text-white text-sm font-bold rounded-xl shadow-xl opacity-0 group-hover:opacity-100 transition-all transform translate-x-2 group-hover:translate-x-0 whitespace-nowrap pointer-events-none border border-gray-100 dark:border-white/10">
           Chat with Sales
         </span>
       </a>
@@ -182,20 +182,20 @@ function App() {
             <div className="max-w-7xl mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-12 items-center">
               <div className="text-left animate-slide-up">
                 <h1 className="text-5xl lg:text-7xl font-extrabold tracking-tighter mb-8 leading-none">
-                  <span className="glass-heading-main inline-block py-2 px-1 text-black">Conversational <br /> AI Agents</span>
+                  <span className="glass-heading-main inline-block py-2 px-1 text-brand-navy">Conversational <br /> AI Agents</span>
                 </h1>
-                <p className="text-xl font-semibold text-gray-700 dark:text-gray-200 mb-4">
+                <p className="text-xl font-semibold text-brand-navy/80 dark:text-gray-200 mb-4">
                   Turn complex workflows into natural, actionable conversations.
                 </p>
-                <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-xl leading-relaxed">
-                  LinnoChat is the enterprise AI platform that deploys intelligent agents to handle customer support triage, Complex Data Collection, and qualitative research - all without code.
+                <p className="text-lg text-brand-navy/60 dark:text-gray-400 mb-8 max-w-xl leading-relaxed">
+                  LinnoChat is the enterprise AI platform that deploys intelligent agents to handle customer support triage, Complex Data Collection, and qualitative research—all without code.
                 </p>
                 <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4">
-                  <a href="#automate" className="w-full sm:w-auto px-10 py-4 bg-brand-500 hover:bg-brand-600 text-black rounded-lg font-bold text-lg transition-all shadow-xl shadow-brand-500/20 flex items-center justify-center space-x-2">
+                  <a href="#automate" className="w-full sm:w-auto px-10 py-4 bg-brand-500 hover:bg-brand-600 text-brand-navy rounded-lg font-bold text-lg transition-all shadow-xl shadow-brand-500/20 flex items-center justify-center space-x-2">
                     <span>Try Now</span>
-                    <Icons.Zap className="w-5 h-5 fill-black" />
+                    <Icons.Zap className="w-5 h-5 fill-brand-navy" />
                   </a>
-                  <a href="#integrations-section" className="w-full sm:w-auto px-8 py-4 bg-white hover:bg-gray-50 dark:bg-white/5 dark:hover:bg-white/10 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white rounded-lg font-semibold transition-all backdrop-blur-sm shadow-sm dark:shadow-none flex items-center justify-center">
+                  <a href="#integrations-section" className="w-full sm:w-auto px-8 py-4 bg-white hover:bg-gray-50 dark:bg-white/5 dark:hover:bg-white/10 border border-gray-200 dark:border-white/10 text-brand-navy dark:text-white rounded-lg font-semibold transition-all backdrop-blur-sm shadow-sm dark:shadow-none flex items-center justify-center">
                     View Integrations
                   </a>
                 </div>
@@ -217,8 +217,8 @@ function App() {
                     <Icons.Activity className="w-5 h-5 text-lime-600 dark:text-lime-400" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900 dark:text-white">Full Lifecycle</h3>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">Design, Deploy, Analyze</p>
+                    <h3 className="font-semibold text-brand-navy dark:text-white">Full Lifecycle</h3>
+                    <p className="text-sm text-brand-navy/60 dark:text-gray-400">Design, Deploy, Analyze</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
@@ -226,8 +226,8 @@ function App() {
                     <Icons.Zap className="w-5 h-5 text-lime-600 dark:text-lime-400" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900 dark:text-white">Deployment</h3>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">SaaS & On-prem</p>
+                    <h3 className="font-semibold text-brand-navy dark:text-white">Deployment</h3>
+                    <p className="text-sm text-brand-navy/60 dark:text-gray-400">SaaS & On-prem</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
@@ -235,8 +235,8 @@ function App() {
                     <Icons.ShieldCheck className="w-5 h-5 text-lime-600 dark:text-lime-400" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900 dark:text-white">Enterprise Grade</h3>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">Security & Control</p>
+                    <h3 className="font-semibold text-brand-navy dark:text-white">Enterprise Grade</h3>
+                    <p className="text-sm text-brand-navy/60 dark:text-gray-400">Security & Control</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
@@ -244,8 +244,8 @@ function App() {
                     <Icons.Globe className="w-5 h-5 text-lime-600 dark:text-lime-400" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900 dark:text-white">Omnichannel</h3>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">Web, Mobile, WhatsApp</p>
+                    <h3 className="font-semibold text-brand-navy dark:text-white">Omnichannel</h3>
+                    <p className="text-sm text-brand-navy/60 dark:text-gray-400">Web, Mobile, WhatsApp</p>
                   </div>
                 </div>
               </div>
@@ -256,8 +256,8 @@ function App() {
           <section id="how-it-works" className="py-24 relative bg-gray-50 dark:bg-black/20 scroll-mt-24">
             <div className="max-w-7xl mx-auto px-6">
               <div className="text-center max-w-3xl mx-auto mb-16">
-                <h2 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">The Power of Intelligent Automation</h2>
-                <p className="text-gray-600 dark:text-gray-400 text-lg">
+                <h2 className="text-3xl md:text-5xl font-bold text-brand-navy dark:text-white mb-6">The Power of Intelligent Automation</h2>
+                <p className="text-brand-navy/60 dark:text-gray-400 text-lg">
                   LinnoChat combines three distinct AI layers to handle the entire interaction lifecycle.
                 </p>
               </div>
@@ -266,9 +266,9 @@ function App() {
                 {agents.map((agent, idx) => (
                   <div key={idx} className="bg-white dark:bg-dark-800 rounded-2xl p-8 shadow-sm border border-gray-100 dark:border-white/5 hover:border-lime-500 dark:hover:border-lime-500 transition-colors">
                     <div className="mb-6">{agent.icon}</div>
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white">{agent.title}</h3>
+                    <h3 className="text-xl font-bold text-brand-navy dark:text-white">{agent.title}</h3>
                     <p className="text-sm font-semibold text-lime-500 dark:text-lime-400 mb-4">{agent.subtitle}</p>
-                    <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                    <p className="text-brand-navy/60 dark:text-gray-400 leading-relaxed">
                       {agent.description}
                     </p>
                   </div>
@@ -283,7 +283,7 @@ function App() {
             <div className="max-w-7xl mx-auto px-6 relative z-10">
               <div className="grid lg:grid-cols-2 gap-16 items-center">
                 <div>
-                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
+                  <h2 className="text-3xl md:text-4xl font-bold text-brand-navy dark:text-white mb-6">
                     Why Upgrade from Static Forms?
                   </h2>
                   <p className="text-xl text-lime-600 dark:text-lime-400 mb-6 font-medium">
@@ -295,8 +295,8 @@ function App() {
                         <Icons.CheckCircle2 className="w-5 h-5 text-green-600 dark:text-green-400" />
                       </div>
                       <div>
-                        <h4 className="font-bold text-gray-900 dark:text-white">Dynamic Triage</h4>
-                        <p className="text-gray-600 dark:text-gray-400">The AI adapts questions based on user answers, skipping irrelevant steps and digging deeper when needed.</p>
+                        <h4 className="font-bold text-brand-navy dark:text-white">Dynamic Triage</h4>
+                        <p className="text-brand-navy/60 dark:text-gray-400">The AI adapts questions based on user answers, skipping irrelevant steps and digging deeper when needed.</p>
                       </div>
                     </div>
                     <div className="flex items-start">
@@ -304,8 +304,8 @@ function App() {
                         <Icons.CheckCircle2 className="w-5 h-5 text-green-600 dark:text-green-400" />
                       </div>
                       <div>
-                        <h4 className="font-bold text-gray-900 dark:text-white">Structured Data Extraction</h4>
-                        <p className="text-gray-600 dark:text-gray-400">Turn conversational chaos into clean Data Structure. We populate your CRM or ticketing system automatically.</p>
+                        <h4 className="font-bold text-brand-navy dark:text-white">Structured Data Extraction</h4>
+                        <p className="text-brand-navy/60 dark:text-gray-400">Turn conversational chaos into clean Data Structure. We populate your CRM or ticketing system automatically.</p>
                       </div>
                     </div>
                     <div className="flex items-start">
@@ -313,23 +313,23 @@ function App() {
                         <Icons.CheckCircle2 className="w-5 h-5 text-green-600 dark:text-green-400" />
                       </div>
                       <div>
-                        <h4 className="font-bold text-gray-900 dark:text-white">24/7 Resolution</h4>
-                        <p className="text-gray-600 dark:text-gray-400">Don't just queue tickets - solve them. Our agents can handle FAQs, scheduling, and basic troubleshooting.</p>
+                        <h4 className="font-bold text-brand-navy dark:text-white">24/7 Resolution</h4>
+                        <p className="text-brand-navy/60 dark:text-gray-400">Don't just queue tickets—solve them. Our agents can handle FAQs, scheduling, and basic troubleshooting.</p>
                       </div>
                     </div>
                   </div>
                 </div>
                 
                 <div className="relative flex justify-center lg:justify-end">
-                  <div className="bg-gray-900 dark:bg-black rounded-2xl p-6 shadow-2xl border border-gray-800 dark:border-white/10 w-full max-sm:max-w-sm">
-                    <h3 className="text-white font-bold mb-6 border-b border-gray-800 pb-4">Efficiency Metrics</h3>
+                  <div className="bg-brand-navy dark:bg-black rounded-2xl p-6 shadow-2xl border border-white/10 w-full max-sm:max-w-sm">
+                    <h3 className="text-white font-bold mb-6 border-b border-white/10 pb-4">Efficiency Metrics</h3>
                     <div className="space-y-6">
                       <div>
                         <div className="flex justify-between text-xs text-gray-400 mb-2 font-medium tracking-wide uppercase">
                           <span>Resolution Rate</span>
                           <span className="text-amber-400 font-bold">65%</span>
                         </div>
-                        <div className="h-1.5 bg-gray-800 rounded-full overflow-hidden">
+                        <div className="h-1.5 bg-white/10 rounded-full overflow-hidden">
                           <div className="h-full w-[65%] bg-amber-500 rounded-full shadow-[0_0_10px_rgba(245,158,11,0.3)]"></div>
                         </div>
                       </div>
@@ -338,7 +338,7 @@ function App() {
                           <span>Intake Speed</span>
                           <span className="text-indigo-400 font-bold">40% faster</span>
                         </div>
-                        <div className="h-1.5 bg-gray-800 rounded-full overflow-hidden">
+                        <div className="h-1.5 bg-white/10 rounded-full overflow-hidden">
                           <div className="h-full w-[40%] bg-indigo-500 rounded-full shadow-[0_0_10px_rgba(99,102,241,0.3)]"></div>
                         </div>
                       </div>
@@ -347,7 +347,7 @@ function App() {
                           <span>CSAT Increase</span>
                           <span className="text-purple-400 font-bold">+18 pts</span>
                         </div>
-                        <div className="h-1.5 bg-gray-800 rounded-full overflow-hidden">
+                        <div className="h-1.5 bg-white/10 rounded-full overflow-hidden">
                           <div className="h-full w-[88%] bg-purple-500 rounded-full shadow-[0_0_10px_rgba(168,85,247,0.3)]"></div>
                         </div>
                       </div>
@@ -359,13 +359,13 @@ function App() {
           </section>
 
           {/* Platform Section: Vibrant Green Strip */}
-          <section id="platform" className="py-24 bg-lime-500 text-lime-950 scroll-mt-24">
+          <section id="platform" className="py-24 bg-lime-500 text-brand-navy scroll-mt-24">
             <div className="max-w-7xl mx-auto px-6">
               <div className="max-w-full mb-16 overflow-hidden">
                 <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 tracking-tight whitespace-nowrap">
                   Enterprise-Grade Open Architecture
                 </h2>
-                <p className="text-xl md:text-2xl text-lime-950/90 leading-tight font-medium whitespace-nowrap overflow-hidden">
+                <p className="text-xl md:text-2xl text-brand-navy/90 leading-tight font-medium whitespace-nowrap overflow-hidden">
                   Fully self-hosted deployment for absolute data sovereignty. Secure, controlled, and open.
                 </p>
               </div>
@@ -377,7 +377,7 @@ function App() {
                       {feature.icon}
                     </div>
                     <h3 className="text-xl font-bold mb-4">{feature.title}</h3>
-                    <p className="text-lime-900 leading-relaxed text-sm lg:text-base font-medium">
+                    <p className="text-brand-navy/80 leading-relaxed text-sm lg:text-base font-medium">
                       {feature.description}
                     </p>
                   </div>
@@ -387,11 +387,11 @@ function App() {
           </section>
 
           {/* Integrations Section Strip */}
-          <section id="integrations-section" className="py-24 bg-black text-white scroll-mt-24 border-t border-white/5">
+          <section id="integrations-section" className="py-24 bg-brand-navy text-white scroll-mt-24 border-t border-white/5">
             <div className="max-w-7xl mx-auto px-6">
               <div className="text-center mx-auto mb-16">
                 <h2 className="text-3xl md:text-5xl font-bold mb-6">Native Integrations</h2>
-                <p className="text-gray-400 text-lg md:whitespace-nowrap">
+                <p className="text-white/60 text-lg md:whitespace-nowrap">
                   LinnoChat fits perfectly into your existing tech stack. Connect your favorite tools and start automating in minutes.
                 </p>
               </div>
@@ -403,9 +403,9 @@ function App() {
                       <div className="p-3 bg-slate-50 rounded-xl group-hover:scale-110 transition-transform flex items-center justify-center">
                         {item.icon}
                       </div>
-                      <h3 className="text-xl font-bold text-slate-900">{item.name}</h3>
+                      <h3 className="text-xl font-bold text-brand-navy">{item.name}</h3>
                     </div>
-                    <p className="text-slate-600 text-sm leading-relaxed">
+                    <p className="text-brand-navy/60 text-sm leading-relaxed">
                       {item.desc}
                     </p>
                   </div>
@@ -418,8 +418,8 @@ function App() {
           <section id="solutions" className="py-24 bg-gray-50 dark:bg-dark-800/30 scroll-mt-24">
             <div className="max-w-7xl mx-auto px-6">
               <div className="text-center mb-16">
-                <h2 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">Procurement Process Automation</h2>
-                <p className="text-gray-600 dark:text-gray-400">Save time & money - Streamline procurement processes to improve experience and compliance</p>
+                <h2 className="text-3xl md:text-5xl font-bold text-brand-navy dark:text-white mb-6">Procurement Process Automation</h2>
+                <p className="text-brand-navy/60 dark:text-gray-400">Save time & money - Streamline procurement processes to improve experience and compliance</p>
               </div>
               
               <div className="flex flex-wrap justify-center gap-6">
@@ -428,11 +428,11 @@ function App() {
                     <div className={`w-12 h-12 ${item.color} rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
                       {item.icon}
                     </div>
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{item.name}</h3>
+                    <h3 className="text-xl font-bold text-brand-navy dark:text-white mb-2">{item.name}</h3>
                     <span className="inline-block px-2 py-1 bg-lime-50 dark:bg-lime-900/20 text-xs font-semibold text-lime-700 dark:text-lime-400 rounded mb-4 border border-lime-100 dark:border-lime-800">
                       {item.useCase}
                     </span>
-                    <p className="text-gray-600 dark:text-gray-400 text-sm">
+                    <p className="text-brand-navy/60 dark:text-gray-400 text-sm">
                       {item.description}
                     </p>
                   </div>
@@ -445,18 +445,18 @@ function App() {
           <section id="automate" className="py-24 bg-gray-50 dark:bg-dark-950 scroll-mt-24 border-t border-gray-200 dark:border-white/5">
             <div className="max-w-7xl mx-auto px-6">
               <div className="text-center max-w-3xl mx-auto mb-12">
-                <h2 className="text-4xl md:text-6xl font-extrabold text-slate-900 dark:text-white mb-6 tracking-tight">Start Automating Today</h2>
+                <h2 className="text-4xl md:text-6xl font-extrabold text-brand-navy dark:text-white mb-6 tracking-tight">Start Automating Today</h2>
                 <p className="text-brand-600 dark:text-lime-500 text-2xl font-bold mb-4">Reduce costs. Improve satisfaction.</p>
-                <p className="text-slate-600 dark:text-gray-400 text-lg font-medium">Inject your scripts and our team can create a custom agent per your specifications</p>
+                <p className="text-brand-navy/60 dark:text-gray-400 text-lg font-medium">Inject your scripts and our team can create a custom agent per your specifications</p>
               </div>
 
               <div className="max-w-4xl mx-auto bg-white dark:bg-dark-900 rounded-3xl p-8 md:p-12 shadow-[0_20px_60px_rgba(0,0,0,0.05)] border border-gray-200 dark:border-white/5">
                   <button 
                     onClick={() => navigateTo('coming-soon')}
-                    className="w-full py-6 bg-brand-500 hover:bg-brand-600 text-black font-bold text-2xl rounded-2xl shadow-xl transition-all hover:-translate-y-1 active:scale-[0.98] flex items-center justify-center space-x-3"
+                    className="w-full py-6 bg-brand-500 hover:bg-brand-600 text-brand-navy font-bold text-2xl rounded-2xl shadow-xl transition-all hover:-translate-y-1 active:scale-[0.98] flex items-center justify-center space-x-3"
                   >
                     <span>Generate My Agent</span>
-                    <Icons.Zap className="w-5 h-5 fill-black" />
+                    <Icons.Zap className="w-5 h-5 fill-brand-navy" />
                   </button>
               </div>
             </div>
@@ -466,9 +466,9 @@ function App() {
           <section id="try-now" className="py-24 bg-white dark:bg-dark-950 scroll-mt-24 border-t border-gray-100 dark:border-white/5">
             <div className="max-w-7xl mx-auto px-6">
               <div className="text-center max-w-3xl mx-auto mb-16">
-                <h2 className="text-4xl md:text-7xl font-extrabold text-[#111827] dark:text-white mb-6 tracking-tight">Book a Demo</h2>
+                <h2 className="text-4xl md:text-7xl font-extrabold text-brand-navy dark:text-white mb-6 tracking-tight">Book a Demo</h2>
                 <p className="text-brand-600 dark:text-lime-500 text-2xl font-bold mb-4">Reduce costs. Improve satisfaction.</p>
-                <p className="text-[#6b7280] dark:text-gray-400 text-xl">Speak to our team about deploying your first intelligent agent.</p>
+                <p className="text-brand-navy/60 dark:text-gray-400 text-xl">Speak to our team about deploying your first intelligent agent.</p>
               </div>
 
               <div className="max-w-4xl mx-auto bg-white dark:bg-dark-900/50 rounded-3xl p-8 md:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.08)] border border-gray-100 dark:border-white/5 relative overflow-hidden flex justify-center">
@@ -476,7 +476,7 @@ function App() {
                     href={DEMO_LINK}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full py-8 bg-brand-500 hover:bg-brand-600 text-black font-bold text-3xl rounded-2xl shadow-[0_10px_30px_rgba(132,204,22,0.2)] transition-all hover:-translate-y-1 active:scale-95 flex items-center justify-center space-x-4"
+                    className="w-full py-8 bg-brand-500 hover:bg-brand-600 text-brand-navy font-bold text-3xl rounded-2xl shadow-[0_10px_30px_rgba(132,204,22,0.2)] transition-all hover:-translate-y-1 active:scale-95 flex items-center justify-center space-x-4"
                   >
                     <span>Book My Demo</span>
                     <Icons.ArrowRight className="w-8 h-8" />
@@ -488,7 +488,7 @@ function App() {
       )}
 
       {/* Footer Section */}
-      <footer className="bg-white dark:bg-dark-950 pt-20 pb-10 border-t border-gray-100 dark:border-white/5 text-gray-900 dark:text-slate-200">
+      <footer className="bg-white dark:bg-dark-950 pt-20 pb-10 border-t border-gray-100 dark:border-white/5 text-brand-navy dark:text-slate-200">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
             {/* Column 1: Brand & Info (using 2 column spans conceptually in md-3 grid) */}
@@ -501,19 +501,19 @@ function App() {
                   <Icons.SpeechBubbles className="w-10 h-10 text-brand-600" />
                 </div>
                 <span className="text-3xl font-extrabold tracking-tighter transition-colors">
-                  <span className="text-black dark:text-white">Linno</span>
+                  <span className="text-brand-navy dark:text-white">Linno</span>
                   <span className="text-brand-600">chat</span>
                 </span>
               </div>
-              <p className="text-slate-600 dark:text-gray-400 text-base max-w-sm mb-8 leading-relaxed">
+              <p className="text-brand-navy/60 dark:text-gray-400 text-base max-w-sm mb-8 leading-relaxed">
                 The enterprise platform for intelligent intake, support, and data collection.
               </p>
               <div className="space-y-4">
-                <div className="flex items-center space-x-3 text-slate-500 dark:text-gray-400">
+                <div className="flex items-center space-x-3 text-brand-navy/60 dark:text-gray-400">
                   <Icons.MapPin className="w-4 h-4 text-red-500" />
                   <span className="text-sm font-medium">Bnei Brak, Israel (Powered by Linnovate)</span>
                 </div>
-                <div className="flex items-center space-x-3 text-slate-500 dark:text-gray-400">
+                <div className="flex items-center space-x-3 text-brand-navy/60 dark:text-gray-400">
                   <Icons.Mail className="w-4 h-4 text-brand-500" />
                   <span className="text-sm font-medium underline decoration-brand-200 underline-offset-4">contact@linnovate.net</span>
                 </div>
@@ -522,26 +522,35 @@ function App() {
 
             {/* Column 2: Platform Links */}
             <div>
-              <h4 className="text-slate-900 dark:text-white font-bold text-lg mb-8 tracking-tight">Platform</h4>
-              <ul className="space-y-4 text-slate-600 dark:text-gray-400">
-                <li><a href="https://webchat.linno.chat/swagger/index.html" target="_blank" rel="noopener noreferrer" className="hover:text-brand-600 transition-colors font-medium">API Documentation</a></li>
+              <h4 className="text-brand-navy dark:text-white font-bold text-lg mb-8 tracking-tight">Platform</h4>
+              <ul className="space-y-4 text-brand-navy/60 dark:text-gray-400">
+                <li>
+                  <a 
+                    href={API_DOCS_LINK} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="hover:text-brand-600 transition-colors font-medium text-left block"
+                  >
+                    API Documentation
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
 
           {/* Bottom Bar */}
-          <div className="pt-10 border-t border-gray-100 dark:border-white/5 flex flex-col md:flex-row justify-between items-center text-sm font-medium text-slate-500 dark:text-gray-500">
+          <div className="pt-10 border-t border-gray-100 dark:border-white/5 flex flex-col md:flex-row justify-between items-center text-sm font-medium text-brand-navy/60 dark:text-gray-500">
             <p>© 2026 Linnovate Technologies Ltd. All Rights Reserved.</p>
             <div className="flex space-x-10 mt-6 md:mt-0">
               <button 
                 onClick={() => navigateTo('privacy')}
-                className="hover:text-slate-900 dark:hover:text-white transition-colors"
+                className="hover:text-brand-navy dark:hover:text-white transition-colors"
               >
                 Privacy Policy
               </button>
               <button 
                 onClick={() => navigateTo('terms')}
-                className="hover:text-slate-900 dark:hover:text-white transition-colors"
+                className="hover:text-brand-navy dark:hover:text-white transition-colors"
               >
                 Terms of Service (SaaS Agreement)
               </button>

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Icons } from './Icons';
 
@@ -20,20 +19,20 @@ const MaintenancePage: React.FC<MaintenancePageProps> = ({ onBack }) => {
           </div>
         </div>
 
-        <h1 className="text-4xl md:text-6xl font-black text-slate-900 dark:text-white mb-6 tracking-tighter">
+        <h1 className="text-4xl md:text-6xl font-black text-brand-navy dark:text-white mb-6 tracking-tighter">
           System <span className="text-brand-600">Maintenance</span>
         </h1>
         
-        <p className="text-xl text-slate-600 dark:text-slate-400 mb-12 font-medium leading-relaxed">
+        <p className="text-xl text-brand-navy/80 dark:text-slate-400 mb-12 font-medium leading-relaxed">
           Our demo booking system is currently under maintenance as we upgrade our infrastructure to serve you better. 
           <br /><br />
-          <span className="text-slate-900 dark:text-white font-bold">Please contact sales via the "Contact Sales" button</span> for immediate assistance or to schedule a demo manually.
+          <span className="text-brand-navy dark:text-white font-bold">Please contact sales via the WhatsApp button</span> for immediate assistance or to schedule a demo manually.
         </p>
 
         <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
           <button 
             onClick={onBack}
-            className="w-full sm:w-auto px-8 py-4 bg-slate-900 dark:bg-white dark:text-black text-white rounded-2xl font-bold text-lg hover:bg-slate-800 dark:hover:bg-slate-100 transition-all shadow-xl flex items-center justify-center space-x-2 group"
+            className="w-full sm:w-auto px-8 py-4 bg-brand-navy dark:bg-white dark:text-brand-navy text-white rounded-2xl font-bold text-lg hover:bg-brand-navy/90 dark:hover:bg-slate-100 transition-all shadow-xl flex items-center justify-center space-x-2 group"
           >
             <Icons.ArrowRight className="w-5 h-5 rotate-180 group-hover:-translate-x-1 transition-transform" />
             <span>Go Back Home</span>
@@ -43,7 +42,7 @@ const MaintenancePage: React.FC<MaintenancePageProps> = ({ onBack }) => {
             href="https://wa.me/972548032882"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto px-8 py-4 bg-brand-500 text-black rounded-2xl font-bold text-lg hover:bg-brand-600 transition-all shadow-xl flex items-center justify-center space-x-2"
+            className="w-full sm:w-auto px-8 py-4 bg-brand-500 text-brand-navy rounded-2xl font-bold text-lg hover:bg-brand-600 transition-all shadow-xl flex items-center justify-center space-x-2"
           >
             <Icons.WhatsApp className="w-5 h-5" />
             <span>Chat with Sales</span>

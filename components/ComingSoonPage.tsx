@@ -19,14 +19,14 @@ const ComingSoonPage: React.FC<ComingSoonPageProps> = ({ onBack }) => {
           </div>
         </div>
 
-        <h1 className="text-5xl md:text-7xl font-black text-slate-900 dark:text-white mb-12 tracking-tighter">
+        <h1 className="text-5xl md:text-7xl font-black text-brand-navy dark:text-white mb-12 tracking-tighter">
           COMING <span className="text-lime-600">SOON!</span>
         </h1>
 
         <div className="flex justify-center">
           <button 
             onClick={onBack}
-            className="px-10 py-4 bg-slate-900 dark:bg-white dark:text-black text-white rounded-2xl font-bold text-lg hover:scale-105 transition-all shadow-xl flex items-center justify-center space-x-2"
+            className="px-10 py-4 bg-brand-navy dark:bg-white dark:text-black text-white rounded-2xl font-bold text-lg hover:scale-105 transition-all shadow-xl flex items-center justify-center space-x-2"
           >
             <Icons.ArrowRight className="w-5 h-5 rotate-180" />
             <span>Go Back Home</span>
