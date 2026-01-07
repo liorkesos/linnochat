@@ -1,4 +1,5 @@
 
+
 import { GoogleGenAI, GenerateContentResponse } from "@google/genai";
 import { ChatMessage } from '../types';
 
@@ -49,6 +50,6 @@ LinnoAgent:`,
     return response.text || "I'm here to help you automate your business processes. What can I do for you?";
   } catch (err) {
     console.error("Gemini API Error:", err);
-    return "I'm experiencing a high volume of requests. LinnoChat agents are designed for reliability—please try again in a moment.";
+    return "I'm experiencing a high volume of requests. LinnoChat agents are designed for reliability - please try again in a moment.";
   }
 };

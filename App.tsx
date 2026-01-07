@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import ChatWidget from './components/ChatWidget';
@@ -187,7 +188,7 @@ function App() {
                   Turn complex workflows into natural, actionable conversations.
                 </p>
                 <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-xl leading-relaxed">
-                  LinnoChat is the enterprise AI platform that deploys intelligent agents to handle customer support triage, Complex Data Collection, and qualitative research—all without code.
+                  LinnoChat is the enterprise AI platform that deploys intelligent agents to handle customer support triage, Complex Data Collection, and qualitative research - all without code.
                 </p>
                 <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4">
                   <a href="#automate" className="w-full sm:w-auto px-10 py-4 bg-brand-500 hover:bg-brand-600 text-black rounded-lg font-bold text-lg transition-all shadow-xl shadow-brand-500/20 flex items-center justify-center space-x-2">
@@ -313,7 +314,7 @@ function App() {
                       </div>
                       <div>
                         <h4 className="font-bold text-gray-900 dark:text-white">24/7 Resolution</h4>
-                        <p className="text-gray-600 dark:text-gray-400">Don't just queue tickets—solve them. Our agents can handle FAQs, scheduling, and basic troubleshooting.</p>
+                        <p className="text-gray-600 dark:text-gray-400">Don't just queue tickets - solve them. Our agents can handle FAQs, scheduling, and basic troubleshooting.</p>
                       </div>
                     </div>
                   </div>
