@@ -65,17 +65,9 @@ const Navbar: React.FC<NavbarProps> = ({ onLogoClick }) => {
           >
             {isDark ? <Icons.Sun className="w-5 h-5 text-brand-400" /> : <Icons.Moon className="w-5 h-5 text-slate-500" />}
           </button>
-          <div className="flex items-center space-x-2">
-            <a href="https://app.linno.chat" className="hidden sm:inline-block px-4 py-2 text-gray-600 dark:text-gray-400 text-sm font-bold hover:text-brand-600 transition-colors">
+          <div className="flex items-center">
+            <a href="https://app.linno.chat" className="sm:inline-block px-4 py-2 text-gray-600 dark:text-gray-400 text-sm font-bold hover:text-brand-600 transition-colors">
               Login
-            </a>
-            <a 
-              href="https://wa.me/972548032882" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="px-6 py-2 rounded-xl bg-brand-500 text-black text-sm font-bold hover:bg-brand-600 transition-all shadow-lg shadow-brand-500/20"
-            >
-              Contact Sales
             </a>
           </div>
         </div>

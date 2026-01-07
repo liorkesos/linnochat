@@ -5,6 +5,7 @@ import PrivacyPolicyPage from './components/PrivacyPolicyPage';
 import TermsOfServicePage from './components/TermsOfServicePage';
 import ComingSoonPage from './components/ComingSoonPage';
 import MaintenancePage from './components/MaintenancePage';
+import AccessibilityTools from './components/AccessibilityTools';
 import { Icons } from './components/Icons';
 
 const DEMO_LINK = "https://calendly.com/lyron-linnovate/30min";
@@ -145,6 +146,9 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-dark-900 text-gray-900 dark:text-slate-200 selection:bg-lime-500/30 transition-colors duration-300">
       <Navbar onLogoClick={() => navigateTo('home')} />
+
+      {/* Accessibility Widget */}
+      <AccessibilityTools />
 
       {/* WhatsApp Widget floating button */}
       <a 

@@ -14,6 +14,7 @@
           extend: {
             fontFamily: {
               sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+              readable: ['Arial', 'Helvetica', 'sans-serif'],
             },
             colors: {
               brand: {
@@ -72,11 +73,8 @@
         border: 1px solid rgba(0, 0, 0, 0.05);
       }
       
-      /* Glass Heading Refinement to prevent clipping */
       .glass-heading-main {
-        /* Direct black color for maximum clarity in light mode */
         color: #000000;
-        /* Subtle specular highlight that doesn't wash out the black */
         text-shadow: 0px 1px 0px rgba(255,255,255,0.2);
       }
       .dark .glass-heading-main {
@@ -116,6 +114,23 @@
       }
       .dark ::-webkit-scrollbar-thumb {
         background: #4d7c0f;
+      }
+
+      /* Accessibility Mode Styles */
+      .force-light-bg, .force-light-bg body, .force-light-bg section {
+        background-color: #ffffff !important;
+        background-image: none !important;
+        color: #000000 !important;
+      }
+      .force-underline a {
+        text-decoration: underline !important;
+        text-underline-offset: 4px;
+      }
+      .force-readable-font {
+        font-family: Arial, Helvetica, sans-serif !important;
+      }
+      .force-readable-font * {
+        font-family: Arial, Helvetica, sans-serif !important;
       }
     </style>
     <script type="importmap">
