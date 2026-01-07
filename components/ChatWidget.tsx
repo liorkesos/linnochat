@@ -1,285 +1,60 @@
-import React, { useState, useRef, useEffect } from 'react';
+
+import React from 'react';
 import { Icons } from './Icons';
-import { ChatMessage, BotStatus } from '../types';
-
-type FlowStep = 'GREETING' | 'ASK_NAME' | 'ASK_COMPANY' | 'ASK_EMAIL' | 'ASK_PHONE' | 'CONFIRMED';
-
-interface LeadData {
-  useCase: string;
-  name: string;
-  company: string;
-  email: string;
-  phone: string;
-}
-
-const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSfkRnti4BLeDSC3sbxo4mLKKQmDIcLvqa41Y34T16fbSdJhjA/formResponse";
-
-// Specific entry IDs for your Google Form fields
-const GOOGLE_FORM_ENTRIES = {
-  name: "entry.2005620554",    
-  company: "entry.1045791291", 
-  email: "entry.1065046570",   
-  phone: "entry.1166974658",   
-  useCase: "entry.839337160"  
-};
 
 const ChatWidget: React.FC = () => {
-  const [step, setStep] = useState<FlowStep>('GREETING');
-  const [leadData, setLeadData] = useState<LeadData>({
-    useCase: '',
-    name: '',
-    company: '',
-    email: '',
-    phone: '',
-  });
-
-  const [messages, setMessages] = useState<ChatMessage[]>([
-    {
-      id: '1',
-      role: 'model',
-      text: "Hi! I'm Linno. I help businesses automate Support, Client Intake, and Feedback. Which process are you looking to streamline today?",
-      timestamp: new Date(),
-      options: [
-        { label: 'Customer Support', targetId: 'flow_cs' },
-        { label: 'Healthcare', targetId: 'flow_hc' },
-        { label: 'FinTech', targetId: 'flow_ft' },
-        { label: 'HR & Enterprise', targetId: 'flow_hr' },
-        { label: 'Consumer Research', targetId: 'flow_cr' },
-      ]
-    }
-  ]);
-
-  const [inputValue, setInputValue] = useState('');
-  const [status, setStatus] = useState<BotStatus>(BotStatus.IDLE);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-
-  // Manual scroll logic to prevent the whole page from jumping
-  const scrollToBottom = () => {
-    if (scrollContainerRef.current) {
-      const container = scrollContainerRef.current;
-      // We use a small timeout to ensure the DOM has finished painting the new message
-      requestAnimationFrame(() => {
-        container.scrollTop = container.scrollHeight;
-      });
-    }
-  };
-
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages, status]);
-
-  // Hidden Iframe Submission Trick: Guaranteed to work with Google Forms
-  const submitToGoogleForm = (data: LeadData) => {
-    const iframeName = "hidden_iframe_sub";
-    let iframe = document.querySelector(`iframe[name="${iframeName}"]`) as HTMLIFrameElement;
-    
-    if (!iframe) {
-      iframe = document.createElement('iframe');
-      iframe.name = iframeName;
-      iframe.style.display = 'none';
-      document.body.appendChild(iframe);
-    }
-
-    const form = document.createElement('form');
-    form.method = 'POST';
-    form.action = GOOGLE_FORM_URL;
-    form.target = iframeName;
-
-    const addField = (name: string, value: string) => {
-      const input = document.createElement('input');
-      input.type = 'hidden';
-      input.name = name;
-      input.value = value;
-      form.appendChild(input);
-    };
-
-    addField(GOOGLE_FORM_ENTRIES.name, data.name);
-    addField(GOOGLE_FORM_ENTRIES.company, data.company);
-    addField(GOOGLE_FORM_ENTRIES.email, data.email);
-    addField(GOOGLE_FORM_ENTRIES.phone, data.phone);
-    addField(GOOGLE_FORM_ENTRIES.useCase, data.useCase);
-
-    document.body.appendChild(form);
-    form.submit();
-    
-    // Cleanup
-    setTimeout(() => {
-      document.body.removeChild(form);
-    }, 500);
-  };
-
-  const addBotMessage = (text: string, options?: { label: string; targetId: string }[]) => {
-    setStatus(BotStatus.THINKING);
-    setTimeout(() => {
-      const botMsg: ChatMessage = {
-        id: Date.now().toString(),
-        role: 'model',
-        text,
-        timestamp: new Date(),
-        options
-      };
-      setMessages(prev => [...prev, botMsg]);
-      setStatus(BotStatus.IDLE);
-    }, 600);
-  };
-
-  const handleOptionClick = (label: string, targetId: string) => {
-    if (step !== 'GREETING') return;
-
-    const userMsg: ChatMessage = {
-      id: Date.now().toString(),
-      role: 'user',
-      text: label,
-      timestamp: new Date()
-    };
-    setMessages(prev => [...prev, userMsg]);
-    setLeadData(prev => ({ ...prev, useCase: label }));
-    setStep('ASK_NAME');
-    addBotMessage("Great choice! To get started, what is your full name?");
-  };
-
-  const handleSendMessage = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!inputValue.trim() || status === BotStatus.THINKING || step === 'GREETING' || step === 'CONFIRMED') return;
-
-    const text = inputValue.trim();
-    const userMsg: ChatMessage = {
-      id: Date.now().toString(),
-      role: 'user',
-      text,
-      timestamp: new Date()
-    };
-
-    setMessages(prev => [...prev, userMsg]);
-    setInputValue('');
-
-    if (step === 'ASK_NAME') {
-      const updatedData = { ...leadData, name: text };
-      setLeadData(updatedData);
-      setStep('ASK_COMPANY');
-      addBotMessage(`Nice to meet you, ${text.split(' ')[0]}! What is your company name?`);
-    } else if (step === 'ASK_COMPANY') {
-      const updatedData = { ...leadData, company: text };
-      setLeadData(updatedData);
-      setStep('ASK_EMAIL');
-      addBotMessage("Got it. And what is your work email address?");
-    } else if (step === 'ASK_EMAIL') {
-      const updatedData = { ...leadData, email: text };
-      setLeadData(updatedData);
-      setStep('ASK_PHONE');
-      addBotMessage("Almost done! Finally, what is your phone number?");
-    } else if (step === 'ASK_PHONE') {
-      const finalData = { ...leadData, phone: text };
-      setLeadData(finalData);
-      setStep('CONFIRMED');
-      
-      setStatus(BotStatus.THINKING);
-      
-      // Submit via hidden iframe
-      submitToGoogleForm(finalData);
-
-      setTimeout(() => {
-        const finalMsg: ChatMessage = {
-          id: Date.now().toString(),
-          role: 'model',
-          text: `Thank you, ${finalData.name.split(' ')[0]}! Your request for ${finalData.useCase} has been successfully submitted. Our team will get back to you at ${finalData.email} very soon.`,
-          timestamp: new Date(),
-        };
-        setMessages(prev => [...prev, finalMsg]);
-        setStatus(BotStatus.IDLE);
-      }, 800);
-    }
-  };
-
   return (
-    <div className="w-full max-w-sm mx-auto glass-card rounded-2xl overflow-hidden shadow-2xl border border-gray-200 dark:border-white/10 flex flex-col h-[550px] transition-colors duration-300 relative">
+    <div className="w-full max-w-sm mx-auto bg-white rounded-[2.5rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-gray-100 flex flex-col h-[600px] transition-all duration-300 relative select-none pointer-events-none">
       {/* Header */}
-      <div className="p-4 border-b border-gray-200 dark:border-white/5 bg-gray-50/80 dark:bg-white/5 flex items-center justify-between shrink-0">
-        <div className="flex items-center space-x-3">
+      <div className="p-6 border-b border-gray-100 flex items-center justify-between shrink-0">
+        <div className="flex items-center space-x-4">
           <div className="relative">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-r from-lime-500 to-lime-600 flex items-center justify-center">
-              <Icons.Bot className="w-6 h-6 text-white" />
+            <div className="w-12 h-12 rounded-full bg-[#84cc16] flex items-center justify-center">
+              {/* Custom Bot Icon to match screenshot */}
+              <svg viewBox="0 0 24 24" className="w-7 h-7 text-white" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="3" y="11" width="18" height="10" rx="2" />
+                <circle cx="12" cy="5" r="2" />
+                <path d="M12 7v4" />
+                <line x1="8" y1="16" x2="8" y2="16" />
+                <line x1="16" y1="16" x2="16" y2="16" />
+              </svg>
             </div>
-            <div className="absolute bottom-0.5 right-0.5 w-3 h-3 bg-green-500 border-2 border-white dark:border-dark-900 rounded-full"></div>
+            <div className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-[#22c55e] border-[3px] border-white rounded-full"></div>
           </div>
           <div>
-            <h3 className="font-bold text-gray-900 dark:text-white text-sm">Linno AI Assistant</h3>
-            <p className="text-[10px] text-lime-600 dark:text-lime-400 font-bold uppercase tracking-wider">Support & Intake Mode</p>
+            <h3 className="font-extrabold text-[#111827] text-base leading-tight">Linno AI Assistant</h3>
+            <p className="text-[10px] text-[#84cc16] font-black uppercase tracking-wider">SUPPORT & INTAKE MODE</p>
           </div>
         </div>
-        <div className="flex items-center space-x-2">
-           <Icons.Zap className="w-3.5 h-3.5 text-gray-300" />
+        <div className="flex items-center">
+           <Icons.Zap className="w-4 h-4 text-gray-200" />
         </div>
       </div>
 
       {/* Messages */}
-      <div 
-        ref={scrollContainerRef}
-        style={{ overscrollBehavior: 'contain' }}
-        className="flex-1 overflow-y-auto p-4 space-y-4 bg-[#fcfdfa] dark:bg-dark-900/40"
-      >
-        {messages.map((msg) => (
-          <div
-            key={msg.id}
-            className={`flex flex-col ${msg.role === 'user' ? 'items-end' : 'items-start'}`}
-          >
-            <div
-              className={`max-w-[85%] p-3.5 rounded-2xl text-sm leading-relaxed shadow-sm ${
-                msg.role === 'user'
-                  ? 'bg-brand-500 text-black font-medium rounded-br-none'
-                  : 'bg-white dark:bg-dark-800 text-gray-800 dark:text-gray-200 border border-gray-100 dark:border-white/5 rounded-bl-none'
-              }`}
-            >
-              {msg.text}
-            </div>
-            
-            {msg.options && (
-              <div className="flex flex-col gap-2 mt-3 w-full max-w-[80%]">
-                {msg.options.map((option, idx) => (
-                  <button
-                    key={idx}
-                    type="button"
-                    onClick={() => handleOptionClick(option.label, option.targetId)}
-                    className="w-full text-left px-4 py-2.5 rounded-xl text-xs font-bold bg-white dark:bg-dark-700 text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-white/10 hover:border-brand-500 hover:text-brand-600 transition-all shadow-sm focus:outline-none focus:ring-2 focus:ring-brand-500/50"
-                  >
-                    {option.label}
-                  </button>
-                ))}
-              </div>
-            )}
+      <div className="flex-1 overflow-hidden p-6 space-y-6 bg-white">
+        {/* Bot Message Bubble */}
+        <div className="flex flex-col items-start max-w-[90%]">
+          <div className="p-5 rounded-[1.5rem] rounded-tl-sm text-[#374151] text-[0.95rem] leading-relaxed shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-gray-50 bg-white">
+            Hi! I'm Linno. I help businesses automate Support, Client Intake, and Feedback. Which process are you looking to streamline today?
           </div>
-        ))}
-        {status === BotStatus.THINKING && (
-          <div className="flex justify-start">
-            <div className="bg-white dark:bg-dark-800 border border-gray-100 dark:border-white/5 p-3 rounded-2xl rounded-bl-none flex space-x-1 shadow-sm">
-              <div className="w-1.5 h-1.5 bg-brand-500 rounded-full animate-bounce"></div>
-              <div className="w-1.5 h-1.5 bg-brand-500 rounded-full animate-bounce delay-75"></div>
-              <div className="w-1.5 h-1.5 bg-brand-500 rounded-full animate-bounce delay-150"></div>
-            </div>
-          </div>
-        )}
+        </div>
       </div>
 
-      {/* Input */}
-      <form onSubmit={handleSendMessage} className="p-4 bg-white dark:bg-dark-900 border-t border-gray-100 dark:border-white/5 shrink-0">
+      {/* Static Footer Input Area */}
+      <div className="p-6 bg-white border-t border-gray-50 shrink-0">
         <div className="relative flex items-center">
-          <input
-            type="text"
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-            placeholder={step === 'GREETING' ? "Select a use case above..." : "Type your answer..."}
-            disabled={step === 'GREETING' || step === 'CONFIRMED' || status === BotStatus.THINKING}
-            className="w-full bg-gray-50 dark:bg-dark-800/50 text-gray-900 dark:text-white placeholder-gray-400 rounded-full py-3.5 pl-5 pr-14 focus:outline-none focus:ring-2 focus:ring-brand-500 border border-gray-100 dark:border-white/5 transition-all text-sm"
-          />
-          <button
-            type="submit"
-            disabled={!inputValue.trim() || status === BotStatus.THINKING || step === 'GREETING' || step === 'CONFIRMED'}
-            className="absolute right-2 p-2 bg-brand-500 rounded-full text-black hover:bg-brand-600 disabled:opacity-30 disabled:grayscale transition-all shadow-lg shadow-brand-500/10 focus:outline-none focus:ring-2 focus:ring-brand-500"
-          >
-            <Icons.ArrowRight className="w-4 h-4" />
-          </button>
+          <div className="w-full bg-[#f9fafb] text-[#9ca3af] rounded-full py-4 pl-6 pr-14 border border-gray-100 text-[0.95rem]">
+            Type a message...
+          </div>
+          <div className="absolute right-2 p-2.5 bg-[#e5e7eb] rounded-full text-white shadow-sm">
+            <Icons.ArrowRight className="w-5 h-5" />
+          </div>
         </div>
-      </form>
+      </div>
+      
+      {/* Visual Overlay to simulate "still image" feel */}
+      <div className="absolute inset-0 bg-transparent pointer-events-auto"></div>
     </div>
   );
 };
