@@ -326,20 +326,20 @@ function App() {
                     <div className="space-y-6">
                       <div>
                         <div className="flex justify-between text-xs text-gray-400 mb-2 font-medium tracking-wide uppercase">
-                          <span>Resolution Rate</span>
-                          <span className="text-amber-400 font-bold">65%</span>
-                        </div>
-                        <div className="h-1.5 bg-white/10 rounded-full overflow-hidden">
-                          <div className="h-full w-[65%] bg-amber-500 rounded-full shadow-[0_0_10px_rgba(245,158,11,0.3)]"></div>
-                        </div>
-                      </div>
-                      <div>
-                        <div className="flex justify-between text-xs text-gray-400 mb-2 font-medium tracking-wide uppercase">
                           <span>Intake Speed</span>
                           <span className="text-indigo-400 font-bold">40% faster</span>
                         </div>
                         <div className="h-1.5 bg-white/10 rounded-full overflow-hidden">
                           <div className="h-full w-[40%] bg-indigo-500 rounded-full shadow-[0_0_10px_rgba(99,102,241,0.3)]"></div>
+                        </div>
+                      </div>
+                      <div>
+                        <div className="flex justify-between text-xs text-gray-400 mb-2 font-medium tracking-wide uppercase">
+                          <span>Resolution Rate</span>
+                          <span className="text-amber-400 font-bold">65%</span>
+                        </div>
+                        <div className="h-1.5 bg-white/10 rounded-full overflow-hidden">
+                          <div className="h-full w-[65%] bg-amber-500 rounded-full shadow-[0_0_10px_rgba(245,158,11,0.3)]"></div>
                         </div>
                       </div>
                       <div>
