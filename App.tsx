@@ -182,13 +182,13 @@ function App() {
             <div className="max-w-7xl mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-12 items-center">
               <div className="text-left animate-slide-up">
                 <h1 className="text-5xl lg:text-7xl font-extrabold tracking-tighter mb-8 leading-none">
-                  <span className="glass-heading-main inline-block py-2 px-1 text-brand-navy">Conversational <br /> AI Agents</span>
+                  <span className="glass-heading-main inline-block py-2 px-1 text-brand-navy">Conversational <br /> <span className="glass-heading-accent">AI Agents</span></span>
                 </h1>
                 <p className="text-xl font-semibold text-brand-navy/80 dark:text-gray-200 mb-4">
                   Turn complex workflows into natural, actionable conversations.
                 </p>
                 <p className="text-lg text-brand-navy/60 dark:text-gray-400 mb-8 max-w-xl leading-relaxed">
-                  LinnoChat is the enterprise AI platform that deploys intelligent agents to handle customer support triage, Complex Data Collection, and qualitative research—all without code.
+                  LinnoChat is the enterprise AI platform that deploys intelligent agents to handle customer support triage, Complex Data Collection, and qualitative research - all without code.
                 </p>
                 <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4">
                   <a href="#automate" className="w-full sm:w-auto px-10 py-4 bg-brand-500 hover:bg-brand-600 text-brand-navy rounded-lg font-bold text-lg transition-all shadow-xl shadow-brand-500/20 flex items-center justify-center space-x-2">
@@ -314,7 +314,7 @@ function App() {
                       </div>
                       <div>
                         <h4 className="font-bold text-brand-navy dark:text-white">24/7 Resolution</h4>
-                        <p className="text-brand-navy/60 dark:text-gray-400">Don't just queue tickets—solve them. Our agents can handle FAQs, scheduling, and basic troubleshooting.</p>
+                        <p className="text-brand-navy/60 dark:text-gray-400">Don't just queue tickets - solve them. Our agents can handle FAQs, scheduling, and basic troubleshooting.</p>
                       </div>
                     </div>
                   </div>
