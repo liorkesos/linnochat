@@ -3,7 +3,7 @@ import { Icons } from './Icons';
 
 const ChatWidget: React.FC = () => {
   return (
-    <div className="w-full max-w-sm mx-auto rounded-[28px] overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.1)] border border-gray-100 dark:border-white/5 flex flex-col h-[500px] transition-all duration-300 relative bg-white dark:bg-dark-900">
+    <div className="w-full max-w-sm mx-auto rounded-[28px] overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.1)] border border-gray-100 dark:border-white/5 flex flex-col h-[420px] transition-all duration-300 relative bg-white dark:bg-dark-900">
       {/* Header - Mirroring the reference image exactly */}
       <div className="p-6 border-b border-gray-100 dark:border-white/5 bg-white dark:bg-dark-800 flex items-center justify-between shrink-0">
         <div className="flex items-center space-x-4">
@@ -29,18 +29,6 @@ const ChatWidget: React.FC = () => {
         <div className="flex flex-col items-start animate-fade-in">
           <div className="max-w-[90%] p-5 bg-white dark:bg-dark-800 text-[#334155] dark:text-gray-100 rounded-[24px] rounded-bl-none shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-gray-50 dark:border-white/5 text-[15px] leading-relaxed">
             Hi! I'm Linno. I help businesses automate Support, Client Intake, and Feedback. Which process are you looking to streamline today?
-          </div>
-        </div>
-      </div>
-
-      {/* Static Input Placeholder - Non-functional to act as an image */}
-      <div className="p-6 bg-white dark:bg-dark-900 border-t border-gray-50 dark:border-white/5 shrink-0">
-        <div className="relative flex items-center">
-          <div className="w-full bg-gray-50/80 dark:bg-dark-800/80 text-gray-400 rounded-2xl py-4 px-6 border border-gray-100 dark:border-white/10 text-sm font-medium">
-            Type your message...
-          </div>
-          <div className="absolute right-3 p-2.5 bg-[#84cc16] rounded-xl text-white shadow-lg">
-            <Icons.ArrowRight className="w-4 h-4" />
           </div>
         </div>
       </div>
