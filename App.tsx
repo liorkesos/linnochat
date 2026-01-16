@@ -7,6 +7,7 @@ import ComingSoonPage from './components/ComingSoonPage';
 import MaintenancePage from './components/MaintenancePage';
 import AccessibilityTools from './components/AccessibilityTools';
 import { Icons } from './components/Icons';
+import { Calendar } from 'lucide-react';
 
 const DEMO_LINK = "https://calendly.com/lyron-linnovate/30min";
 const API_DOCS_LINK = "https://webchat.linno.chat/swagger/index.html";
@@ -36,17 +37,17 @@ const platformFeatures = [
   {
     title: "Bring Your Own Model",
     description: "Connect with popular LLMs like OpenAI, Llama, Gemini, or custom fine-tuned models.",
-    icon: <Icons.Cpu className="w-8 h-8 text-brand-navy" />
+    icon: <Icons.Cpu className="w-10 h-10 text-brand-navy" />
   },
   {
     title: "Workflow API",
     description: "Trigger chats from your app, upload contacts securely, and pipe structured data directly back into your systems.",
-    icon: <Icons.Terminal className="w-8 h-8 text-brand-navy" />
+    icon: <Icons.Terminal className="w-10 h-10 text-brand-navy" />
   },
   {
     title: "Any Channel",
     description: "Deploy via Web SDK, WhatsApp Business API, Slack, or Email auto-responders.",
-    icon: <Icons.Globe className="w-8 h-8 text-brand-navy" />
+    icon: <Icons.Globe className="w-10 h-10 text-brand-navy" />
   }
 ];
 
@@ -148,7 +149,7 @@ function App() {
     <div className="min-h-screen bg-gray-50 dark:bg-dark-900 text-brand-navy dark:text-slate-200 selection:bg-lime-500/30 transition-colors duration-300">
       <Navbar onLogoClick={() => navigateTo('home')} />
 
-      {/* Accessibility Widget */}
+      {/* Accessibility Tools restored */}
       <AccessibilityTools />
 
       {/* WhatsApp Widget floating button */}
@@ -188,12 +189,12 @@ function App() {
                   Turn complex workflows into natural, actionable conversations.
                 </p>
                 <p className="text-lg text-brand-navy/60 dark:text-gray-400 mb-8 max-w-xl leading-relaxed">
-                  LinnoChat is the enterprise AI platform that deploys intelligent agents to handle customer support triage, Complex Data Collection, and qualitative research - all without code.
+                  LinnoChat is the enterprise AI platform that deploys intelligent agents to handle customer support triage, complex data collection, and qualitative research.
                 </p>
                 <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4">
-                  <a href="#automate" className="w-full sm:w-auto px-10 py-4 bg-brand-500 hover:bg-brand-600 text-brand-navy rounded-lg font-bold text-lg transition-all shadow-xl shadow-brand-500/20 flex items-center justify-center space-x-2">
+                  <a href="#automate" className="w-full sm:w-auto px-10 py-4 bg-brand-500 hover:bg-brand-600 text-white rounded-lg font-bold text-lg transition-all shadow-xl shadow-brand-500/20 flex items-center justify-center space-x-2">
+                    <Icons.Zap className="w-5 h-5 fill-white" />
                     <span>Try Now</span>
-                    <Icons.Zap className="w-5 h-5 fill-brand-navy" />
                   </a>
                   <a href="#integrations-section" className="w-full sm:w-auto px-8 py-4 bg-white hover:bg-gray-50 dark:bg-white/5 dark:hover:bg-white/10 border border-gray-200 dark:border-white/10 text-brand-navy dark:text-white rounded-lg font-semibold transition-all backdrop-blur-sm shadow-sm dark:shadow-none flex items-center justify-center">
                     View Integrations
@@ -201,9 +202,15 @@ function App() {
                 </div>
               </div>
 
-              <div className="relative animate-fade-in delay-200" id="demo">
-                 <div className="absolute inset-0 bg-gradient-to-r from-lime-500 to-lime-600 rounded-2xl blur-xl opacity-20 transform rotate-2"></div>
-                <ChatWidget />
+              {/* Chat Container with Angled Perspective */}
+              <div className="relative animate-fade-in delay-200 flex justify-center perspective-[1200px]">
+                {/* Visual Glow behind the widget */}
+                <div className="absolute -inset-4 bg-lime-500/10 blur-[100px] rounded-full pointer-events-none"></div>
+                
+                {/* 3D Container */}
+                <div className="transform-gpu transition-all duration-1000 rotate-y-[-15deg] rotate-x-[5deg] hover:rotate-y-[-5deg] hover:rotate-x-[2deg] scale-95 hover:scale-100">
+                  <ChatWidget />
+                </div>
               </div>
             </div>
           </section>
@@ -305,7 +312,7 @@ function App() {
                       </div>
                       <div>
                         <h4 className="font-bold text-brand-navy dark:text-white">Structured Data Extraction</h4>
-                        <p className="text-brand-navy/60 dark:text-gray-400">Turn conversational chaos into clean Data Structure. We populate your CRM or ticketing system automatically.</p>
+                        <p className="text-brand-navy/60 dark:text-gray-400">Turn conversational chaos into clean data structures. We populate your CRM or ticketing system automatically.</p>
                       </div>
                     </div>
                     <div className="flex items-start">
@@ -358,14 +365,14 @@ function App() {
             </div>
           </section>
 
-          {/* Platform Section: Vibrant Green Strip */}
-          <section id="platform" className="py-24 bg-lime-500 text-brand-navy scroll-mt-24">
+          {/* Platform Section */}
+          <section id="platform" className="py-24 bg-lime-100 dark:bg-dark-800 text-brand-navy dark:text-white scroll-mt-24">
             <div className="max-w-7xl mx-auto px-6">
               <div className="max-w-full mb-16 overflow-hidden">
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 tracking-tight whitespace-nowrap">
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 tracking-tight">
                   Enterprise-Grade Open Architecture
                 </h2>
-                <p className="text-xl md:text-2xl text-brand-navy/90 leading-tight font-medium whitespace-nowrap overflow-hidden">
+                <p className="text-xl md:text-2xl text-brand-navy/80 dark:text-gray-300 leading-tight font-medium">
                   Fully self-hosted deployment for absolute data sovereignty. Secure, controlled, and open.
                 </p>
               </div>
@@ -373,11 +380,11 @@ function App() {
               <div className="grid md:grid-cols-3 gap-12">
                 {platformFeatures.map((feature, idx) => (
                   <div key={idx} className="group">
-                    <div className="mb-6 p-4 bg-white w-fit rounded-xl border border-lime-600/20 group-hover:border-lime-600/40 transition-all">
+                    <div className="mb-6 p-6 bg-white dark:bg-dark-900 w-fit rounded-2xl border border-lime-200 dark:border-white/10 group-hover:border-lime-400 dark:group-hover:border-lime-500 transition-all shadow-sm">
                       {feature.icon}
                     </div>
                     <h3 className="text-xl font-bold mb-4">{feature.title}</h3>
-                    <p className="text-brand-navy/80 leading-relaxed text-sm lg:text-base font-medium">
+                    <p className="text-brand-navy/70 dark:text-gray-400 leading-relaxed text-sm lg:text-base font-medium">
                       {feature.description}
                     </p>
                   </div>
@@ -386,12 +393,12 @@ function App() {
             </div>
           </section>
 
-          {/* Integrations Section Strip */}
+          {/* Integrations Section */}
           <section id="integrations-section" className="py-24 bg-brand-navy text-white scroll-mt-24 border-t border-white/5">
             <div className="max-w-7xl mx-auto px-6">
               <div className="text-center mx-auto mb-16">
                 <h2 className="text-3xl md:text-5xl font-bold mb-6">Native Integrations</h2>
-                <p className="text-white/60 text-lg md:whitespace-nowrap">
+                <p className="text-white/60 text-lg">
                   LinnoChat fits perfectly into your existing tech stack. Connect your favorite tools and start automating in minutes.
                 </p>
               </div>
@@ -419,7 +426,7 @@ function App() {
             <div className="max-w-7xl mx-auto px-6">
               <div className="text-center mb-16">
                 <h2 className="text-3xl md:text-5xl font-bold text-brand-navy dark:text-white mb-6">Procurement Process Automation</h2>
-                <p className="text-brand-navy/60 dark:text-gray-400">Save time & money - Streamline procurement processes to improve experience and compliance</p>
+                <p className="text-brand-navy/60 dark:text-gray-400">Streamline procurement processes to improve experience and compliance</p>
               </div>
               
               <div className="flex flex-wrap justify-center gap-6">
@@ -453,10 +460,10 @@ function App() {
               <div className="max-w-4xl mx-auto bg-white dark:bg-dark-900 rounded-3xl p-8 md:p-12 shadow-[0_20px_60px_rgba(0,0,0,0.05)] border border-gray-200 dark:border-white/5">
                   <button 
                     onClick={() => navigateTo('coming-soon')}
-                    className="w-full py-6 bg-brand-500 hover:bg-brand-600 text-brand-navy font-bold text-2xl rounded-2xl shadow-xl transition-all hover:-translate-y-1 active:scale-[0.98] flex items-center justify-center space-x-3"
+                    className="w-full py-6 bg-brand-500 hover:bg-brand-600 text-white font-bold text-2xl rounded-2xl shadow-xl transition-all hover:-translate-y-1 active:scale-[0.98] flex items-center justify-center space-x-3"
                   >
+                    <Icons.Zap className="w-6 h-6 fill-white" />
                     <span>Generate My Agent</span>
-                    <Icons.Zap className="w-5 h-5 fill-brand-navy" />
                   </button>
               </div>
             </div>
@@ -476,8 +483,9 @@ function App() {
                     href={DEMO_LINK}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full py-8 bg-brand-500 hover:bg-brand-600 text-brand-navy font-bold text-3xl rounded-2xl shadow-[0_10px_30px_rgba(132,204,22,0.2)] transition-all hover:-translate-y-1 active:scale-95 flex items-center justify-center space-x-4"
+                    className="w-full py-8 bg-brand-500 hover:bg-brand-600 text-white font-bold text-3xl rounded-2xl shadow-[0_10px_30px_rgba(132,204,22,0.2)] transition-all hover:-translate-y-1 active:scale-95 flex items-center justify-center space-x-4"
                   >
+                    <Calendar className="w-8 h-8" />
                     <span>Book My Demo</span>
                     <Icons.ArrowRight className="w-8 h-8" />
                   </a>
@@ -491,10 +499,10 @@ function App() {
       <footer className="bg-white dark:bg-dark-950 pt-20 pb-10 border-t border-gray-100 dark:border-white/5 text-brand-navy dark:text-slate-200">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
-            {/* Column 1: Brand & Info (using 2 column spans conceptually in md-3 grid) */}
+            {/* Column 1: Brand & Info */}
             <div className="md:col-span-2">
               <div 
-                className="flex items-center space-x-3 mb-6 cursor-pointer"
+                className="flex items-center space-x-3 mb-6 cursor-pointer group"
                 onClick={() => navigateTo('home')}
               >
                 <div className="w-12 h-10 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
@@ -505,33 +513,34 @@ function App() {
                   <span className="text-brand-600">chat</span>
                 </span>
               </div>
-              <p className="text-brand-navy/60 dark:text-gray-400 text-base max-w-sm mb-8 leading-relaxed">
+              <p className="text-brand-navy/60 dark:text-gray-400 text-lg max-w-sm mb-10 leading-relaxed font-medium">
                 The enterprise platform for intelligent intake, support, and data collection.
               </p>
-              <div className="space-y-4">
-                <div className="flex items-center space-x-3 text-brand-navy/60 dark:text-gray-400">
-                  <Icons.MapPin className="w-4 h-4 text-red-500" />
-                  <span className="text-sm font-medium">Bnei Brak, Israel (Powered by Linnovate)</span>
+              <div className="space-y-5">
+                <div className="flex items-center space-x-3 text-brand-navy/70 dark:text-gray-400">
+                  <Icons.MapPin className="w-5 h-5 text-red-500/80" />
+                  <span className="text-base font-semibold italic">Bnei Brak, Israel (Powered by <a href="https://linnovate.net/" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Linnovate</a>)</span>
                 </div>
-                <div className="flex items-center space-x-3 text-brand-navy/60 dark:text-gray-400">
-                  <Icons.Mail className="w-4 h-4 text-brand-500" />
-                  <span className="text-sm font-medium underline decoration-brand-200 underline-offset-4">contact@linnovate.net</span>
+                <div className="flex items-center space-x-3 text-brand-navy/70 dark:text-gray-400">
+                  <Icons.Mail className="w-5 h-5 text-brand-500" />
+                  <a href="mailto:contact@linnovate.net" className="text-base font-semibold hover:text-brand-600 transition-colors border-b border-brand-200 dark:border-brand-500/30">contact@linnovate.net</a>
                 </div>
               </div>
             </div>
 
             {/* Column 2: Platform Links */}
             <div>
-              <h4 className="text-brand-navy dark:text-white font-bold text-lg mb-8 tracking-tight">Platform</h4>
-              <ul className="space-y-4 text-brand-navy/60 dark:text-gray-400">
+              <h4 className="text-brand-navy dark:text-white font-bold text-xl mb-8 tracking-tight">Resources</h4>
+              <ul className="space-y-5 text-brand-navy/60 dark:text-gray-400">
                 <li>
                   <a 
                     href={API_DOCS_LINK} 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="hover:text-brand-600 transition-colors font-medium text-left block"
+                    className="hover:text-brand-600 transition-colors font-bold text-left block flex items-center space-x-2"
                   >
-                    API Documentation
+                    <Icons.FileText className="w-4 h-4" />
+                    <span>API Documentation</span>
                   </a>
                 </li>
               </ul>
@@ -539,9 +548,9 @@ function App() {
           </div>
 
           {/* Bottom Bar */}
-          <div className="pt-10 border-t border-gray-100 dark:border-white/5 flex flex-col md:flex-row justify-between items-center text-sm font-medium text-brand-navy/60 dark:text-gray-500">
+          <div className="pt-10 border-t border-gray-100 dark:border-white/5 flex flex-col md:flex-row justify-between items-center text-sm font-bold text-brand-navy/40 dark:text-gray-500 tracking-wide">
             <p>© 2026 Linnovate Technologies Ltd. All Rights Reserved.</p>
-            <div className="flex space-x-10 mt-6 md:mt-0">
+            <div className="flex space-x-10 mt-6 md:mt-0 uppercase text-[11px] tracking-widest">
               <button 
                 onClick={() => navigateTo('privacy')}
                 className="hover:text-brand-navy dark:hover:text-white transition-colors"
@@ -552,7 +561,7 @@ function App() {
                 onClick={() => navigateTo('terms')}
                 className="hover:text-brand-navy dark:hover:text-white transition-colors"
               >
-                Terms of Service (SaaS Agreement)
+                Terms of Service
               </button>
             </div>
           </div>

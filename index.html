@@ -90,12 +90,31 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         text-shadow: 0px 2px 4px rgba(132, 204, 22, 0.2);
+        padding-right: 0.15em;
       }
       .dark .glass-heading-accent {
         background: linear-gradient(135deg, #bef264 0%, #65a30d 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         text-shadow: 0px 0px 25px rgba(132, 204, 22, 0.2);
+        padding-right: 0.15em;
+      }
+
+      /* Accessibility Tool Classes */
+      .force-light-bg {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+      }
+      .force-light-bg * {
+        background-color: transparent !important;
+        color: inherit !important;
+        border-color: #000000 !important;
+      }
+      .force-underline a {
+        text-decoration: underline !important;
+      }
+      .force-readable-font {
+        font-family: Arial, Helvetica, sans-serif !important;
       }
 
       .hero-gradient {
@@ -115,23 +134,6 @@
       }
       .dark ::-webkit-scrollbar-thumb {
         background: #4d7c0f;
-      }
-
-      /* Accessibility Mode Styles */
-      .force-light-bg, .force-light-bg body, .force-light-bg section {
-        background-color: #ffffff !important;
-        background-image: none !important;
-        color: #1e295b !important;
-      }
-      .force-underline a {
-        text-decoration: underline !important;
-        text-underline-offset: 4px;
-      }
-      .force-readable-font {
-        font-family: Arial, Helvetica, sans-serif !important;
-      }
-      .force-readable-font * {
-        font-family: Arial, Helvetica, sans-serif !important;
       }
     </style>
     <script type="importmap">
