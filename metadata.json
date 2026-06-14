@@ -1,5 +1,6 @@
 {
   "name": "LinnoChat - Intelligent AI Agents",
   "description": "The enterprise platform that automates intake, support, and data collection using empathetic Generative AI.",
-  "requestFramePermissions": []
+  "requestFramePermissions": [],
+  "majorCapabilities": []
 }
